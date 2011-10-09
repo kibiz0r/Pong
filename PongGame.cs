@@ -12,12 +12,12 @@ namespace Pong
 
         public void Join(IPlayer player)
         {
-            //
+            players[Array.IndexOf(players, null)] = player;
         }
 
         public bool HasStarted
         {
-            get { return false; }
+            get { return players.All(player => players != null); }
         }
 
         public IEnumerable<IPlayer> Players
