@@ -4,7 +4,7 @@ namespace Pong.Test
 {
     public class TestHelper
     {
-        public IPongGame Game
+        public virtual IPongGame Game
         {
             get;
             set;
@@ -12,7 +12,7 @@ namespace Pong.Test
 
         public void SetUp2PlayerPongGame()
         {
-            Game = new PongGame();
+            Game = new PongGame(2);
         }
     }
 }

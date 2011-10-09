@@ -7,6 +7,16 @@ namespace Pong.Test
     [TestFixture]
     public class PongGameTest : TestHelper
     {
+        #region Constructor
+        [Test]
+        public void Constructor_allocates_players_list()
+        {
+            Game = new PongGame(5);
+            Assert.That(Game.Players, Has.Length.EqualTo(5));
+            Assert.That(Game.Players, Has.All.Null);
+        }
+        #endregion
+
         #region Join
         [Test]
         public void Join_adds_player_to_players_list()

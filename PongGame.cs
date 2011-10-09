@@ -1,9 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace Pong
 {
     public class PongGame : IPongGame
     {
+        public PongGame(int numberOfPlayers)
+        {
+            players = Enumerable.Repeat<IPlayer>(null, numberOfPlayers).ToArray();
+        }
+
         public void Join(IPlayer player)
         {
             //
@@ -19,7 +25,7 @@ namespace Pong
             get { return players; }
         }
 
-        private List<IPlayer> players = new List<IPlayer>();
+        private IPlayer[] players = new IPlayer[0];
     }
 }
 

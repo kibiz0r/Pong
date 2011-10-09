@@ -9,7 +9,7 @@ namespace Pong.Test
         [SetUp]
         public void SetUp()
         {
-            Game = new PongGame();
+            SetUp2PlayerPongGame();
         }
 
         [Test]
