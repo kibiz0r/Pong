@@ -60,12 +60,17 @@
     <Compile Include="Features\Steps\GameStartSteps.cs" />
     <Compile Include="Features\Steps\StepHelper.cs" />
     <Compile Include="Functional\JoinTest.cs" />
+    <Compile Include="Unit\PongInputTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Pong.csproj">
       <Project>{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}</Project>
       <Name>Pong</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AllegroSharp\AllegroSharp.csproj">
+      <Project>{10ABA2F6-4BE0-498A-93AF-8762939DA553}</Project>
+      <Name>AllegroSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

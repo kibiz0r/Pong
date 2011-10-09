@@ -43,6 +43,11 @@
     <Compile Include="IPlayer.cs" />
     <Compile Include="PongGame.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PongInput.cs" />
+    <Compile Include="PongDisplay.cs" />
+    <Compile Include="IPongInput.cs" />
+    <Compile Include="IKeyboardInput.cs" />
+    <Compile Include="KeyboardInput.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
