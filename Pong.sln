@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pong", "Pong.csproj", "{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllegroSharp", "AllegroSharp\AllegroSharp.csproj", "{10ABA2F6-4BE0-498A-93AF-8762939DA553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pong.Test", "Pong.Test\Pong.Test.csproj", "{5E58A892-DAC8-4327-B26C-4ACF1F41F7EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10ABA2F6-4BE0-498A-93AF-8762939DA553}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{10ABA2F6-4BE0-498A-93AF-8762939DA553}.Debug|x86.Build.0 = Debug|Any CPU
+		{10ABA2F6-4BE0-498A-93AF-8762939DA553}.Release|x86.ActiveCfg = Release|Any CPU
+		{10ABA2F6-4BE0-498A-93AF-8762939DA553}.Release|x86.Build.0 = Release|Any CPU
+		{5E58A892-DAC8-4327-B26C-4ACF1F41F7EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E58A892-DAC8-4327-B26C-4ACF1F41F7EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{5E58A892-DAC8-4327-B26C-4ACF1F41F7EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E58A892-DAC8-4327-B26C-4ACF1F41F7EE}.Release|x86.Build.0 = Release|Any CPU
+		{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}.Debug|x86.ActiveCfg = Debug|x86
+		{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}.Debug|x86.Build.0 = Debug|x86
+		{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}.Release|x86.ActiveCfg = Release|x86
+		{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Pong.Test\Pong.Test.csproj
+	EndGlobalSection
+EndGlobal

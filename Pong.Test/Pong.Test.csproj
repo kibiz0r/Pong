@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5E58A892-DAC8-4327-B26C-4ACF1F41F7EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Pong.Test</RootNamespace>
+    <AssemblyName>Pong.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="rake test" workingdir="${SolutionDir}" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>NUnit-2.5.10.11092\bin\net-2.0\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Moq.4.0.10827\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="TechTalk.SpecFlow, Version=1.7.1.0, Culture=neutral, PublicKeyToken=0778194805d6db41">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>SpecFlow_v1.7.1_bin\lib\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="TestHelper.cs" />
+    <Compile Include="Unit\PongGameTest.cs" />
+    <Compile Include="Features\GameStart.feature.cs">
+      <DependentUpon>GameStart.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Steps\GameStartSteps.cs" />
+    <Compile Include="Features\Steps\StepHelper.cs" />
+    <Compile Include="Functional\JoinTest.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Pong.csproj">
+      <Project>{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}</Project>
+      <Name>Pong</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Unit\" />
+    <Folder Include="Functional\" />
+    <Folder Include="Features\" />
+    <Folder Include="Features\Steps\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Features\GameStart.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GameStart.feature.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>
