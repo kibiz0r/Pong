@@ -18,49 +18,66 @@ namespace Pong.Test
             get;
             set;
         }
+        public Mock<IPlayerSlot> PlayerSlot1
+        {
+            get;
+            set;
+        }
+        public Mock<IPlayerSlot> PlayerSlot2
+        {
+            get;
+            set;
+        }
+        public new Mock<IPongGame> Game
+        {
+            get;
+            set;
+        }
 
         [SetUp]
         public void SetUp()
         {
             Keyboard = Stub<IKeyboardInput>();
             Input = new PongInput(Keyboard.Object);
+            PlayerSlot1 = Stub<IPlayerSlot>();
+            PlayerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
+            PlayerSlot2 = Stub<IPlayerSlot>();
+            PlayerSlot2.Setup(p => p.StartKey).Returns(Key.Tab);
+            Game = Mock<IPongGame>();
+            Game.Setup(g => g.PlayerSlots).Returns(new IPlayerSlot[] { PlayerSlot1.Object, PlayerSlot2.Object });
+        }
+
+        public void KeyIsPressed(Key key)
+        {
+            Keyboard.Setup(k => k.IsPressed(key)).Returns(true);
+        }
+
+        public void KeyIsNotPressed(Key key)
+        {
+            Keyboard.Setup(k => k.IsPressed(key)).Returns(false);
         }
 
         [Test]
         public void Calls_Join_when_player_presses_start()
         {
-            var playerSlot1 = Stub<IPlayerSlot>();
-            playerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
-            var playerSlot2 = Stub<IPlayerSlot>();
-            playerSlot2.Setup(p => p.StartKey).Returns(Key.Tab);
+            KeyIsPressed(Key.Enter);
+            KeyIsNotPressed(Key.Tab);
 
-            Keyboard.Setup(k => k.IsPressed(Key.Enter)).Returns(true);
-            Keyboard.Setup(k => k.IsPressed(Key.Tab)).Returns(false);
+            Game.Setup(g => g.Join(PlayerSlot1.Object));
 
-            var game = Mock<IPongGame>();
-            game.Setup(g => g.PlayerSlots).Returns(new IPlayerSlot[] { playerSlot1.Object, playerSlot2.Object });
-            game.Setup(g => g.Join(playerSlot1.Object));
-
-            Input.Apply(game.Object);
+            Input.Apply(Game.Object);
         }
 
         [Test]
         public void Calls_Join_when_both_players_press_start()
         {
-            var playerSlot1 = Stub<IPlayerSlot>();
-            playerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
-            var playerSlot2 = Stub<IPlayerSlot>();
-            playerSlot2.Setup(p => p.StartKey).Returns(Key.Tab);
+            KeyIsPressed(Key.Enter);
+            KeyIsPressed(Key.Tab);
 
-            Keyboard.Setup(k => k.IsPressed(Key.Enter)).Returns(true);
-            Keyboard.Setup(k => k.IsPressed(Key.Tab)).Returns(true);
+            Game.Setup(g => g.Join(PlayerSlot1.Object));
+            Game.Setup(g => g.Join(PlayerSlot2.Object));
 
-            var game = Mock<IPongGame>();
-            game.Setup(g => g.PlayerSlots).Returns(new IPlayerSlot[] { playerSlot1.Object, playerSlot2.Object });
-            game.Setup(g => g.Join(playerSlot1.Object));
-            game.Setup(g => g.Join(playerSlot2.Object));
-
-            Input.Apply(game.Object);
+            Input.Apply(Game.Object);
         }
     }
 }

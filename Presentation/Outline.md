@@ -463,4 +463,24 @@ We could've done another cheesy implementation like this:
 
 But I think we see where this is going. However, since we've taken this step, it's a good idea to add a test that ensures that we're checking both player slots. Otherwise, player two's join mechanism could be horribly broken and our tests wouldn't catch it.
 
-## 
+## ef137b
+And this is that test. Very similar to the first one, which means it's probably time to consider abstracting away some of the similarities.
+
+    [Test]
+    public void Calls_Join_when_both_players_press_start()
+    {
+        var playerSlot1 = Stub<IPlayerSlot>();
+        playerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
+        var playerSlot2 = Stub<IPlayerSlot>();
+        playerSlot2.Setup(p => p.StartKey).Returns(Key.Tab);
+
+        Keyboard.Setup(k => k.IsPressed(Key.Enter)).Returns(true);
+        Keyboard.Setup(k => k.IsPressed(Key.Tab)).Returns(true);
+
+        var game = Mock<IPongGame>();
+        game.Setup(g => g.PlayerSlots).Returns(new IPlayerSlot[] { playerSlot1.Object, playerSlot2.Object });
+        game.Setup(g => g.Join(playerSlot1.Object));
+        game.Setup(g => g.Join(playerSlot2.Object));
+
+        Input.Apply(game.Object);
+    }
