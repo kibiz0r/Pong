@@ -27,6 +27,15 @@ namespace Pong.Test
         }
 
         [Test]
+        public void Joining_multiple_times_is_okay()
+        {
+            Game.Join(Game.PlayerSlots[0]);
+            Game.Join(Game.PlayerSlots[1]);
+            Game.Join(Game.PlayerSlots[1]);
+            Assert.That(Game.Players[1].Paddle, Is.Not.Null);
+        }
+
+        [Test]
         public void Game_starting_spawns_paddles()
         {
             Start(Game);

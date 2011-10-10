@@ -96,6 +96,14 @@ namespace Pong.Test
             Game.Join(Game.PlayerSlots[0]);
             Assert.That(Game.PlayerSlots[0].IsReady);
         }
+
+        [Test]
+        public void Ignores_joining_occupied_slot()
+        {
+            var playerSlot = Mock<IPlayerSlot>();
+            playerSlot.Setup(p => p.IsReady).Returns(true);
+            Game.Join(playerSlot.Object);
+        }
         #endregion
 
         #region Initialization

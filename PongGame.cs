@@ -24,6 +24,10 @@ namespace Pong
 
         public void Join(IPlayerSlot playerSlot)
         {
+            if (playerSlot.IsReady)
+            {
+                return;
+            }
             var wasStarted = HasStarted;
             playerSlot.Join(PlayerFactory.Create(playerSlot));
             if (!wasStarted && HasStarted)

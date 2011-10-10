@@ -41,6 +41,10 @@ namespace Pong
             {
                 throw new Exception("ttf failz");
             }
+            if (!Primitives.Init())
+            {
+                throw new Exception("primitives failz");
+            }
             Display.Create(800, 600);
         }
 
