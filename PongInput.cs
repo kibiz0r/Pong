@@ -12,7 +12,13 @@ namespace Pong
 
         public void Apply(IPongGame game)
         {
-
+            foreach (var playerSlot in game.PlayerSlots)
+            {
+                if (keyboard.IsPressed(playerSlot.StartKey))
+                {
+                    game.Join(playerSlot);
+                }
+            }
         }
     }
 }

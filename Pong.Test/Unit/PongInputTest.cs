@@ -22,21 +22,24 @@ namespace Pong.Test
         [SetUp]
         public void SetUp()
         {
-            Keyboard = Mocks.Create<IKeyboardInput>();
+            Keyboard = Mock<IKeyboardInput>();
             Input = new PongInput(Keyboard.Object);
         }
 
         [Test]
         public void Calls_Join_when_player_presses_start()
         {
-            var playerSlot = Mocks.Create<IPlayerSlot>();
-            var startKey = Key.Enter;
-            playerSlot.Setup(p => p.StartKey).Returns(startKey);
+            var playerSlot1 = Stub<IPlayerSlot>();
+            playerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
+            var playerSlot2 = Stub<IPlayerSlot>();
+            playerSlot2.Setup(p => p.StartKey).Returns(Key.Tab);
 
-            var game = Mocks.Create<IPongGame>();
-            game.Setup(g => g.Join(playerSlot.Object));
+            Keyboard.Setup(k => k.IsPressed(Key.Enter)).Returns(true);
+            Keyboard.Setup(k => k.IsPressed(Key.Tab)).Returns(false);
 
-            Keyboard.Setup(k => k.IsPressed(startKey)).Returns(true);
+            var game = Mock<IPongGame>();
+            game.Setup(g => g.PlayerSlots).Returns(new IPlayerSlot[] { playerSlot1.Object, playerSlot2.Object });
+            game.Setup(g => g.Join(playerSlot1.Object));
 
             Input.Apply(game.Object);
         }

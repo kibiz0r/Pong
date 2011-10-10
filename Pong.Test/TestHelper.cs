@@ -28,6 +28,16 @@ namespace Pong.Test
             );
         }
 
+        public Mock<T> Mock<T>() where T : class
+        {
+            return Mocks.Create<T>(MockBehavior.Strict);
+        }
+
+        public Mock<T> Stub<T>() where T : class
+        {
+            return Mocks.Create<T>(MockBehavior.Loose);
+        }
+
         [TearDown]
         public void TearDown()
         {

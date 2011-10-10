@@ -25,32 +25,32 @@
 # What is a test?
 A test is simply an assertion about the behavior of a particular piece of code.
 
-	[TestFixture]
-	public class CalculatorTest
-	{
-		[Test]
-		public void AddTest()
-		{
-			var calculator = new Calculator();
-			var result = calculator.Add(3, 8);
-			Assert.That(result, Is.EqualTo(11));
-		}
-	}
+    [TestFixture]
+    public class CalculatorTest
+    {
+        [Test]
+        public void AddTest()
+        {
+            var calculator = new Calculator();
+            var result = calculator.Add(3, 8);
+            Assert.That(result, Is.EqualTo(11));
+        }
+    }
 
 Output before we implement Add():
-	F
-	Tests run: 1, Errors: 0, Failures: 1, Inconclusive: 0, Time: 0.337824 seconds
-	  Not run: 0, Invalid: 0, Ignored: 0, Skipped: 0
+    F
+    Tests run: 1, Errors: 0, Failures: 1, Inconclusive: 0, Time: 0.337824 seconds
+      Not run: 0, Invalid: 0, Ignored: 0, Skipped: 0
 
-	Errors and Failures:
-	1) Test Failure : Calculator.Test.CalculatorTest.AddTest
-	     Expected: 11
-	     But was:  0
+    Errors and Failures:
+    1) Test Failure : Calculator.Test.CalculatorTest.AddTest
+         Expected: 11
+         But was:  0
 
 Output after we implement Add():
-	.
-	Tests run: 1, Errors: 0, Failures: 0, Inconclusive: 0, Time: 0.337824 seconds
-	  Not run: 0, Invalid: 0, Ignored: 0, Skipped: 0
+    .
+    Tests run: 1, Errors: 0, Failures: 0, Inconclusive: 0, Time: 0.337824 seconds
+      Not run: 0, Invalid: 0, Ignored: 0, Skipped: 0
 
 # How do I test?
 There are two main approaches to testing. They are characterized as "state-based" (or black-box) and "interaction-based" (or white-box). They offer complementary benefits, and are often used in conjunction to fully test a feature.
@@ -58,26 +58,26 @@ There are two main approaches to testing. They are characterized as "state-based
 ## State-based testing
 State-based testing relies on putting the object under test into a known state, triggering a state change, and then asserting some facts about its new state.
 
-	var door = new Door(DoorState.Closed); // Door is initially closed.
-	door.Open();
-	Assert.That(door.State, Is.EqualTo(DoorState.Open));
+    var door = new Door(DoorState.Closed); // Door is initially closed.
+    door.Open();
+    Assert.That(door.State, Is.EqualTo(DoorState.Open));
 
 The earlier example of the calculator is also a state-based test.
 
-	var calculator = new Calculator();
-	var result = calculator.Add(3, 8);
-	Assert.That(result, Is.EqualTo(11));
+    var calculator = new Calculator();
+    var result = calculator.Add(3, 8);
+    Assert.That(result, Is.EqualTo(11));
 
 ## Interaction-based testing
 Interaction-based testing, on the other hand, specifies how an object interacts with its dependencies. Here, we are less concerned with the state of any particular object -- we just want to ensure that the right calls are being made with the right arguments.
 
 In this example, we are testing our DamageDealer class, which will ask our guy how much armor he has and then deal him the remaining damage.
 
-	var guy = new Mock<Guy>(); // Create a mock guy.
-	guy.Setup(guy => guy.Armor).Returns(50); // We have 50 armor.
-	guy.Setup(guy => guy.TakeDamage(25)); // Create an expectation that guy.TakeDamage will be called with 25 as its argument.
-	var damageDealer = new DamageDealer();
-	damageDealer.DealDamage(guy, 75); // Deal 75 damage, which becomes 25 damage after armor.
+    var guy = new Mock<Guy>(); // Create a mock guy.
+    guy.Setup(guy => guy.Armor).Returns(50); // We have 50 armor.
+    guy.Setup(guy => guy.TakeDamage(25)); // Create an expectation that guy.TakeDamage will be called with 25 as its argument.
+    var damageDealer = new DamageDealer();
+    damageDealer.DealDamage(guy, 75); // Deal 75 damage, which becomes 25 damage after armor.
 
 We could test this using a real instance of Guy, but if Armor is calculated based on his level, skill points, equipment, and so on, it might be overly complicated to set up the correct scenario and force us to revisit the test if the Armor calculation ever changes -- that's not what we want at all.
 
@@ -89,12 +89,12 @@ There are three categories that you'll hear most often with respect to testing: 
 ## Integration tests
 Integration tests are the highest-level tests. They take the user's perspective and walk through an entire feature. They form the acceptance criteria for a feature -- when they are all passing, the feature is considered done. They tend to be written in a language that a non-technical stakeholder can understand, such as Cucumber.
 
-	Scenario: Scoring a point
-		Given I am playing a game of Pong
-		And I have a ball coming at me
-		And I hit the ball
-		When my opponent misses the ball
-		Then my score should be 1
+    Scenario: Scoring a point
+        Given I am playing a game of Pong
+        And I have a ball coming at me
+        And I hit the ball
+        When my opponent misses the ball
+        Then my score should be 1
 
 They tend to only cover "happy path" cases, talk about "visible" outcomes rather than raw data structures, and almost never use mocks.
 
@@ -103,22 +103,22 @@ A functional test represents the user performing a discrete interaction with the
 
 Functional tests are written from the perspective of the system itself, may cover degenerate cases, deal with high-level data structures, and may use mocks to a limited extent.
 
-	var shootingGame = LoadShootingGameWithMeLookingAtEnemy1();
-	Assert.That(shootingGame.Enemies.First().IsAlive);
-	Assert.That(shootingGame.MyAmmo, Is.EqualTo(50));
-	shootingGame.Shoot();
-	shootingGame.ProcessTime(10); // 10ms pass.
-	Assert.That(shootingGame.Enemies.First().IsDead);
-	Assert.That(shootingGame.MyAmmo, Is.EqualTo(49));
+    var shootingGame = LoadShootingGameWithMeLookingAtEnemy1();
+    Assert.That(shootingGame.Enemies.First().IsAlive);
+    Assert.That(shootingGame.MyAmmo, Is.EqualTo(50));
+    shootingGame.Shoot();
+    shootingGame.ProcessTime(10); // 10ms pass.
+    Assert.That(shootingGame.Enemies.First().IsDead);
+    Assert.That(shootingGame.MyAmmo, Is.EqualTo(49));
 
 Functional tests form the specification of your high-level API. Here, you can see that I have a pre-constructed scenario to put the game into the right state for me to explode some poor sap's face. I make a couple of sanity checks, call the high-level method that represents the action the player is taking, simulate 10ms of game time to allow my explosion to take effect, then check that my ammo went down and so did the bad guy.
 
 ## Unit tests
 Unit tests are the lowest-level tests, and are used to describe individual methods on an object. Unit tests tend to make heavier use of interaction-based testing. They goal is to cover every possible code path of a method, so most methods will have multiple test cases associated with them, covering both the normal and degenerate cases. This is where most of the bug-catching happens; it's also where we sketch out the interface of a class.
 
-	Assert.That(rock.Beats(scissors));
-	Assert.False(rock.Beats(rock));
-	Assert.That(() => rock.Beats(null), Throws.Exception);
+    Assert.That(rock.Beats(scissors));
+    Assert.False(rock.Beats(rock));
+    Assert.That(() => rock.Beats(null), Throws.Exception);
 
 # TDD in the wild
 Now let's try test-driving Pong.
@@ -129,38 +129,38 @@ This is our starting point. We've got a test environment set up and three failin
 ### GameStart.feature
 I picked a simple rule to start with: when two players join the game, the game starts.
 
-	Feature: Game starting
+    Feature: Game starting
 
-	Scenario: The game starts when two players join
-	    Given I have a game of Pong
-	    When two players join
-	    Then the game starts
+    Scenario: The game starts when two players join
+        Given I have a game of Pong
+        When two players join
+        Then the game starts
 
 ### JoinTest.cs
 I broke that integration test down into a single functional test. I put it in a file called JoinTest.cs, which I anticipate will contain every test related to the PongGame.Join() method.
 
-	[Test]
-	public void Last_player_joining_starts_game()
-	{
-		Game.Join(new Player());
-		Game.Join(new Player());
-		Assert.That(Game.HasStarted);
-	}
+    [Test]
+    public void Last_player_joining_starts_game()
+    {
+        Game.Join(new Player());
+        Game.Join(new Player());
+        Assert.That(Game.HasStarted);
+    }
 
 Notice that I'm using really high-level vocabulary here, using PongGame as my interface to any action I want to take or question I want to ask.
 
 ### PongGameTest.cs
 I further broke that functional test down into the first unit test.
 
-	[Test]
-	public void Join_adds_player_to_players_list()
-	{
-		var player1 = new Player();
-		var player2 = new Player();
-		Game.Join(player1);
-		Game.Join(player2);
-		Assert.That(Game.Players, Is.EqualTo(new Player[] { player1, player2 }));
-	}
+    [Test]
+    public void Join_adds_player_to_players_list()
+    {
+        var player1 = new Player();
+        var player2 = new Player();
+        Game.Join(player1);
+        Game.Join(player2);
+        Assert.That(Game.Players, Is.EqualTo(new Player[] { player1, player2 }));
+    }
 
 Not terribly different from the functional test here, which is to be expected since this unit test deals with PongGame.Join() in the same way, but it introduces the concept of the PongGame.Players array. This is a detail that we didn't care about at the functional level, but it's a state change that we do need to care about if we're going to be able to implement the PongGame.HasStarted property.
 
@@ -168,51 +168,51 @@ Not terribly different from the functional test here, which is to be expected si
 ### PongGameTest.cs
 Here, I add another unit test to demonstrate the state transition of PongGame.HasStarted
 
-	[Test]
-	public void Join_starts_game_when_last_player_joins()
-	{
-		var player1 = new Player();
-		var player2 = new Player();
-		Game.Join(player1);
-		Game.Join(player2);
-		Assert.That(Game.HasStarted);
-	}
+    [Test]
+    public void Join_starts_game_when_last_player_joins()
+    {
+        var player1 = new Player();
+        var player2 = new Player();
+        Game.Join(player1);
+        Game.Join(player2);
+        Assert.That(Game.HasStarted);
+    }
 
 ## 23f89a
 ### PongGameTest.cs
 Here, I made a decision that PongGame would be fed the number of players rather than having it assume there are two, and that the Players array would be full of null references initially.
 
-	[Test]
-	public void Constructor_allocates_players_list()
-	{
-		Game = new PongGame(5);
-		Assert.That(Game.Players, Has.Length.EqualTo(5));
-		Assert.That(Game.Players, Has.All.Null);
-	}
+    [Test]
+    public void Constructor_allocates_players_list()
+    {
+        Game = new PongGame(5);
+        Assert.That(Game.Players, Has.Length.EqualTo(5));
+        Assert.That(Game.Players, Has.All.Null);
+    }
 
 The setup of my other tests changed as a result and I decided to make a helper method SetUp2PlayerPongGame() so I can freely change the constructor of PongGame without having the update every test individually.
 
 ### PongGame.cs
 After running the tests and seeing them all fail, I implemented the constructor.
 
-	public PongGame(int numberOfPlayers)
-	{
-		players = Enumerable.Repeat<IPlayer>(null, numberOfPlayers).ToArray();
-	}
+    public PongGame(int numberOfPlayers)
+    {
+        players = Enumerable.Repeat<IPlayer>(null, numberOfPlayers).ToArray();
+    }
 
 ## ee5b7d
 ### PongGame.cs
 With these two methods, all my tests are now passing.
 
-	public void Join(IPlayer player)
-	{
-		players[Array.IndexOf(players, null)] = player;
-	}
+    public void Join(IPlayer player)
+    {
+        players[Array.IndexOf(players, null)] = player;
+    }
 
-	public bool HasStarted
-	{
-		get { return players.All(player => players != null); }
-	}
+    public bool HasStarted
+    {
+        get { return players.All(player => players != null); }
+    }
 
 Notice that I'm being really cheesy here, deliberately doing *the simplest thing that could possibly work*.
 
@@ -226,29 +226,29 @@ Okay, now that our system is capable of something, our next goal is to hook it u
 ### Main.cs
 Sketched out a simple Main that we can build off of later.
 
-	public static void Main(string[] args)
-	{
-		var game = new PongGame(2);
-		var input = new PongInput(new KeyboardInput());
-		var display = new PongDisplay();
-		while (true)
-		{
-			input.Apply(game);
-			//game.Update(10);
-			display.Render(game);
-		}
-	}
+    public static void Main(string[] args)
+    {
+        var game = new PongGame(2);
+        var input = new PongInput(new KeyboardInput());
+        var display = new PongDisplay();
+        while (true)
+        {
+            input.Apply(game);
+            //game.Update(10);
+            display.Render(game);
+        }
+    }
 
 ### TestHelper.cs
 This section makes heavy use of mocks, so I set up a MockRepository in my TestHelper class that allows me to easily verify my mocks in the test teardown.
 
-	public MockRepository Mocks = new MockRepository(MockBehavior.Strict);
+    public MockRepository Mocks = new MockRepository(MockBehavior.Strict);
 
-	[TearDown]
-	public void TearDown()
-	{
-		Mocks.VerifyAll();
-	}
+    [TearDown]
+    public void TearDown()
+    {
+        Mocks.VerifyAll();
+    }
 
 ### PongInputTest.cs
 In this test, I've set up a mock object that pretends to be providing information about the state of the keyboard so that I can test more of the input system.
@@ -260,56 +260,140 @@ n. Keyboard expects to be asked whether the player's start key is pressed, and w
 n. We make the actual call.
 n. TearDown() runs, verifying that all of our expected methods got called.
 
-	[SetUp]
-	public void SetUp()
-	{
-		Keyboard = Mocks.Create<IKeyboardInput>();
-		Input = new PongInput(Keyboard.Object);
-	}
+    [SetUp]
+    public void SetUp()
+    {
+        Keyboard = Mocks.Create<IKeyboardInput>();
+        Input = new PongInput(Keyboard.Object);
+    }
 
-	[Test]
-	public void Calls_Join_when_player_presses_start()
-	{
-		var player = Mocks.Create<IPlayer>();
-		var startKey = Key.Enter;
-		player.Setup(p => p.StartKey).Returns(startKey);
+    [Test]
+    public void Calls_Join_when_player_presses_start()
+    {
+        var player = Mocks.Create<IPlayer>();
+        var startKey = Key.Enter;
+        player.Setup(p => p.StartKey).Returns(startKey);
 
-		var game = Mocks.Create<IPongGame>();
-		game.Setup(g => g.Join(player.Object));
+        var game = Mocks.Create<IPongGame>();
+        game.Setup(g => g.Join(player.Object));
 
-		Keyboard.Setup(k => k.IsPressed(startKey)).Returns(true);
+        Keyboard.Setup(k => k.IsPressed(startKey)).Returns(true);
 
-		Input.Apply(game.Object);
-	}
+        Input.Apply(game.Object);
+    }
 
 Test output:
 
-	1) TearDown Error : Pong.Test.PongInputTest.Calls_Join_when_player_presses_start
-	   TearDown : Moq.MockException : The following setups were not matched:
-	IKeyboardInput k => k.IsPressed(Key.Enter)
+    1) TearDown Error : Pong.Test.PongInputTest.Calls_Join_when_player_presses_start
+       TearDown : Moq.MockException : The following setups were not matched:
+    IKeyboardInput k => k.IsPressed(Key.Enter)
 
-	IPlayer p => p.StartKey
+    IPlayer p => p.StartKey
 
-	IPongGame g => g.Join()
+    IPongGame g => g.Join()
 
 ### Problems?
 Okay, so now that we've got a test to verify the path from processing keyboard input to joining the game, let's try to make it pass.
 
-	public class PongInput : IPongInput
-	{
-		public PongInput(IKeyboardInput keyboard)
-		{
-			this.keyboard = keyboard;
-		}
+    public class PongInput : IPongInput
+    {
+        public PongInput(IKeyboardInput keyboard)
+        {
+            this.keyboard = keyboard;
+        }
 
-		private IKeyboardInput keyboard;
+        private IKeyboardInput keyboard;
 
-		public void Apply(IPongGame game)
-		{
-			// ???
-		}
-	}
+        public void Apply(IPongGame game)
+        {
+            // ???
+        }
+    }
 
 Wait a second, we've got a chicken-and-egg problem. We need a Player in order to check whether we should add a Player. It makes sense for the information "Player 1's start key is <foo>" to live in PongGame, but it doesn't make sense for it to be tied to something that can come and go like Player.
 
 Let's take this opportunity to refactor a bit and say that StartKey lives on a "PlayerSlot" instead.
+
+## 991f32
+Okay, introducing the concept of a PlayerSlot changed a lot of classes and some test setups, but all of the previous tests pass just fine with the change. Without my test suite, meager though it may be, I might not have dared to make such a sweeping change in the middle of adding player input.
+
+### IPongGame.cs
+Join() has changed to talk about PlayerSlots instead of Players, and we expose an array of PlayerSlots that client code like PongInput can interact with before calling Join().
+
+    public interface IPongGame
+    {
+        void Join(IPlayerSlot playerSlot);
+        bool HasStarted
+        {
+            get;
+        }
+        IPlayer[] Players
+        {
+            get;
+        }
+        IPlayerSlot[] PlayerSlots
+        {
+            get;
+        }
+    }
+
+### Main.cs
+Providing the number of players isn't enough anymore, because now we must specify a StartKey for each player slot.
+
+    public static void Main(string[] args)
+    {
+        var game = new PongGame(
+            new PlayerSlot
+            {
+                StartKey = Key.Num1,
+            },
+            new PlayerSlot
+            {
+                StartKey = Key.Num0
+            }
+        );
+        var input = new PongInput(new KeyboardInput());
+        var display = new PongDisplay();
+        while (true)
+        {
+            input.Apply(game);
+            //game.Update(10);
+            display.Render(game);
+        }
+    }
+
+### PongGame.cs
+Lots of changes to this class, almost every line is different. We're still being very cheesy with our implementation, but that's okay. As we just experienced, our designs are frequently wrong, and any speculative code we write might turn out to be a complete waste of time later on.
+
+    public class PongGame : IPongGame
+    {
+        public PongGame(params IPlayerSlot[] playerSlots)
+        {
+            foreach (var playerSlot in playerSlots)
+            {
+                players.Add(playerSlot, null);
+            }
+        }
+
+        public void Join(IPlayerSlot playerSlot)
+        {
+            players[playerSlot] = new Player();
+        }
+
+        public bool HasStarted
+        {
+            get { return players.Values.All(player => player != null); }
+        }
+
+        public IPlayer[] Players
+        {
+            get { return players.Values.ToArray(); }
+        }
+
+        public IPlayerSlot[] PlayerSlots
+        {
+            get { return players.Keys.ToArray(); }
+        }
+
+        private Dictionary<IPlayerSlot, IPlayer> players = new Dictionary<IPlayerSlot, IPlayer>();
+    }
