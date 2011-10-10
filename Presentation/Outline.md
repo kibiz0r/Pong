@@ -397,3 +397,70 @@ Lots of changes to this class, almost every line is different. We're still being
 
         private Dictionary<IPlayerSlot, IPlayer> players = new Dictionary<IPlayerSlot, IPlayer>();
     }
+
+## 44f5c0
+Alright, now that we're armed with the power of PlayerSlots, let's pass that test.
+
+### TestHelper.cs
+I added a couple of convenience methods to TestHelper.
+
+    public Mock<T> Mock<T>() where T : class
+    {
+        return Mocks.Create<T>(MockBehavior.Strict);
+    }
+
+    public Mock<T> Stub<T>() where T : class
+    {
+        return Mocks.Create<T>(MockBehavior.Loose);
+    }
+
+In testing world terminology, "mocks" differ from "stubs" in that mocks will blow up if you call something they didn't expect, whereas stubs will ignore the call and return a default value. It's a good idea to use mocks for the things you really care about (in our case, the call to Join()) and stubs for the things you don't really care about but need to fake out for one reason or another.
+
+### PongInputTest.cs
+I changed the test a little bit to reflect how we intend to use the PlayerSlots array to find out what keys we should be checking.
+
+    [Test]
+    public void Calls_Join_when_player_presses_start()
+    {
+        var playerSlot1 = Stub<IPlayerSlot>();
+        playerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
+        var playerSlot2 = Stub<IPlayerSlot>();
+        playerSlot2.Setup(p => p.StartKey).Returns(Key.Tab);
+
+        Keyboard.Setup(k => k.IsPressed(Key.Enter)).Returns(true);
+        Keyboard.Setup(k => k.IsPressed(Key.Tab)).Returns(false);
+
+        var game = Mock<IPongGame>();
+        game.Setup(g => g.PlayerSlots).Returns(new IPlayerSlot[] { playerSlot1.Object, playerSlot2.Object });
+        game.Setup(g => g.Join(playerSlot1.Object));
+
+        Input.Apply(game.Object);
+    }
+
+### PongInput.cs
+Okay, here's the implementation.
+
+    public void Apply(IPongGame game)
+    {
+        foreach (var playerSlot in game.PlayerSlots)
+        {
+            if (keyboard.IsPressed(playerSlot.StartKey))
+            {
+                game.Join(playerSlot);
+            }
+        }
+    }
+
+We could've done another cheesy implementation like this:
+
+    public void Apply(IPongGame game)
+    {
+        if (keyboard.IsPressed(game.PlayerSlots[0].StartKey))
+        {
+            game.Join(game.PlayerSlots[0]);
+        }
+    }
+
+But I think we see where this is going. However, since we've taken this step, it's a good idea to add a test that ensures that we're checking both player slots. Otherwise, player two's join mechanism could be horribly broken and our tests wouldn't catch it.
+
+## 

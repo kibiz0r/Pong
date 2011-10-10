@@ -13,6 +13,7 @@ namespace Pong.Test
         }
 
         public MockRepository Mocks = new MockRepository(MockBehavior.Strict);
+        public MockRepository Stubs = new MockRepository(MockBehavior.Loose);
 
         public void SetUp2PlayerPongGame()
         {
@@ -30,12 +31,12 @@ namespace Pong.Test
 
         public Mock<T> Mock<T>() where T : class
         {
-            return Mocks.Create<T>(MockBehavior.Strict);
+            return Mocks.Create<T>();
         }
 
         public Mock<T> Stub<T>() where T : class
         {
-            return Mocks.Create<T>(MockBehavior.Loose);
+            return Mocks.Create<T>();
         }
 
         [TearDown]
