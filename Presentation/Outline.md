@@ -538,5 +538,12 @@ Excellent, now our pair of tests are substantially more concise.
         Input.Apply(Game.Object);
     }
 
-## ???
+## b051fa
 Okay, it's time to hook up the rest of this shit. I'm gonna go faster and into a little less detail now.
+
+This commit rounds out our initial pass at input and display. You'll notice that I added a lot of untested code, but it's all contained in KeyboardInput and PongDisplay -- two classes that are not eminently testable at the moment.
+
+PongDisplay should probably have some tests right now, simply due to the fact that it displays "Press <key> to Join" if the slot is open or "Ready" if it is taken. This is behavior that is important to the user, and we'd like to catch it if it breaks some day.
+
+### Side-note
+Allegro 5.0.4 changed the API of several methods since 5.0 (or maybe 4.9?), which caused my C# binding to shit its pants. (Segfaults, stack corruption, etc.) That was really annoying to deal with, but I don't hold it against the Allegro devs at all.

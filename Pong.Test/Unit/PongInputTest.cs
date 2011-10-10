@@ -28,7 +28,7 @@ namespace Pong.Test
             get;
             set;
         }
-        public new Mock<IPongGame> Game
+        public Mock<IPongGame> Game
         {
             get;
             set;

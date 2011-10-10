@@ -5,34 +5,25 @@ namespace Pong
 {
     public class PongGame : IPongGame
     {
-        public PongGame(params IPlayerSlot[] playerSlots)
+        public PongGame()
         {
-            foreach (var playerSlot in playerSlots)
-            {
-                players.Add(playerSlot, null);
-            }
             IsRunning = true;
         }
 
         public void Join(IPlayerSlot playerSlot)
         {
-            players[playerSlot] = new Player();
+            playerSlot.Join(new Player());
         }
 
         public bool HasStarted
         {
-            get { return players.Values.All(player => player != null); }
+            get { return PlayerSlots.All(p => p.IsReady); }
         }
 
         public bool IsRunning
         {
             get;
             private set;
-        }
-
-        public bool IsPlayerSlotReady(IPlayerSlot playerSlot)
-        {
-            return players[playerSlot] != null;
         }
 
         public void Exit()
@@ -42,15 +33,16 @@ namespace Pong
 
         public IPlayer[] Players
         {
-            get { return players.Values.ToArray(); }
+            get { return PlayerSlots.Select(p => p.Player).ToArray(); }
         }
 
         public IPlayerSlot[] PlayerSlots
         {
-            get { return players.Keys.ToArray(); }
+            get { return playerSlots; }
+            set { playerSlots = value; }
         }
 
-        private Dictionary<IPlayerSlot, IPlayer> players = new Dictionary<IPlayerSlot, IPlayer>();
+        private IPlayerSlot[] playerSlots = new IPlayerSlot[0];
     }
 }
 

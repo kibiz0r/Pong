@@ -11,7 +11,7 @@ namespace Pong.Test
         [Given("I have a game of Pong")]
         public void IHaveAGameOfPong()
         {
-            SetUp2PlayerPongGame();
+            Game = Create2PlayerPongGame();
         }
 
         [When("two players join")]

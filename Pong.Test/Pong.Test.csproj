@@ -61,6 +61,9 @@
     <Compile Include="Features\Steps\StepHelper.cs" />
     <Compile Include="Functional\JoinTest.cs" />
     <Compile Include="Unit\PongInputTest.cs" />
+    <Compile Include="Unit\PongDisplayTest.cs" />
+    <Compile Include="Unit\PlayerSlotRendererTest.cs" />
+    <Compile Include="Unit\PlayerSlotTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

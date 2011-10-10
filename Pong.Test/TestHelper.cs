@@ -6,27 +6,24 @@ namespace Pong.Test
 {
     public class TestHelper
     {
-        public virtual IPongGame Game
-        {
-            get;
-            set;
-        }
-
         public MockRepository Mocks;
         public MockRepository Stubs;
 
-        public void SetUp2PlayerPongGame()
+        public IPongGame Create2PlayerPongGame()
         {
-            Game = new PongGame(
-                new PlayerSlot
-                {
-                    StartKey = Key.F11
-                },
-                new PlayerSlot
-                {
-                    StartKey = Key.F12
+            return new PongGame
+            {
+                PlayerSlots = new IPlayerSlot[] {
+                    new PlayerSlot
+                    {
+                        StartKey = Key.F11
+                    },
+                    new PlayerSlot
+                    {
+                        StartKey = Key.F12
+                    }
                 }
-            );
+            };
         }
 
         public Mock<T> Mock<T>() where T : class

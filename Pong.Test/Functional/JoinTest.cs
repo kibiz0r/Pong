@@ -6,10 +6,16 @@ namespace Pong.Test
     [TestFixture]
     public class JoinTest : TestHelper
     {
+        public IPongGame Game
+        {
+            get;
+            set;
+        }
+
         [SetUp]
         public void SetUp()
         {
-            SetUp2PlayerPongGame();
+            Game = Create2PlayerPongGame();
         }
 
         [Test]

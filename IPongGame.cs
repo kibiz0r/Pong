@@ -22,7 +22,6 @@ namespace Pong
         {
             get;
         }
-        bool IsPlayerSlotReady(IPlayerSlot playerSlot);
     }
 }
 

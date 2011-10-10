@@ -50,6 +50,15 @@
     <Compile Include="KeyboardInput.cs" />
     <Compile Include="IPlayerSlot.cs" />
     <Compile Include="PlayerSlot.cs" />
+    <Compile Include="IRenderer.cs" />
+    <Compile Include="IPongDisplay.cs" />
+    <Compile Include="Renderer.cs" />
+    <Compile Include="IPlayerSlotRenderer.cs" />
+    <Compile Include="PlayerSlotRenderer.cs" />
+    <Compile Include="IFontRenderer.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="FontRenderer.cs" />
+    <Compile Include="Content.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

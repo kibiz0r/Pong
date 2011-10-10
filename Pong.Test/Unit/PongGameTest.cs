@@ -8,17 +8,31 @@ namespace Pong.Test
     [TestFixture]
     public class PongGameTest : TestHelper
     {
+        public IPongGame Game
+        {
+            get;
+            set;
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            Game = Create2PlayerPongGame();
+        }
         #region Constructor
         [Test]
         public void Constructor_allocates_players_list()
         {
-            Game = new PongGame(
-                new PlayerSlot(),
-                new PlayerSlot(),
-                new PlayerSlot(),
-                new PlayerSlot(),
-                new PlayerSlot()
-            );
+            Game = new PongGame
+            {
+                PlayerSlots = new IPlayerSlot[] {
+                    new PlayerSlot(),
+                    new PlayerSlot(),
+                    new PlayerSlot(),
+                    new PlayerSlot(),
+                    new PlayerSlot()
+                }
+            };
             Assert.That(Game.Players, Has.Length.EqualTo(5));
             Assert.That(Game.Players, Has.All.Null);
         }
@@ -28,7 +42,6 @@ namespace Pong.Test
         [Test]
         public void Join_adds_player_to_players_list()
         {
-            SetUp2PlayerPongGame();
             Game.Join(Game.PlayerSlots[0]);
             Game.Join(Game.PlayerSlots[1]);
             Assert.That(Game.Players, Has.Length.EqualTo(2));
@@ -38,7 +51,6 @@ namespace Pong.Test
         [Test]
         public void Join_starts_game_when_last_player_joins()
         {
-            SetUp2PlayerPongGame();
             Game.Join(Game.PlayerSlots[0]);
             Game.Join(Game.PlayerSlots[1]);
             Assert.That(Game.HasStarted);
@@ -47,13 +59,12 @@ namespace Pong.Test
         [Test]
         public void Join_causes_a_player_slot_to_become_ready()
         {
-            SetUp2PlayerPongGame();
-            Assert.False(Game.IsPlayerSlotReady(Game.PlayerSlots[0]));
-            Assert.False(Game.IsPlayerSlotReady(Game.PlayerSlots[1]));
+            Assert.False(Game.PlayerSlots[0].IsReady);
+            Assert.False(Game.PlayerSlots[1].IsReady);
             Game.Join(Game.PlayerSlots[1]);
-            Assert.That(Game.IsPlayerSlotReady(Game.PlayerSlots[1]));
+            Assert.That(Game.PlayerSlots[1].IsReady);
             Game.Join(Game.PlayerSlots[0]);
-            Assert.That(Game.IsPlayerSlotReady(Game.PlayerSlots[0]));
+            Assert.That(Game.PlayerSlots[0].IsReady);
         }
         #endregion
 

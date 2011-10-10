@@ -12,6 +12,22 @@ namespace Pong
 
         public static void AllegroMain()
         {
+            InitializeAllegro();
+
+            var game = CreateGame();
+            var display = CreateDisplay();
+            var input = CreateInput();
+
+            while (game.IsRunning)
+            {
+                input.Apply(game);
+                //game.Update(10);
+                display.Render(game);
+            }
+        }
+
+        public static void InitializeAllegro()
+        {
             if (!Allegro.InstallSystem())
             {
                 throw new Exception("allegro failz");
@@ -26,24 +42,49 @@ namespace Pong
                 throw new Exception("ttf failz");
             }
             Display.Create(800, 600);
-            var game = new PongGame(
-                new PlayerSlot
-                {
-                    StartKey = Key.Num1,
-                },
-                new PlayerSlot
-                {
-                    StartKey = Key.Num0
-                }
-            );
-            var display = new PongDisplay();
-            var input = new PongInput(new KeyboardInput());
-            while (game.IsRunning)
+        }
+
+        public static IPongGame CreateGame()
+        {
+            return new PongGame
             {
-                input.Apply(game);
-                //game.Update(10);
-                display.Render(game);
-            }
+                PlayerSlots = new IPlayerSlot[] {
+                    new PlayerSlot
+                    {
+                        Color = new Color(1, 0, 0),
+                        JoinReadyPosition = new Point(100, 50),
+                        JoinReadyFontDrawFlags = FontDrawFlags.AlignLeft,
+                        StartKey = Key.Num1,
+                    },
+                    new PlayerSlot
+                    {
+                        Color = new Color(0, 0, 1),
+                        JoinReadyPosition = new Point(Display.Current.Width - 100, 50),
+                        JoinReadyFontDrawFlags = FontDrawFlags.AlignRight,
+                        StartKey = Key.Num0
+                    }
+                }
+            };
+        }
+
+        public static IPongDisplay CreateDisplay()
+        {
+            return new PongDisplay(
+                new Renderer(),
+                new PlayerSlotRenderer(
+                    new FontRenderer
+                    {
+                        Font = Content.Arial
+                    }
+                )
+            );
+        }
+
+        public static IPongInput CreateInput()
+        {
+            return new PongInput(
+                new KeyboardInput()
+            );
         }
     }
 }
