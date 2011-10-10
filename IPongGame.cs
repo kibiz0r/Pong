@@ -9,6 +9,11 @@ namespace Pong
         {
             get;
         }
+        bool IsRunning
+        {
+            get;
+        }
+        void Exit();
         IPlayer[] Players
         {
             get;
@@ -17,6 +22,7 @@ namespace Pong
         {
             get;
         }
+        bool IsPlayerSlotReady(IPlayerSlot playerSlot);
     }
 }
 

@@ -43,6 +43,28 @@ namespace Pong.Test
             Game.Join(Game.PlayerSlots[1]);
             Assert.That(Game.HasStarted);
         }
+
+        [Test]
+        public void Join_causes_a_player_slot_to_become_ready()
+        {
+            SetUp2PlayerPongGame();
+            Assert.False(Game.IsPlayerSlotReady(Game.PlayerSlots[0]));
+            Assert.False(Game.IsPlayerSlotReady(Game.PlayerSlots[1]));
+            Game.Join(Game.PlayerSlots[1]);
+            Assert.That(Game.IsPlayerSlotReady(Game.PlayerSlots[1]));
+            Game.Join(Game.PlayerSlots[0]);
+            Assert.That(Game.IsPlayerSlotReady(Game.PlayerSlots[0]));
+        }
+        #endregion
+
+        #region Exit
+        [Test]
+        public void Exit_causes_game_to_stop_running()
+        {
+            Assert.That(Game.IsRunning);
+            Game.Exit();
+            Assert.False(Game.IsRunning);
+        }
         #endregion
     }
 }

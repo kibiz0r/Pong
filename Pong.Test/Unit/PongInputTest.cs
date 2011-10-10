@@ -79,6 +79,21 @@ namespace Pong.Test
 
             Input.Apply(Game.Object);
         }
+
+        [Test]
+        public void Polls_keyboard()
+        {
+            Keyboard.Setup(k => k.Poll()).Verifiable();
+            Input.Apply(Game.Object);
+        }
+
+        [Test]
+        public void Checks_for_exit()
+        {
+            KeyIsPressed(Key.Escape);
+            Game.Setup(g => g.Exit());
+            Input.Apply(Game.Object);
+        }
     }
 }
 

@@ -11,6 +11,7 @@ namespace Pong
             {
                 players.Add(playerSlot, null);
             }
+            IsRunning = true;
         }
 
         public void Join(IPlayerSlot playerSlot)
@@ -21,6 +22,22 @@ namespace Pong
         public bool HasStarted
         {
             get { return players.Values.All(player => player != null); }
+        }
+
+        public bool IsRunning
+        {
+            get;
+            private set;
+        }
+
+        public bool IsPlayerSlotReady(IPlayerSlot playerSlot)
+        {
+            return players[playerSlot] != null;
+        }
+
+        public void Exit()
+        {
+            IsRunning = false;
         }
 
         public IPlayer[] Players

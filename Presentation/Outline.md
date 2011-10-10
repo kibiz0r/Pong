@@ -464,6 +464,8 @@ We could've done another cheesy implementation like this:
 But I think we see where this is going. However, since we've taken this step, it's a good idea to add a test that ensures that we're checking both player slots. Otherwise, player two's join mechanism could be horribly broken and our tests wouldn't catch it.
 
 ## ef137b
+
+### PongInputTest.cs
 And this is that test. Very similar to the first one, which means it's probably time to consider abstracting away some of the similarities.
 
     [Test]
@@ -484,3 +486,57 @@ And this is that test. Very similar to the first one, which means it's probably 
 
         Input.Apply(game.Object);
     }
+
+## e04837
+
+### PongInputTest.cs
+Excellent, now our pair of tests are substantially more concise.
+
+    [SetUp]
+    public void SetUp()
+    {
+        Keyboard = Stub<IKeyboardInput>();
+        Input = new PongInput(Keyboard.Object);
+        PlayerSlot1 = Stub<IPlayerSlot>();
+        PlayerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
+        PlayerSlot2 = Stub<IPlayerSlot>();
+        PlayerSlot2.Setup(p => p.StartKey).Returns(Key.Tab);
+        Game = Mock<IPongGame>();
+        Game.Setup(g => g.PlayerSlots).Returns(new IPlayerSlot[] { PlayerSlot1.Object, PlayerSlot2.Object });
+    }
+
+    public void KeyIsPressed(Key key)
+    {
+        Keyboard.Setup(k => k.IsPressed(key)).Returns(true);
+    }
+
+    public void KeyIsNotPressed(Key key)
+    {
+        Keyboard.Setup(k => k.IsPressed(key)).Returns(false);
+    }
+
+    [Test]
+    public void Calls_Join_when_player_presses_start()
+    {
+        KeyIsPressed(Key.Enter);
+        KeyIsNotPressed(Key.Tab);
+
+        Game.Setup(g => g.Join(PlayerSlot1.Object));
+
+        Input.Apply(Game.Object);
+    }
+
+    [Test]
+    public void Calls_Join_when_both_players_press_start()
+    {
+        KeyIsPressed(Key.Enter);
+        KeyIsPressed(Key.Tab);
+
+        Game.Setup(g => g.Join(PlayerSlot1.Object));
+        Game.Setup(g => g.Join(PlayerSlot2.Object));
+
+        Input.Apply(Game.Object);
+    }
+
+## ???
+Okay, it's time to hook up the rest of this shit. I'm gonna go faster and into a little less detail now.

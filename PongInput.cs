@@ -1,4 +1,5 @@
 using System;
+using AllegroSharp;
 namespace Pong
 {
     public class PongInput : IPongInput
@@ -12,6 +13,11 @@ namespace Pong
 
         public void Apply(IPongGame game)
         {
+            keyboard.Poll();
+            if (keyboard.IsPressed(Key.Escape))
+            {
+                game.Exit();
+            }
             foreach (var playerSlot in game.PlayerSlots)
             {
                 if (keyboard.IsPressed(playerSlot.StartKey))

@@ -27,6 +27,6 @@ Global
 		{61555AB0-D267-42E7-A9C2-B34FDEDF65E6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Pong.Test\Pong.Test.csproj
+		StartupItem = Pong.csproj
 	EndGlobalSection
 EndGlobal

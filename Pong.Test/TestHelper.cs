@@ -12,8 +12,8 @@ namespace Pong.Test
             set;
         }
 
-        public MockRepository Mocks = new MockRepository(MockBehavior.Strict);
-        public MockRepository Stubs = new MockRepository(MockBehavior.Loose);
+        public MockRepository Mocks;
+        public MockRepository Stubs;
 
         public void SetUp2PlayerPongGame()
         {
@@ -36,13 +36,21 @@ namespace Pong.Test
 
         public Mock<T> Stub<T>() where T : class
         {
-            return Mocks.Create<T>();
+            return Stubs.Create<T>();
+        }
+
+        [SetUp]
+        public void TestHelperSetUp()
+        {
+            Mocks = new MockRepository(MockBehavior.Strict);
+            Stubs = new MockRepository(MockBehavior.Loose);
         }
 
         [TearDown]
-        public void TearDown()
+        public void TestHelperTearDown()
         {
             Mocks.VerifyAll();
+            Stubs.Verify(); // Only verifies expectations for which .Verifiable() was called.
         }
     }
 }
