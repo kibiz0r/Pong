@@ -59,6 +59,14 @@
     <Compile Include="Point.cs" />
     <Compile Include="FontRenderer.cs" />
     <Compile Include="Content.cs" />
+    <Compile Include="IPaddle.cs" />
+    <Compile Include="IPlayerInitializer.cs" />
+    <Compile Include="PlayerInitializer.cs" />
+    <Compile Include="IPaddleFactory.cs" />
+    <Compile Include="PaddleFactory.cs" />
+    <Compile Include="IPlayerFactory.cs" />
+    <Compile Include="PlayerFactory.cs" />
+    <Compile Include="Paddle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

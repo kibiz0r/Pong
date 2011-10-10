@@ -54,16 +54,23 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="Unit\PongGameTest.cs" />
-    <Compile Include="Features\GameStart.feature.cs">
-      <DependentUpon>GameStart.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Steps\GameStartSteps.cs" />
     <Compile Include="Features\Steps\StepHelper.cs" />
     <Compile Include="Functional\JoinTest.cs" />
     <Compile Include="Unit\PongInputTest.cs" />
     <Compile Include="Unit\PongDisplayTest.cs" />
     <Compile Include="Unit\PlayerSlotRendererTest.cs" />
     <Compile Include="Unit\PlayerSlotTest.cs" />
+    <Compile Include="Features\Steps\PlayerJoiningSteps.cs" />
+    <Compile Include="Features\PlayerJoining.feature.cs">
+      <DependentUpon>PlayerJoining.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Initialization.feature.cs">
+      <DependentUpon>Initialization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Steps\InitializationSteps.cs" />
+    <Compile Include="Unit\PlayerInitializerTest.cs" />
+    <Compile Include="Unit\PaddleFactoryTest.cs" />
+    <Compile Include="Unit\PlayerFactoryTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -83,9 +90,13 @@
     <Folder Include="Features\Steps\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\GameStart.feature">
+    <None Include="Features\PlayerJoining.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GameStart.feature.cs</LastGenOutput>
+      <LastGenOutput>PlayerJoining.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Initialization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Initialization.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
 </Project>

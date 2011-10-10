@@ -10,9 +10,29 @@ namespace Pong
             IsRunning = true;
         }
 
+        public IPlayerInitializer PlayerInitializer
+        {
+            get;
+            set;
+        }
+
+        public IPlayerFactory PlayerFactory
+        {
+            get;
+            set;
+        }
+
         public void Join(IPlayerSlot playerSlot)
         {
-            playerSlot.Join(new Player());
+            var wasStarted = HasStarted;
+            playerSlot.Join(PlayerFactory.Create(playerSlot));
+            if (!wasStarted && HasStarted)
+            {
+                foreach (var player in Players)
+                {
+                    PlayerInitializer.Initialize(player);
+                }
+            }
         }
 
         public bool HasStarted

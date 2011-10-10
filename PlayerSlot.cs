@@ -45,6 +45,11 @@ namespace Pong
         {
             Player = player;
         }
+        public Point SpawnPosition
+        {
+            get;
+            set;
+        }
     }
 }
 

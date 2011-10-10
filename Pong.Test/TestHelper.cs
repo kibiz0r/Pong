@@ -6,25 +6,36 @@ namespace Pong.Test
 {
     public class TestHelper
     {
-        public MockRepository Mocks;
-        public MockRepository Stubs;
+        public Point Player1SpawnPosition = new Point(50, 100);
+        public Point Player2SpawnPosition = new Point(250, 100);
 
-        public IPongGame Create2PlayerPongGame()
+        public PongGame Create2PlayerPongGame()
         {
             return new PongGame
             {
+                PlayerInitializer = new PlayerInitializer(new PaddleFactory()),
+                PlayerFactory = new PlayerFactory(),
                 PlayerSlots = new IPlayerSlot[] {
                     new PlayerSlot
                     {
-                        StartKey = Key.F11
+                        SpawnPosition = Player1SpawnPosition
                     },
                     new PlayerSlot
                     {
-                        StartKey = Key.F12
+                        SpawnPosition = Player2SpawnPosition
                     }
                 }
             };
         }
+
+        public void Start(IPongGame game)
+        {
+            game.Join(game.PlayerSlots[0]);
+            game.Join(game.PlayerSlots[1]);
+        }
+
+        public MockRepository Mocks;
+        public MockRepository Stubs;
 
         public Mock<T> Mock<T>() where T : class
         {

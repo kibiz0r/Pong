@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Pong.Test
 {
     [Binding]
-    public class GameStartSteps : StepHelper
+    public class PlayerJoiningSteps : StepHelper
     {
         [Given("I have a game of Pong")]
         public void IHaveAGameOfPong()

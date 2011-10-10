@@ -23,7 +23,7 @@ namespace Pong.Test.Features
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-        #line 1 "GameStart.feature"
+        #line 1 "PlayerJoining.feature"
         #line hidden
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
@@ -52,10 +52,10 @@ namespace Pong.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Two players join.")]
-        public virtual void TwoPlayersJoin_()
+        [NUnit.Framework.DescriptionAttribute("Two players join")]
+        public virtual void TwoPlayersJoin()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two players join.", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two players join", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
@@ -64,17 +64,6 @@ testRunner.Given("I have a game of Pong");
 testRunner.When("two players join");
 #line 6
 testRunner.Then("the game starts");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("The game")]
-        public virtual void TheGame()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The game", ((string[])(null)));
-#line 8
-this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }

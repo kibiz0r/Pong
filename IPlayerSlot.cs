@@ -37,6 +37,10 @@ namespace Pong
         {
             get;
         }
+        Point SpawnPosition
+        {
+            get;
+        }
     }
 }
 

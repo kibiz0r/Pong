@@ -25,6 +25,14 @@ namespace Pong.Test
             Game.Join(Game.PlayerSlots[1]);
             Assert.That(Game.HasStarted);
         }
+
+        [Test]
+        public void Game_starting_spawns_paddles()
+        {
+            Start(Game);
+            Assert.That(Game.Players[0].Paddle.Position, Is.EqualTo(Player1SpawnPosition));
+            Assert.That(Game.Players[1].Paddle.Position, Is.EqualTo(Player2SpawnPosition));
+        }
     }
 }
 

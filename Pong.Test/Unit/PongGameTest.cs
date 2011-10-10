@@ -13,30 +13,61 @@ namespace Pong.Test
             get;
             set;
         }
+        public Mock<IPlayerInitializer> PlayerInitializer
+        {
+            get;
+            set;
+        }
+        public Mock<IPlayerFactory> PlayerFactory
+        {
+            get;
+            set;
+        }
+        public Mock<IPlayer> Player1
+        {
+            get;
+            set;
+        }
+        public Mock<IPlayer> Player2
+        {
+            get;
+            set;
+        }
+        public IPlayerSlot PlayerSlot1
+        {
+            get;
+            set;
+        }
+        public IPlayerSlot PlayerSlot2
+        {
+            get;
+            set;
+        }
 
         [SetUp]
         public void SetUp()
         {
-            Game = Create2PlayerPongGame();
-        }
-        #region Constructor
-        [Test]
-        public void Constructor_allocates_players_list()
-        {
+            PlayerInitializer = Stub<IPlayerInitializer>();
+            Player1 = Stub<IPlayer>();
+            Player2 = Stub<IPlayer>();
+            PlayerSlot1 = new PlayerSlot
+            {
+                SpawnPosition = Player1SpawnPosition
+            };
+            PlayerSlot2 = new PlayerSlot
+            {
+                SpawnPosition = Player2SpawnPosition
+            };
+            PlayerFactory = Stub<IPlayerFactory>();
+            PlayerFactory.Setup(p => p.Create(PlayerSlot1)).Returns(Player1.Object);
+            PlayerFactory.Setup(p => p.Create(PlayerSlot2)).Returns(Player2.Object);
             Game = new PongGame
             {
-                PlayerSlots = new IPlayerSlot[] {
-                    new PlayerSlot(),
-                    new PlayerSlot(),
-                    new PlayerSlot(),
-                    new PlayerSlot(),
-                    new PlayerSlot()
-                }
+                PlayerInitializer = PlayerInitializer.Object,
+                PlayerFactory = PlayerFactory.Object,
+                PlayerSlots = new IPlayerSlot[] { PlayerSlot1, PlayerSlot2 }
             };
-            Assert.That(Game.Players, Has.Length.EqualTo(5));
-            Assert.That(Game.Players, Has.All.Null);
         }
-        #endregion
 
         #region Join
         [Test]
@@ -44,12 +75,11 @@ namespace Pong.Test
         {
             Game.Join(Game.PlayerSlots[0]);
             Game.Join(Game.PlayerSlots[1]);
-            Assert.That(Game.Players, Has.Length.EqualTo(2));
-            Assert.That(Game.Players, Has.All.InstanceOf<IPlayer>());
+            Assert.That(Game.Players, Is.EqualTo(new IPlayer[] { Player1.Object, Player2.Object }));
         }
 
         [Test]
-        public void Join_starts_game_when_last_player_joins()
+        public void Starts_game_when_last_player_joins()
         {
             Game.Join(Game.PlayerSlots[0]);
             Game.Join(Game.PlayerSlots[1]);
@@ -65,6 +95,16 @@ namespace Pong.Test
             Assert.That(Game.PlayerSlots[1].IsReady);
             Game.Join(Game.PlayerSlots[0]);
             Assert.That(Game.PlayerSlots[0].IsReady);
+        }
+        #endregion
+
+        #region Initialization
+        [Test]
+        public void Game_initializes_players()
+        {
+            PlayerInitializer.Setup(p => p.Initialize(Player1.Object)).Verifiable();
+            PlayerInitializer.Setup(p => p.Initialize(Player2.Object)).Verifiable();
+            Start(Game);
         }
         #endregion
 

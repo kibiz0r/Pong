@@ -48,12 +48,17 @@ namespace Pong
         {
             return new PongGame
             {
+                PlayerFactory = new PlayerFactory(),
+                PlayerInitializer = new PlayerInitializer(
+                    new PaddleFactory()
+                ),
                 PlayerSlots = new IPlayerSlot[] {
                     new PlayerSlot
                     {
                         Color = new Color(1, 0, 0),
                         JoinReadyPosition = new Point(100, 50),
                         JoinReadyFontDrawFlags = FontDrawFlags.AlignLeft,
+                        SpawnPosition = new Point(50, Display.Current.Height / 2),
                         StartKey = Key.Num1,
                     },
                     new PlayerSlot
@@ -61,6 +66,7 @@ namespace Pong
                         Color = new Color(0, 0, 1),
                         JoinReadyPosition = new Point(Display.Current.Width - 100, 50),
                         JoinReadyFontDrawFlags = FontDrawFlags.AlignRight,
+                        SpawnPosition = new Point(Display.Current.Width - 50, Display.Current.Height / 2),
                         StartKey = Key.Num0
                     }
                 }

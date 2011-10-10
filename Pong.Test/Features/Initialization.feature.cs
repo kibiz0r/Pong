@@ -17,19 +17,19 @@ namespace Pong.Test.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.3.5.2")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Player joining")]
-    public partial class PlayerJoiningFeature
+    [NUnit.Framework.DescriptionAttribute("Game initialization")]
+    public partial class GameInitializationFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-        #line 1 "GameStart.feature"
+        #line 1 "Initialization.feature"
         #line hidden
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Player joining", "", ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Game initialization", "", ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -52,29 +52,33 @@ namespace Pong.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Two players join.")]
-        public virtual void TwoPlayersJoin_()
+        [NUnit.Framework.DescriptionAttribute("Game spawns paddles")]
+        public virtual void GameSpawnsPaddles()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two players join.", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Game spawns paddles", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
-#line 4
-testRunner.Given("I have a game of Pong");
-#line 5
-testRunner.When("two players join");
-#line 6
-testRunner.Then("the game starts");
 #line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("The game")]
-        public virtual void TheGame()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The game", ((string[])(null)));
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Player Slot",
+                        "Spawn Position"});
+            table1.AddRow(new string[]
+                {
+                        "0",
+                        "50, 300"});
+            table1.AddRow(new string[]
+                {
+                        "1",
+                        "750, 300"});
+#line 4
+testRunner.Given("I have a game of Pong:", ((string)(null)), table1);
 #line 8
-this.ScenarioSetup(scenarioInfo);
+testRunner.When("two players join");
+#line 9
+testRunner.Then("I should see paddle 0 at 50, 300");
+#line 10
+testRunner.And("I should see paddle 1 at 750, 300");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
