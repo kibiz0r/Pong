@@ -5,27 +5,35 @@ namespace Pong
 {
     public class PongGame : IPongGame
     {
-        public PongGame(int numberOfPlayers)
+        public PongGame(params IPlayerSlot[] playerSlots)
         {
-            players = Enumerable.Repeat<IPlayer>(null, numberOfPlayers).ToArray();
+            foreach (var playerSlot in playerSlots)
+            {
+                players.Add(playerSlot, null);
+            }
         }
 
-        public void Join(IPlayer player)
+        public void Join(IPlayerSlot playerSlot)
         {
-            players[Array.IndexOf(players, null)] = player;
+            players[playerSlot] = new Player();
         }
 
         public bool HasStarted
         {
-            get { return players.All(player => players != null); }
+            get { return players.Values.All(player => player != null); }
         }
 
-        public IEnumerable<IPlayer> Players
+        public IPlayer[] Players
         {
-            get { return players; }
+            get { return players.Values.ToArray(); }
         }
 
-        private IPlayer[] players = new IPlayer[0];
+        public IPlayerSlot[] PlayerSlots
+        {
+            get { return players.Keys.ToArray(); }
+        }
+
+        private Dictionary<IPlayerSlot, IPlayer> players = new Dictionary<IPlayerSlot, IPlayer>();
     }
 }
 

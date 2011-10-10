@@ -220,5 +220,96 @@ Writing stuff like this can be scary, because it looks like the code is *wrong*,
 
 It's worth mentioning here that it's perfectly okay to aim for the "real" implementation first. If I had written a more rigorous test, or if I had more of the API fleshed out, it would be trivial to stump this cheesy implementation. However, if you're in unfamiliar territory and you're not confident about what to go next, it's always best to "fake it until you make it" and gradually work up to the final implementation.
 
-## ???
-Okay, now that our system is capable of something, let's hook it up to some input and a renderer so we can see it in action.
+## d05c58
+Okay, now that our system is capable of something, our next goal is to hook it up to some input and a renderer so we can see it in action.
+
+### Main.cs
+Sketched out a simple Main that we can build off of later.
+
+	public static void Main(string[] args)
+	{
+		var game = new PongGame(2);
+		var input = new PongInput(new KeyboardInput());
+		var display = new PongDisplay();
+		while (true)
+		{
+			input.Apply(game);
+			//game.Update(10);
+			display.Render(game);
+		}
+	}
+
+### TestHelper.cs
+This section makes heavy use of mocks, so I set up a MockRepository in my TestHelper class that allows me to easily verify my mocks in the test teardown.
+
+	public MockRepository Mocks = new MockRepository(MockBehavior.Strict);
+
+	[TearDown]
+	public void TearDown()
+	{
+		Mocks.VerifyAll();
+	}
+
+### PongInputTest.cs
+In this test, I've set up a mock object that pretends to be providing information about the state of the keyboard so that I can test more of the input system.
+
+The body of the test goes like this:
+n. Player specifies a StartKey, which can be anything -- we just want to see that PongInput asks about the state of the right key.
+n. Game expects Join(), receiving the player that we're polling for.
+n. Keyboard expects to be asked whether the player's start key is pressed, and will return true.
+n. We make the actual call.
+n. TearDown() runs, verifying that all of our expected methods got called.
+
+	[SetUp]
+	public void SetUp()
+	{
+		Keyboard = Mocks.Create<IKeyboardInput>();
+		Input = new PongInput(Keyboard.Object);
+	}
+
+	[Test]
+	public void Calls_Join_when_player_presses_start()
+	{
+		var player = Mocks.Create<IPlayer>();
+		var startKey = Key.Enter;
+		player.Setup(p => p.StartKey).Returns(startKey);
+
+		var game = Mocks.Create<IPongGame>();
+		game.Setup(g => g.Join(player.Object));
+
+		Keyboard.Setup(k => k.IsPressed(startKey)).Returns(true);
+
+		Input.Apply(game.Object);
+	}
+
+Test output:
+
+	1) TearDown Error : Pong.Test.PongInputTest.Calls_Join_when_player_presses_start
+	   TearDown : Moq.MockException : The following setups were not matched:
+	IKeyboardInput k => k.IsPressed(Key.Enter)
+
+	IPlayer p => p.StartKey
+
+	IPongGame g => g.Join()
+
+### Problems?
+Okay, so now that we've got a test to verify the path from processing keyboard input to joining the game, let's try to make it pass.
+
+	public class PongInput : IPongInput
+	{
+		public PongInput(IKeyboardInput keyboard)
+		{
+			this.keyboard = keyboard;
+		}
+
+		private IKeyboardInput keyboard;
+
+		public void Apply(IPongGame game)
+		{
+			// ???
+		}
+	}
+
+Wait a second, we've got a chicken-and-egg problem. We need a Player in order to check whether we should add a Player. It makes sense for the information "Player 1's start key is <foo>" to live in PongGame, but it doesn't make sense for it to be tied to something that can come and go like Player.
+
+Let's take this opportunity to refactor a bit and say that StartKey lives on a "PlayerSlot" instead.

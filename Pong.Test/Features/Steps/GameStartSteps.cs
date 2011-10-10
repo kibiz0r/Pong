@@ -17,8 +17,8 @@ namespace Pong.Test
         [When("two players join")]
         public void WhenTwoPlayersJoin()
         {
-            Game.Join(new Player());
-            Game.Join(new Player());
+            Game.Join(Game.PlayerSlots[0]);
+            Game.Join(Game.PlayerSlots[1]);
         }
 
         [Then("the game starts")]

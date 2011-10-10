@@ -48,6 +48,8 @@
     <Compile Include="IPongInput.cs" />
     <Compile Include="IKeyboardInput.cs" />
     <Compile Include="KeyboardInput.cs" />
+    <Compile Include="IPlayerSlot.cs" />
+    <Compile Include="PlayerSlot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -29,12 +29,12 @@ namespace Pong.Test
         [Test]
         public void Calls_Join_when_player_presses_start()
         {
-            var player = Mocks.Create<IPlayer>();
+            var playerSlot = Mocks.Create<IPlayerSlot>();
             var startKey = Key.Enter;
-            player.Setup(p => p.StartKey).Returns(startKey);
+            playerSlot.Setup(p => p.StartKey).Returns(startKey);
 
             var game = Mocks.Create<IPongGame>();
-            game.Setup(g => g.Join(player.Object));
+            game.Setup(g => g.Join(playerSlot.Object));
 
             Keyboard.Setup(k => k.IsPressed(startKey)).Returns(true);
 

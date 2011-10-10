@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using Moq;
+using AllegroSharp;
 namespace Pong.Test
 {
     public class TestHelper
@@ -15,7 +16,16 @@ namespace Pong.Test
 
         public void SetUp2PlayerPongGame()
         {
-            Game = new PongGame(2);
+            Game = new PongGame(
+                new PlayerSlot
+                {
+                    StartKey = Key.F11
+                },
+                new PlayerSlot
+                {
+                    StartKey = Key.F12
+                }
+            );
         }
 
         [TearDown]

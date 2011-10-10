@@ -1,4 +1,5 @@
 using System;
+using AllegroSharp;
 
 namespace Pong
 {
@@ -6,7 +7,16 @@ namespace Pong
     {
         public static void Main(string[] args)
         {
-            var game = new PongGame(2);
+            var game = new PongGame(
+                new PlayerSlot
+                {
+                    StartKey = Key.Num1,
+                },
+                new PlayerSlot
+                {
+                    StartKey = Key.Num0
+                }
+            );
             var input = new PongInput(new KeyboardInput());
             var display = new PongDisplay();
             while (true)

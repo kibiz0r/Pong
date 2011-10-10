@@ -15,8 +15,8 @@ namespace Pong.Test
         [Test]
         public void Last_player_joining_starts_game()
         {
-            Game.Join(new Player());
-            Game.Join(new Player());
+            Game.Join(Game.PlayerSlots[0]);
+            Game.Join(Game.PlayerSlots[1]);
             Assert.That(Game.HasStarted);
         }
     }

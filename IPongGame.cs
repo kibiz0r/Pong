@@ -4,12 +4,19 @@ namespace Pong
 {
     public interface IPongGame
     {
-        void Join(IPlayer player);
+        void Join(IPlayerSlot playerSlot);
         bool HasStarted
         {
             get;
         }
-        IEnumerable<IPlayer> Players { get; }
+        IPlayer[] Players
+        {
+            get;
+        }
+        IPlayerSlot[] PlayerSlots
+        {
+            get;
+        }
     }
 }
 
