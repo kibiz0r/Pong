@@ -547,3 +547,207 @@ PongDisplay should probably have some tests right now, simply due to the fact th
 
 ### Side-note
 Allegro 5.0.4 changed the API of several methods since 5.0 (or maybe 4.9?), which caused my C# binding to shit its pants. (Segfaults, stack corruption, etc.) That was really annoying to deal with, but I don't hold it against the Allegro devs at all.
+
+## dfb4c9a
+I went back and tested PongDisplay. There are a lot of tests in this commit, so go check them out. I'll point out the most interesting changes below.
+
+### PlayerSlot.cs
+In the process of testing PongDisplay, I took out the magic values and attached them to PlayerSlots.
+
+    public class PlayerSlot : IPlayerSlot
+    {
+        public Key StartKey
+        {
+            get;
+            set;
+        }
+        public Color Color
+        {
+            get;
+            set;
+        }
+        public Point JoinReadyPosition
+        {
+            get;
+            set;
+        }
+        public FontDrawFlags JoinReadyFontDrawFlags
+        {
+            get;
+            set;
+        }
+        public bool IsReady
+        {
+            get { return Player != null; }
+        }
+        public IPlayer Player
+        {
+            get;
+            private set;
+        }
+        public string ReadyText
+        {
+            get { return "Ready"; }
+        }
+        public string JoinText
+        {
+            get { return String.Format("Press {0} to Join", StartKey); }
+        }
+        public void Join(IPlayer player)
+        {
+            Player = player;
+        }
+    }
+
+### PlayerSlotRenderer.cs
+I made a PlayerSlotRenderer to handle the logic flow of whether to show "Press <key> to Join" or "Ready". When I did, I realized that asking PongGame whether a slot was ready seemed stupid because it didn't need PongGame for anything else, so now the "readiness" is accessed from the PlayerSlot directly instead.
+
+    public class PlayerSlotRenderer : IPlayerSlotRenderer
+    {
+        public PlayerSlotRenderer(IFontRenderer fontRenderer)
+        {
+            this.fontRenderer = fontRenderer;
+        }
+
+        private IFontRenderer fontRenderer;
+
+        public void Render(IPlayerSlot playerSlot)
+        {
+            fontRenderer.Render(playerSlot.Color, playerSlot.JoinReadyPosition, playerSlot.JoinReadyFontDrawFlags, playerSlot.IsReady ? playerSlot.ReadyText : playerSlot.JoinText);
+        }
+    }
+
+### IFontRenderer.cs, FontRenderer.cs
+I introduced a FontRenderer object, which is pretty nice because its interface IFontRenderer doesn't talk about Font objects directly -- objects which require loading from a file, something we don't want to rely on for simple test data. (Missing a font file is a really stupid reason for a test to fail!)
+
+    public interface IFontRenderer
+    {
+        void Render(Color color, Point position, FontDrawFlags flags, string text);
+    }
+
+    public class FontRenderer : IFontRenderer
+    {
+        public Font Font
+        {
+            get;
+            set;
+        }
+
+        public void Render(Color color, Point position, FontDrawFlags flags, string text)
+        {
+            Font.Draw(color, position.X, position.Y, flags, text);
+        }
+    }
+
+### Content.cs
+I also made a static Content class, which encapsulates all of the static data (such as fonts) that can only be loaded at runtime, after Allegro has been fully initialized. Because of .NET static initialization rules, the static data will be loaded the first time that the Content class is referenced.
+
+    /// <summary>
+    /// Any expression that makes a reference to this type can potentially throw an exception by being the first to
+    /// trigger the static initializers. This is only safe to do /after/ Allegro has been fully initialized.
+    /// </summary>
+    public static class Content
+    {
+        public static Font Arial = LoadFont("Arial.ttf", 14, TtfFlags.None);
+
+        public static Font LoadFont(string filename, int size, TtfFlags flags)
+        {
+            var font = Ttf.LoadFont(filename, size, flags);
+            if (font == null)
+            {
+                throw new Exception(String.Format("LoadFont({0}, {1}, {2}) Failed", filename, size, flags));
+            }
+            return font;
+        }
+    }
+
+### Main.cs
+Main has become just a place to stage the big-bang explosion of classes, mixed with their configuration data. This is the kind of stuff that dependency injection frameworks do for you, but it's alright to do it by hand too.
+
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            Allegro.RunMain(AllegroMain);
+        }
+
+        public static void AllegroMain()
+        {
+            InitializeAllegro();
+
+            var game = CreateGame();
+            var display = CreateDisplay();
+            var input = CreateInput();
+
+            while (game.IsRunning)
+            {
+                input.Apply(game);
+                //game.Update(10);
+                display.Render(game);
+            }
+        }
+
+        public static void InitializeAllegro()
+        {
+            if (!Allegro.InstallSystem())
+            {
+                throw new Exception("allegro failz");
+            }
+            if (!Image.Init())
+            {
+                throw new Exception("image failz");
+            }
+            Font.Init();
+            if (!Ttf.Init())
+            {
+                throw new Exception("ttf failz");
+            }
+            Display.Create(800, 600);
+        }
+
+        public static IPongGame CreateGame()
+        {
+            return new PongGame
+            {
+                PlayerSlots = new IPlayerSlot[] {
+                    new PlayerSlot
+                    {
+                        Color = new Color(1, 0, 0),
+                        JoinReadyPosition = new Point(100, 50),
+                        JoinReadyFontDrawFlags = FontDrawFlags.AlignLeft,
+                        StartKey = Key.Num1,
+                    },
+                    new PlayerSlot
+                    {
+                        Color = new Color(0, 0, 1),
+                        JoinReadyPosition = new Point(Display.Current.Width - 100, 50),
+                        JoinReadyFontDrawFlags = FontDrawFlags.AlignRight,
+                        StartKey = Key.Num0
+                    }
+                }
+            };
+        }
+
+        public static IPongDisplay CreateDisplay()
+        {
+            return new PongDisplay(
+                new Renderer(),
+                new PlayerSlotRenderer(
+                    new FontRenderer
+                    {
+                        Font = Content.Arial
+                    }
+                )
+            );
+        }
+
+        public static IPongInput CreateInput()
+        {
+            return new PongInput(
+                new KeyboardInput()
+            );
+        }
+    }
+
+### Git at it!
+There's getting to be too much code to show at every step! It's interesting to see all the old, shitty code replaced by more modular, testable code, so I recommend checking out a diff of the commit through GitX or something.
