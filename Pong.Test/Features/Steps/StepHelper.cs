@@ -3,12 +3,18 @@ using TechTalk.SpecFlow;
 using System.Text.RegularExpressions;
 namespace Pong.Test
 {
-    public class StepHelper : TestHelper
+    public class StepHelper : HighLevelTestHelper
     {
-        public IPongGame Game
+        public override IPongGame Game
         {
             get { return ScenarioContext.Current["Game"] as IPongGame; }
             set { ScenarioContext.Current["Game"] = value; }
+        }
+
+        public override RiggedBallInitializer BallInitializer
+        {
+            get { return ScenarioContext.Current["BallInitializer"] as RiggedBallInitializer; }
+            set { ScenarioContext.Current["BallInitializer"] = value; }
         }
 
         public Point ParsePoint(string str)

@@ -82,6 +82,36 @@ testRunner.And("I should see paddle 1 at 750, 300");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Game spawns ball")]
+        public virtual void GameSpawnsBall()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Game spawns ball", ((string[])(null)));
+#line 12
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[]
+                {
+                        "Width",
+                        "Height"});
+            table2.AddRow(new string[]
+                {
+                        "800",
+                        "600"});
+#line 13
+testRunner.Given("I have a game of Pong:", ((string)(null)), table2);
+#line 16
+testRunner.And("the spawn velocity of the ball is 10, 20");
+#line 17
+testRunner.When("two players join");
+#line 18
+testRunner.Then("I should see a ball at 400, 300");
+#line 19
+testRunner.And("I should see a ball moving at 10, 20");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

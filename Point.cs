@@ -11,6 +11,11 @@ namespace Pong
 
         public readonly float X;
         public readonly float Y;
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}", X, Y);
+        }
     }
 }
 

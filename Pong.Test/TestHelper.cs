@@ -9,25 +9,6 @@ namespace Pong.Test
         public Point Player1SpawnPosition = new Point(50, 100);
         public Point Player2SpawnPosition = new Point(250, 100);
 
-        public PongGame Create2PlayerPongGame()
-        {
-            return new PongGame
-            {
-                PlayerInitializer = new PlayerInitializer(new PaddleFactory()),
-                PlayerFactory = new PlayerFactory(),
-                PlayerSlots = new IPlayerSlot[] {
-                    new PlayerSlot
-                    {
-                        SpawnPosition = Player1SpawnPosition
-                    },
-                    new PlayerSlot
-                    {
-                        SpawnPosition = Player2SpawnPosition
-                    }
-                }
-            };
-        }
-
         public void Start(IPongGame game)
         {
             game.Join(game.PlayerSlots[0]);

@@ -3,7 +3,7 @@ namespace Pong
 {
     public interface IPaddleFactory
     {
-        IPaddle Create(Point position);
+        IPaddle Create(IPlayerSlot playerSlot);
     }
 }
 

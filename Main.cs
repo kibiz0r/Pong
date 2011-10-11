@@ -56,6 +56,10 @@ namespace Pong
                 PlayerInitializer = new PlayerInitializer(
                     new PaddleFactory()
                 ),
+                BallFactory = new BallFactory(),
+                BallInitializer = new RandomBallInitializer(),
+                Width = Display.Current.Width,
+                Height = Display.Current.Height,
                 PlayerSlots = new IPlayerSlot[] {
                     new PlayerSlot
                     {
@@ -86,7 +90,9 @@ namespace Pong
                     {
                         Font = Content.Arial
                     }
-                )
+                ),
+                new BallRenderer(),
+                new PaddleRenderer()
             );
         }
 

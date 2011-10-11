@@ -71,6 +71,14 @@
     <Compile Include="Unit\PlayerInitializerTest.cs" />
     <Compile Include="Unit\PaddleFactoryTest.cs" />
     <Compile Include="Unit\PlayerFactoryTest.cs" />
+    <Compile Include="Functional\InitializationTest.cs" />
+    <Compile Include="Functional\FunctionalTestHelper.cs" />
+    <Compile Include="Unit\BallFactoryTest.cs" />
+    <Compile Include="HighLevelTestHelper.cs" />
+    <Compile Include="Features\Steps\MotionSteps.cs" />
+    <Compile Include="Features\Motion.feature.cs">
+      <DependentUpon>Motion.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -97,6 +105,10 @@
     <None Include="Features\Initialization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Initialization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Motion.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Motion.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
 </Project>

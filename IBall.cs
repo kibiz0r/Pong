@@ -1,16 +1,16 @@
 using System;
-using AllegroSharp;
 namespace Pong
 {
-    public interface IPaddle
+    public interface IBall
     {
         Point Position
         {
             get;
         }
-        Color Color
+        Point Velocity
         {
             get;
+            set;
         }
     }
 }

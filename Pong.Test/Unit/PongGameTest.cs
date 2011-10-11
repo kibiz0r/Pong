@@ -18,7 +18,17 @@ namespace Pong.Test
             get;
             set;
         }
+        public Mock<IBallInitializer> BallInitializer
+        {
+            get;
+            set;
+        }
         public Mock<IPlayerFactory> PlayerFactory
+        {
+            get;
+            set;
+        }
+        public Mock<IBallFactory> BallFactory
         {
             get;
             set;
@@ -43,6 +53,11 @@ namespace Pong.Test
             get;
             set;
         }
+        public IBall Ball
+        {
+            get;
+            set;
+        }
 
         [SetUp]
         public void SetUp()
@@ -58,6 +73,10 @@ namespace Pong.Test
             {
                 SpawnPosition = Player2SpawnPosition
             };
+            BallInitializer = Stub<IBallInitializer>();
+            Ball = Mock<IBall>().Object;
+            BallFactory = Stub<IBallFactory>();
+            BallFactory.Setup(b => b.Create(It.IsAny<Point>())).Returns(Ball);
             PlayerFactory = Stub<IPlayerFactory>();
             PlayerFactory.Setup(p => p.Create(PlayerSlot1)).Returns(Player1.Object);
             PlayerFactory.Setup(p => p.Create(PlayerSlot2)).Returns(Player2.Object);
@@ -65,7 +84,11 @@ namespace Pong.Test
             {
                 PlayerInitializer = PlayerInitializer.Object,
                 PlayerFactory = PlayerFactory.Object,
-                PlayerSlots = new IPlayerSlot[] { PlayerSlot1, PlayerSlot2 }
+                BallFactory = BallFactory.Object,
+                BallInitializer = BallInitializer.Object,
+                PlayerSlots = new IPlayerSlot[] { PlayerSlot1, PlayerSlot2 },
+                Width = 80,
+                Height = 140
             };
         }
 
@@ -112,6 +135,22 @@ namespace Pong.Test
         {
             PlayerInitializer.Setup(p => p.Initialize(Player1.Object)).Verifiable();
             PlayerInitializer.Setup(p => p.Initialize(Player2.Object)).Verifiable();
+            Start(Game);
+        }
+
+        [Test]
+        public void Game_creates_ball()
+        {
+            var setup = BallFactory.Setup(b => b.Create(new Point(40, 70))); // Middle of the screen
+            setup.Returns(Ball);
+            setup.Verifiable();
+            Start(Game);
+        }
+
+        [Test]
+        public void Game_initializes_ball()
+        {
+            BallInitializer.Setup(b => b.Initialize(Ball)).Verifiable();
             Start(Game);
         }
         #endregion

@@ -29,9 +29,8 @@ namespace Pong.Test
         public void Initialize_spawns_a_paddle_at_slot_spawn_position()
         {
             var paddle = Stub<IPaddle>();
-            PaddleFactory.Setup(p => p.Create(new Point(75, 125))).Returns(paddle.Object);
             var playerSlot = Stub<IPlayerSlot>();
-            playerSlot.Setup(p => p.SpawnPosition).Returns(new Point(75, 125));
+            PaddleFactory.Setup(p => p.Create(playerSlot.Object)).Returns(paddle.Object);
             var player = Stub<IPlayer>();
             player.Setup(p => p.Slot).Returns(playerSlot.Object);
             player.SetupSet(p => p.Paddle = paddle.Object);

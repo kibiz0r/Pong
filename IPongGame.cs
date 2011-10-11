@@ -22,6 +22,18 @@ namespace Pong
         {
             get;
         }
+        int Width
+        {
+            get;
+        }
+        int Height
+        {
+            get;
+        }
+        IBall Ball
+        {
+            get;
+        }
     }
 }
 

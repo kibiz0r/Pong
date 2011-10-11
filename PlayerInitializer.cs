@@ -11,7 +11,7 @@ namespace Pong
 
         public void Initialize(IPlayer player)
         {
-            player.Paddle = paddleFactory.Create(player.Slot.SpawnPosition);
+            player.Paddle = paddleFactory.Create(player.Slot);
         }
     }
 }

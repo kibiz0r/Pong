@@ -1,15 +1,14 @@
 using System;
-using AllegroSharp;
 namespace Pong
 {
-    public class Paddle : IPaddle
+    public class Ball : IBall
     {
         public Point Position
         {
             get;
             set;
         }
-        public Color Color
+        public Point Velocity
         {
             get;
             set;

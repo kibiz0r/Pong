@@ -22,6 +22,18 @@ namespace Pong
             set;
         }
 
+        public IBallFactory BallFactory
+        {
+            get;
+            set;
+        }
+
+        public IBallInitializer BallInitializer
+        {
+            get;
+            set;
+        }
+
         public void Join(IPlayerSlot playerSlot)
         {
             if (playerSlot.IsReady)
@@ -36,6 +48,8 @@ namespace Pong
                 {
                     PlayerInitializer.Initialize(player);
                 }
+                Ball = BallFactory.Create(new Point(Width / 2, Height / 2));
+                BallInitializer.Initialize(Ball);
             }
         }
 
@@ -53,6 +67,24 @@ namespace Pong
         public void Exit()
         {
             IsRunning = false;
+        }
+
+        public int Width
+        {
+            get;
+            set;
+        }
+
+        public int Height
+        {
+            get;
+            set;
+        }
+
+        public IBall Ball
+        {
+            get;
+            private set;
         }
 
         public IPlayer[] Players

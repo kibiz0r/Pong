@@ -67,6 +67,17 @@
     <Compile Include="IPlayerFactory.cs" />
     <Compile Include="PlayerFactory.cs" />
     <Compile Include="Paddle.cs" />
+    <Compile Include="IBall.cs" />
+    <Compile Include="IBallInitializer.cs" />
+    <Compile Include="IBallFactory.cs" />
+    <Compile Include="BallFactory.cs" />
+    <Compile Include="Ball.cs" />
+    <Compile Include="IBallRenderer.cs" />
+    <Compile Include="BallRenderer.cs" />
+    <Compile Include="IPaddleRenderer.cs" />
+    <Compile Include="PaddleRenderer.cs" />
+    <Compile Include="RiggedBallInitializer.cs" />
+    <Compile Include="RandomBallInitializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

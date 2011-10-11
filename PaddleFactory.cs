@@ -3,11 +3,12 @@ namespace Pong
 {
     public class PaddleFactory : IPaddleFactory
     {
-        public IPaddle Create(Point position)
+        public IPaddle Create(IPlayerSlot playerSlot)
         {
             return new Paddle
             {
-                Position = position
+                Position = playerSlot.SpawnPosition,
+                Color = playerSlot.Color
             };
         }
     }

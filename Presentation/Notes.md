@@ -98,3 +98,6 @@ It's important to add in visualization early, to see the practical effects of yo
 Remember: as useful as automated testing is, it's not a replacement for first-hand experience.
 
 In designing our visualization, we might consider that the game view is an interpretation of the game state, therefore it should be possible to have the game view display any arbitrary game state we want. If that is true, then we can take the result of an automated test and display it on the screen, giving us more information to debug with when a test fails. We could also load the game state from a file, allowing us to easily walk through pre-determined scenarios without going through the effort of playing through the game to get to the right spot or resorting to special "developer mode" tools.
+
+## Misc
+Dependency injection (and checking your pants)

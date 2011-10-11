@@ -16,6 +16,7 @@
 * Higher code coverage than testing after the fact.
 * Increases confidence in the codebase.
 * Lets you refactor ruthlessly.
+* Helps you adapt to changing requirements.
 * Allows newbie developers to write decent code.
 * Allows non-technical members to interact with the codebase by writing plain-English test cases.
 * Provides visibility of the current state of the project.
