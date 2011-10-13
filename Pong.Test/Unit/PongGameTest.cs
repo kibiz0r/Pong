@@ -8,40 +8,60 @@ namespace Pong.Test
     [TestFixture]
     public class PongGameTest : TestHelper
     {
-        public IPongGame Game
+        public PongGame _subject;
+        public PongGame Subject
         {
-            get;
-            set;
+            get
+            {
+                return _subject = _subject ?? new PongGame
+                {
+                    GameInitializer = GameInitializer.Object,
+                    BallFactory = BallFactory.Object,
+                    BallInitializer = BallInitializer.Object,
+                    PlayerFactory = PlayerFactory.Object,
+                    PlayerInitializer = PlayerInitializer.Object
+                };
+            }
         }
-        public Mock<IPlayerInitializer> PlayerInitializer
+        #region Dependencies
+        public Mock<IGameInitializer> _GameInitializer;
+        public Mock<IGameInitializer> GameInitializer
         {
-            get;
-            set;
+            get { return _GameInitializer = _GameInitializer ?? Mock<IGameInitializer>(); }
         }
-        public Mock<IBallInitializer> BallInitializer
-        {
-            get;
-            set;
-        }
-        public Mock<IPlayerFactory> PlayerFactory
-        {
-            get;
-            set;
-        }
+        public Mock<IBallFactory> _ballFactory;
         public Mock<IBallFactory> BallFactory
         {
-            get;
-            set;
+            get
+            {
+                return _ballFactory = _ballFactory ?? Mock<IBallFactory>();
+            }
         }
+        public Mock<IBallInitializer> _ballInitializer;
+        public Mock<IBallInitializer> BallInitializer
+        {
+            get { return _ballInitializer = _ballInitializer ?? Mock<IBallInitializer>(); }
+        }
+        public Mock<IPlayerFactory> _playerFactory;
+        public Mock<IPlayerFactory> PlayerFactory
+        {
+            get { return _playerFactory = _playerFactory ?? Mock<IPlayerFactory>(); }
+        }
+        public Mock<IPlayerInitializer> _PlayerInitializer;
+        public Mock<IPlayerInitializer> PlayerInitializer
+        {
+            get { return _PlayerInitializer = _PlayerInitializer ?? Mock<IPlayerInitializer>(); }
+        }
+        #endregion
+        /*public Mock<IPlayer> _Player1;
         public Mock<IPlayer> Player1
         {
-            get;
-            set;
+            get { return _Player1 = _Player1 ?? Mock<IPlayer>(); }
         }
+        public Mock<IPlayer> _Player2;
         public Mock<IPlayer> Player2
         {
-            get;
-            set;
+            get { return _Player2 = _Player2 ?? Mock<IPlayer>(); }
         }
         public IPlayerSlot PlayerSlot1
         {
@@ -57,15 +77,12 @@ namespace Pong.Test
         {
             get;
             set;
-        }
+        }*/
 
         [SetUp]
         public void SetUp()
         {
-            PlayerInitializer = Stub<IPlayerInitializer>();
-            Player1 = Stub<IPlayer>();
-            Player2 = Stub<IPlayer>();
-            PlayerSlot1 = new PlayerSlot
+            /*PlayerSlot1 = new PlayerSlot
             {
                 SpawnPosition = Player1SpawnPosition
             };
@@ -73,11 +90,8 @@ namespace Pong.Test
             {
                 SpawnPosition = Player2SpawnPosition
             };
-            BallInitializer = Stub<IBallInitializer>();
             Ball = Mock<IBall>().Object;
-            BallFactory = Stub<IBallFactory>();
             BallFactory.Setup(b => b.Create(It.IsAny<Point>())).Returns(Ball);
-            PlayerFactory = Stub<IPlayerFactory>();
             PlayerFactory.Setup(p => p.Create(PlayerSlot1)).Returns(Player1.Object);
             PlayerFactory.Setup(p => p.Create(PlayerSlot2)).Returns(Player2.Object);
             Game = new PongGame
@@ -89,79 +103,75 @@ namespace Pong.Test
                 PlayerSlots = new IPlayerSlot[] { PlayerSlot1, PlayerSlot2 },
                 Width = 80,
                 Height = 140
-            };
+            };*/
         }
 
-        #region Join
-        [Test]
-        public void Join_adds_player_to_players_list()
-        {
-            Game.Join(Game.PlayerSlots[0]);
-            Game.Join(Game.PlayerSlots[1]);
-            Assert.That(Game.Players, Is.EqualTo(new IPlayer[] { Player1.Object, Player2.Object }));
-        }
+        public static readonly Point MiddleOfField = new Point(40, 70);
 
-        [Test]
-        public void Starts_game_when_last_player_joins()
+        [TestFixture]
+        public class PongGame_JoinTest : PongGameTest
         {
-            Game.Join(Game.PlayerSlots[0]);
-            Game.Join(Game.PlayerSlots[1]);
-            Assert.That(Game.HasStarted);
+            public IPlayerSlot PlayerSlot1;
+            public IPlayerSlot PlayerSlot2;
+            public Mock<IPlayer> _Player1;
+            public Mock<IPlayer> Player1
+            {
+                get
+                {
+                    return _Player1 = _Player1 ?? Mock<IPlayer>();
+                }
+            }
+            public Mock<IPlayer> _Player2;
+            public Mock<IPlayer> Player2
+            {
+                get
+                {
+                    return _Player2 = _Player2 ?? Mock<IPlayer>();
+                }
+            }
+            [Test]
+            public void Join_adds_player_to_players_list()
+            {
+                Subject.Join(PlayerSlot1);
+                Subject.Join(PlayerSlot2);
+                Assert.That(Subject.Players, Is.EqualTo(new IPlayer[] { Player1.Object, Player2.Object }));
+            }
+    
+            [Test]
+            public void Starts_game_when_last_player_joins()
+            {
+                GameInitializer.Mocks(g => g.Initialize(Subject));
+                Subject.Join(PlayerSlot1);
+                Subject.Join(PlayerSlot2);
+            }
+    
+            [Test]
+            public void Join_causes_a_player_slot_to_become_ready()
+            {
+                Assert.False(Subject.PlayerSlot1.IsReady);
+                Assert.False(Subject.PlayerSlot2.IsReady);
+                Subject.Join(Subject.PlayerSlot1);
+                Assert.That(Subject.PlayerSlot2.IsReady);
+                Subject.Join(Subject.PlayerSlot1);
+                Assert.That(Subject.PlayerSlot1.IsReady);
+            }
+    
+            [Test]
+            public void Ignores_joining_occupied_slot()
+            {
+                var playerSlot = Mock<IPlayerSlot>();
+                playerSlot.Mocks(p => p.IsReady).Returns(true);
+                Subject.Join(playerSlot.Object);
+            }
         }
-
-        [Test]
-        public void Join_causes_a_player_slot_to_become_ready()
-        {
-            Assert.False(Game.PlayerSlots[0].IsReady);
-            Assert.False(Game.PlayerSlots[1].IsReady);
-            Game.Join(Game.PlayerSlots[1]);
-            Assert.That(Game.PlayerSlots[1].IsReady);
-            Game.Join(Game.PlayerSlots[0]);
-            Assert.That(Game.PlayerSlots[0].IsReady);
-        }
-
-        [Test]
-        public void Ignores_joining_occupied_slot()
-        {
-            var playerSlot = Mock<IPlayerSlot>();
-            playerSlot.Setup(p => p.IsReady).Returns(true);
-            Game.Join(playerSlot.Object);
-        }
-        #endregion
-
-        #region Initialization
-        [Test]
-        public void Game_initializes_players()
-        {
-            PlayerInitializer.Setup(p => p.Initialize(Player1.Object)).Verifiable();
-            PlayerInitializer.Setup(p => p.Initialize(Player2.Object)).Verifiable();
-            Start(Game);
-        }
-
-        [Test]
-        public void Game_creates_ball()
-        {
-            var setup = BallFactory.Setup(b => b.Create(new Point(40, 70))); // Middle of the screen
-            setup.Returns(Ball);
-            setup.Verifiable();
-            Start(Game);
-        }
-
-        [Test]
-        public void Game_initializes_ball()
-        {
-            BallInitializer.Setup(b => b.Initialize(Ball)).Verifiable();
-            Start(Game);
-        }
-        #endregion
 
         #region Exit
         [Test]
         public void Exit_causes_game_to_stop_running()
         {
-            Assert.That(Game.IsRunning);
-            Game.Exit();
-            Assert.False(Game.IsRunning);
+            Assert.That(Subject.IsRunning);
+            Subject.Exit();
+            Assert.False(Subject.IsRunning);
         }
         #endregion
     }

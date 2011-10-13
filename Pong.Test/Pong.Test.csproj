@@ -79,6 +79,8 @@
     <Compile Include="Features\Motion.feature.cs">
       <DependentUpon>Motion.feature</DependentUpon>
     </Compile>
+    <Compile Include="MockExtensions.cs" />
+    <Compile Include="Unit\GameInitializerTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

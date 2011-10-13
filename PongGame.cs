@@ -10,6 +10,12 @@ namespace Pong
             IsRunning = true;
         }
 
+        public IGameInitializer GameInitializer
+        {
+            get;
+            set;
+        }
+
         public IPlayerInitializer PlayerInitializer
         {
             get;
@@ -99,6 +105,23 @@ namespace Pong
         }
 
         private IPlayerSlot[] playerSlots = new IPlayerSlot[0];
+
+        public IPlayer Player1
+        {
+            get { return Players[0]; }
+        }
+        public IPlayer Player2
+        {
+            get { return Players[1]; }
+        }
+        public IPlayerSlot PlayerSlot1
+        {
+            get { return PlayerSlots[0]; }
+        }
+        public IPlayerSlot PlayerSlot2
+        {
+            get { return PlayerSlots[1]; }
+        }
     }
 }
 

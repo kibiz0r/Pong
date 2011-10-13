@@ -28,6 +28,11 @@ namespace Pong.Test
             return Stubs.Create<T>();
         }
 
+        public T Dummy<T>() where T : class
+        {
+            return Stub<T>().Object;
+        }
+
         [SetUp]
         public void TestHelperSetUp()
         {
@@ -38,8 +43,8 @@ namespace Pong.Test
         [TearDown]
         public void TestHelperTearDown()
         {
-            Mocks.VerifyAll();
-            Stubs.Verify(); // Only verifies expectations for which .Verifiable() was called.
+            Mocks.Verify();
+            Stubs.Verify();
         }
     }
 }

@@ -752,3 +752,86 @@ Main has become just a place to stage the big-bang explosion of classes, mixed w
 
 ### Git at it!
 There's getting to be too much code to show at every step! It's interesting to see all the old, shitty code replaced by more modular, testable code, so I recommend checking out a diff of the commit through GitX or something.
+
+## 649c51
+Paddles now spawn at the player's assigned spawn point. Nothing especially exciting.
+
+## 8dc59da
+Ah, I found a bug! If you hold down the start key, it is interpreted as joining multiple times, which causes the paddle to be continually nullified. After catching this bug, I wrote a test case to demonstrate the erroneous behavior and serve as a regression test to make sure the bug stays squashed for good.
+
+### JoinTest.cs
+
+    [Test]
+    public void Joining_multiple_times_is_okay()
+    {
+        Game.Join(Game.PlayerSlots[0]);
+        Game.Join(Game.PlayerSlots[1]);
+        Game.Join(Game.PlayerSlots[1]);
+        Assert.That(Game.Players[1].Paddle, Is.Not.Null);
+    }
+
+### PongGameTest.cs
+
+    [Test]
+    public void Ignores_joining_occupied_slot()
+    {
+        var playerSlot = Mock<IPlayerSlot>();
+        playerSlot.Setup(p => p.IsReady).Returns(true);
+        Game.Join(playerSlot.Object);
+    }
+
+### PongGame.cs
+
+    public void Join(IPlayerSlot playerSlot)
+    {
+        if (playerSlot.IsReady)
+        {
+            return;
+        }
+        …
+
+## 29e672
+I added ball spawning and initialization, as well as rendering for paddles and the ball.
+
+A couple of interesting things to note:
+
+### Factories
+In general, I only allow myself to **new** up stateful objects when I'm in a factory. Stateful objects are those that express different behavior depending on their internal state -- they are not dumb service objects, and they are not merely containers for data.
+
+First of all, if I have a method that is responding to the game starting by doing a number of things, among them creating a Ball and put it in the right state, then knowing *which* kind of Ball to create and *how* to put it in the right state is not part of its job.
+
+Second, stateful objects by their very nature must be replaced by mocks in tests but I can't replace an object with a mock if you already said to use the real thing.
+
+    [Test]
+    public void Game_creates_ball()
+    {
+        var createCall = BallFactory.Setup(b => b.Create(new Point(40, 70))); // Middle of the screen
+        createCall.Returns(Ball);
+        createCall.Verifiable();
+        Start(Game);
+    }
+
+### Randomness
+Randomness is one of those interesting testing problems, because it's impossible to reliably test something with pseudorandom behavior. Taking a statistical approach is foolish, because not only is it often more trouble than its worth, it also introduces the possibility of random test failures, which are a good way to lose confidence in your test suite and end up pursuing false positives and negatives.
+
+My preferred approach is to isolate the randomness, mock it out in unit tests, and use a deterministic version in functional/integration tests. Production code just slips in the real thing and everything else is none the wiser.
+
+    public class RiggedBallInitializer : IBallInitializer
+    {
+        public Point SpawnVelocity { get; set; }
+
+        public void Initialize(IBall ball)
+        {
+            ball.Velocity = SpawnVelocity;
+        }
+    }
+
+    public class RandomBallInitializer : IBallInitializer
+    {
+        private Random random = new Random();
+
+        public void Initialize(IBall ball)
+        {
+            ball.Velocity = new Point(random.Next(-10, 10), random.Next(-10, 10));
+        }
+    }
