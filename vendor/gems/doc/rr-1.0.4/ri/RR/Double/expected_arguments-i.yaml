@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Arguments that this Double expects
+full_name: RR::Double#expected_arguments
+is_singleton: false
+name: expected_arguments
+params: ()
+visibility: public

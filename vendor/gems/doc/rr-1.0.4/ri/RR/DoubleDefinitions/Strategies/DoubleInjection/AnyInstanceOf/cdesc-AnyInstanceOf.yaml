@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This class is Deprecated. Calling instance_of will cause all instances of the passed in Class to have the Double defined.
+- !ruby/struct:SM::Flow::P 
+  body: The following example mocks all User's valid? method and return false.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock.instance_of(User).valid? {false}\n"
+- !ruby/struct:SM::Flow::P 
+  body: The following example mocks and proxies User#projects and returns the first 3 projects.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock.instance_of(User).projects do |projects|\n    projects[0..2]\n  end\n"
+constants: []
+
+full_name: RR::DoubleDefinitions::Strategies::DoubleInjection::AnyInstanceOf
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_call
+name: AnyInstanceOf
+superclass: DoubleInjectionStrategy

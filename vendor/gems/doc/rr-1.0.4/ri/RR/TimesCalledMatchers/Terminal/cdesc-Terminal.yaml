@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Including this module marks the TimesCalledMatcher as Terminal. Being Terminal the Double will &quot;terminate&quot; when times called is finite.
+- !ruby/struct:SM::Flow::P 
+  body: The Double that uses a Terminal TimesCalledMatcher will eventually be passed over to the next Double when passed the matching arguments enough times. This is done by the attempt? method returning false when executed a finite number of times.
+- !ruby/struct:SM::Flow::P 
+  body: This is in opposition to NonTerminal TimesCalledMatchers, where attempt? will always return true.
+constants: []
+
+full_name: RR::TimesCalledMatchers::Terminal
+includes: []
+
+instance_methods: []
+
+name: Terminal
+superclass: 

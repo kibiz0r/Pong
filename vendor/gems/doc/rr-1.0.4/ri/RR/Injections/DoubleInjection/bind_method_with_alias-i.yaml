@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::DoubleInjection#bind_method_with_alias
+is_singleton: false
+name: bind_method_with_alias
+params: ()
+visibility: protected

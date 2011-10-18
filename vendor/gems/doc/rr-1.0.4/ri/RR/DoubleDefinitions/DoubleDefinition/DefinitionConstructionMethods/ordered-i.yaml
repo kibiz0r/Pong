@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: then
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#ordered sets the Double to have an ordered expectation.
+- !ruby/struct:SM::Flow::P 
+  body: Passing in a block sets the return value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject).method_name.ordered {return_value}\n"
+full_name: RR::DoubleDefinitions::DoubleDefinition::DefinitionConstructionMethods#ordered
+is_singleton: false
+name: ordered
+params: (&return_value_block)
+visibility: public

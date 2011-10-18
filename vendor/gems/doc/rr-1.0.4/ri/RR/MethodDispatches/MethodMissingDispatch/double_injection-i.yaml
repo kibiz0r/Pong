@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::MethodDispatches::MethodMissingDispatch#double_injection
+is_singleton: false
+name: double_injection
+params: ()
+visibility: protected

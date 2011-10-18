@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::MethodDispatches::MethodMissingDispatch::new
+is_singleton: true
+name: new
+params: (subject, subject_class, method_name, args, block)
+visibility: public

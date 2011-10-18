@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::DoubleDefinitionCreate#dont_allow
+is_singleton: false
+name: dont_allow
+params: (subject=NO_SUBJECT, method_name=nil, &definition_eval_block)
+visibility: public

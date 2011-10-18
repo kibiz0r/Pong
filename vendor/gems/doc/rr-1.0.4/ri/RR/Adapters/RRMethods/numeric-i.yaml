@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets up an Numeric wildcard ArgumentEqualityExpectation that succeeds when passed an argument that is ::Numeric.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(object).method_name(numeric) {return_value}\n  object.method_name(99) # passes\n"
+full_name: RR::Adapters::RRMethods#numeric
+is_singleton: false
+name: numeric
+params: ()
+visibility: public

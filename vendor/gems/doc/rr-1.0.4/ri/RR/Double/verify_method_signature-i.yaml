@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Double#verify_method_signature
+is_singleton: false
+name: verify_method_signature
+params: ()
+visibility: protected

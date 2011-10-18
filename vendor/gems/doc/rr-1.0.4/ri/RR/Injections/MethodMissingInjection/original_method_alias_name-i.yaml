@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::MethodMissingInjection#original_method_alias_name
+is_singleton: false
+name: original_method_alias_name
+params: ()
+visibility: protected

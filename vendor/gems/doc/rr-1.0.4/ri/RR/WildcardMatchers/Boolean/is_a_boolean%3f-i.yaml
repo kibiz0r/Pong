@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::WildcardMatchers::Boolean#is_a_boolean?
+is_singleton: false
+name: is_a_boolean?
+params: (subject)
+visibility: protected

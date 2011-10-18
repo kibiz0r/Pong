@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: RR::DoubleInjection#bind injects a method that acts as a dispatcher that dispatches to the matching Double when the method is called.
+full_name: RR::Injections::DoubleInjection#bind
+is_singleton: false
+name: bind
+params: ()
+visibility: public

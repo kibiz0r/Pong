@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Adapters::MiniTest#teardown_with_rr
+is_singleton: false
+name: teardown_with_rr
+params: ()
+visibility: public

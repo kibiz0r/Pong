@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: any_times
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#any_number_of_times sets an that the Double will be called any number of times. This effectively removes the times called expectation from the Doublen
+- !ruby/struct:SM::Flow::P 
+  body: Passing in a block sets the return value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject).method_name.any_number_of_times\n"
+full_name: RR::DoubleDefinitions::DoubleDefinition::TimesDefinitionConstructionMethods#any_number_of_times
+is_singleton: false
+name: any_number_of_times
+params: (&return_value_block)
+visibility: public

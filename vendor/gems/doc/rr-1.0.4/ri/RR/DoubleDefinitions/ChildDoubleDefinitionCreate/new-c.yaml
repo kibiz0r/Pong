@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::ChildDoubleDefinitionCreate::new
+is_singleton: true
+name: new
+params: (parent_double_definition)
+visibility: public

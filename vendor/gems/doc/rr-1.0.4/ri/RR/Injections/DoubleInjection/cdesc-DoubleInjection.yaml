@@ -1,0 +1,86 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: doubles
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: method_name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: subject_class
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: RR::DoubleInjection is the binding of an subject and a method. A double_injection has 0 to many Double objects. Each Double has Argument Expectations and Times called Expectations.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MethodArguments
+  value: Struct.new(:arguments, :block)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BoundObjects
+  value: "{}"
+full_name: RR::Injections::DoubleInjection
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: ClassInstanceMethodDefined
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: bind
+- !ruby/object:RI::MethodSummary 
+  name: bind_method
+- !ruby/object:RI::MethodSummary 
+  name: bind_method_that_self_destructs_and_delegates_to_method_missing
+- !ruby/object:RI::MethodSummary 
+  name: bind_method_with_alias
+- !ruby/object:RI::MethodSummary 
+  name: deferred_bind_method
+- !ruby/object:RI::MethodSummary 
+  name: dispatch_method
+- !ruby/object:RI::MethodSummary 
+  name: dispatch_method
+- !ruby/object:RI::MethodSummary 
+  name: dispatch_method_delegates_to_dispatch_original_method
+- !ruby/object:RI::MethodSummary 
+  name: dispatch_original_method
+- !ruby/object:RI::MethodSummary 
+  name: exists?
+- !ruby/object:RI::MethodSummary 
+  name: exists_by_subject?
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: find_by_subject
+- !ruby/object:RI::MethodSummary 
+  name: find_or_create
+- !ruby/object:RI::MethodSummary 
+  name: find_or_create_by_subject
+- !ruby/object:RI::MethodSummary 
+  name: instances
+- !ruby/object:RI::MethodSummary 
+  name: original_method_alias_name
+- !ruby/object:RI::MethodSummary 
+  name: register_double
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: reset_double
+- !ruby/object:RI::MethodSummary 
+  name: subject_has_original_method_missing?
+- !ruby/object:RI::MethodSummary 
+  name: verify
+- !ruby/object:RI::MethodSummary 
+  name: verify
+- !ruby/object:RI::MethodSummary 
+  name: verify_double
+name: DoubleInjection
+superclass: Injection

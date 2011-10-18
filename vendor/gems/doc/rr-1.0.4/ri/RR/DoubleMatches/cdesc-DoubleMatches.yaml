@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: exact_non_terminal_doubles_to_attempt
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: exact_terminal_doubles_to_attempt
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: matching_doubles
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: wildcard_non_terminal_doubles_to_attempt
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: wildcard_terminal_doubles_to_attempt
+  rw: R
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: RR::DoubleMatches
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: find_all_matches
+name: DoubleMatches
+superclass: Object

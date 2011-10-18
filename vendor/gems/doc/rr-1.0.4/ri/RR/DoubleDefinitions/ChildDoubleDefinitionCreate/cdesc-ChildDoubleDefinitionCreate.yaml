@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: parent_double_definition
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: RR::DoubleDefinitions::ChildDoubleDefinitionCreate
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_strategy
+- !ruby/object:RI::MethodSummary 
+  name: instance_of
+- !ruby/object:RI::MethodSummary 
+  name: root_subject
+name: ChildDoubleDefinitionCreate
+superclass: DoubleDefinitionCreate

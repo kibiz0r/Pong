@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: RR::DoubleDefinitions::DoubleDefinition::DefinitionConstructionMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: after_call
+- !ruby/object:RI::MethodSummary 
+  name: implemented_by
+- !ruby/object:RI::MethodSummary 
+  name: implemented_by_original_method
+- !ruby/object:RI::MethodSummary 
+  name: install_method_callback
+- !ruby/object:RI::MethodSummary 
+  name: ordered
+- !ruby/object:RI::MethodSummary 
+  name: returns
+- !ruby/object:RI::MethodSummary 
+  name: strong
+- !ruby/object:RI::MethodSummary 
+  name: then
+- !ruby/object:RI::MethodSummary 
+  name: verbose
+- !ruby/object:RI::MethodSummary 
+  name: verify_method_signature
+- !ruby/object:RI::MethodSummary 
+  name: yields
+name: DefinitionConstructionMethods
+superclass: 

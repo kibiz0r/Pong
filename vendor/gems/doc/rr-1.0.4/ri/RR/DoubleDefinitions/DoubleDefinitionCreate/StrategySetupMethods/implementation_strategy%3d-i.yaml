@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::DoubleDefinitionCreate::StrategySetupMethods#implementation_strategy=
+is_singleton: false
+name: implementation_strategy=
+params: (implementation_strategy)
+visibility: protected

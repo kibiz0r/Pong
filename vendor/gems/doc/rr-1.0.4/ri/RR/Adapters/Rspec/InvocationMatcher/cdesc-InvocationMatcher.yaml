@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: failure_message
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: spy_verification_proxy
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: RR::Adapters::Rspec::InvocationMatcher
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: matches?
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: nil?
+name: InvocationMatcher
+superclass: SpyVerificationProxy

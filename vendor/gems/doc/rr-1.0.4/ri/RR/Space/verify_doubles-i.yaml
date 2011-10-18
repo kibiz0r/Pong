@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: verify
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Verifies all the DoubleInjection objects have met their TimesCalledExpectations.
+full_name: RR::Space#verify_doubles
+is_singleton: false
+name: verify_doubles
+params: (*subjects)
+visibility: public

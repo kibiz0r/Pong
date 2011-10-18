@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Adapters::RRMethods#received
+is_singleton: false
+name: received
+params: (subject)
+visibility: public

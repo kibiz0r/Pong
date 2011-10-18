@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method sets the Double to have a dont_allow strategy. A dont_allow strategy sets the default state of the Double to expect never to be called. The Double's expectations can be changed.
+- !ruby/struct:SM::Flow::P 
+  body: The following example sets the expectation that subject.method_name will never be called with arg1 and arg2.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  do_not_allow(subject).method_name(arg1, arg2)\n"
+- !ruby/struct:SM::Flow::P 
+  body: dont_allow also supports a block sytnax.
+- !ruby/struct:SM::Flow::VERB 
+  body: "   dont_allow(subject) do |m|\n     m.method1 # Do not allow method1 with any arguments\n     m.method2(arg1, arg2) # Do not allow method2 with arguments arg1 and arg2\n     m.method3.with_no_args # Do not allow method3 with no arguments\n   end\n"
+constants: []
+
+full_name: RR::DoubleDefinitions::Strategies::Verification::DontAllow
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_call
+name: DontAllow
+superclass: VerificationStrategy

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets up a DuckType wildcard ArgumentEqualityExpectation that succeeds when the passed argument implements the methods.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  arg = Object.new\n  def arg.foo; end\n  def arg.bar; end\n  mock(object).method_name(duck_type(:foo, :bar)) {return_value}\n  object.method_name(arg) # passes\n"
+full_name: RR::Adapters::RRMethods#duck_type
+is_singleton: false
+name: duck_type
+params: (*args)
+visibility: public

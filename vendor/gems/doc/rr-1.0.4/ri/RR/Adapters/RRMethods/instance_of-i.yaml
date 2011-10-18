@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: any_instance_of
+- !ruby/object:RI::AliasName 
+  name: all_instances_of
+block_params: 
+comment: 
+full_name: RR::Adapters::RRMethods#instance_of
+is_singleton: false
+name: instance_of
+params: (subject=DoubleDefinitions::DoubleDefinitionCreate::NO_SUBJECT, method_name=nil, &definition_eval_block)
+visibility: public

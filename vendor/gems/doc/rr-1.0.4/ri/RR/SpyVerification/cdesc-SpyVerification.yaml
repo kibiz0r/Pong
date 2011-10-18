@@ -1,0 +1,49 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: argument_expectation
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: method_name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: subject
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: times_matcher
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: times_matcher
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: RR::SpyVerification
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: RR::DoubleDefinitions::DoubleDefinition::TimesDefinitionConstructionMethods
+- !ruby/object:RI::IncludedModule 
+  name: RR::DoubleDefinitions::DoubleDefinition::ArgumentDefinitionConstructionMethods
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: install_method_callback
+- !ruby/object:RI::MethodSummary 
+  name: ordered
+- !ruby/object:RI::MethodSummary 
+  name: ordered?
+- !ruby/object:RI::MethodSummary 
+  name: set_argument_expectation_for_args
+- !ruby/object:RI::MethodSummary 
+  name: to_proc
+name: SpyVerification
+superclass: Object

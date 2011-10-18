@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Alias for #any_number_of_times"
+full_name: RR::DoubleDefinitions::DoubleDefinition::TimesDefinitionConstructionMethods#any_times
+is_singleton: false
+name: any_times
+params: (&return_value_block)
+visibility: public

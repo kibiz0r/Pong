@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#verbose sets the Double to print out each method call it receives.
+- !ruby/struct:SM::Flow::P 
+  body: Passing in a block sets the return value
+full_name: RR::DoubleDefinitions::DoubleDefinition::DefinitionConstructionMethods#verbose
+is_singleton: false
+name: verbose
+params: (&after_call_proc)
+visibility: public

@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method sets the Double to have a mock strategy. A mock strategy sets the default state of the Double to expect the method call with arguments exactly one time. The Double's expectations can be changed.
+- !ruby/struct:SM::Flow::P 
+  body: This method can be chained with proxy.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock.proxy(subject).method_name_1\n  or\n  proxy.mock(subject).method_name_1\n"
+- !ruby/struct:SM::Flow::P 
+  body: When passed the subject, a DoubleDefinitionCreateBlankSlate is returned. Passing a method with arguments to the proxy will set up expectations that the a call to the subject's method with the arguments will happen, and return the prescribed value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject).method_name_1 {return_value_1}\n  mock(subject).method_name_2(arg1, arg2) {return_value_2}\n"
+- !ruby/struct:SM::Flow::P 
+  body: When passed the subject and the method_name, this method returns a mock Double with the method already set.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject, :method_name_1) {return_value_1}\n  mock(subject, :method_name_2).with(arg1, arg2) {return_value_2}\n"
+- !ruby/struct:SM::Flow::P 
+  body: mock also takes a block for definitions.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject) do\n    method_name_1 {return_value_1}\n    method_name_2(arg_1, arg_2) {return_value_2}\n  end\n"
+constants: []
+
+full_name: RR::DoubleDefinitions::Strategies::Verification::Mock
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_call
+name: Mock
+superclass: VerificationStrategy

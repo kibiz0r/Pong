@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Space#reset_singleton_method_added_injections
+is_singleton: false
+name: reset_singleton_method_added_injections
+params: ()
+visibility: protected

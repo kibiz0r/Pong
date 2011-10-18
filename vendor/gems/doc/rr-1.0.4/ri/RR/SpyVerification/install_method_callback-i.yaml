@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::SpyVerification#install_method_callback
+is_singleton: false
+name: install_method_callback
+params: (return_value_block)
+visibility: protected

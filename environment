@@ -1,0 +1,5 @@
+export GEM_PATH="vendor/gems"
+
+alias ir="mono --debug IronLanguages/bin/Release/ir.exe"
+alias gem="ruby IronLanguages/Languages/Ruby/Scripts/bin/gem"
+alias rspec="ir vendor/gems/bin/rspec"

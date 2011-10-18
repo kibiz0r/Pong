@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::MethodMissingInjection#bind_method
+is_singleton: false
+name: bind_method
+params: ()
+visibility: protected

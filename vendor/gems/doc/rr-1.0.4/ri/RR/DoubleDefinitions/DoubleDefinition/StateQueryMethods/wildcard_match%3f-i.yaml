@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::DoubleDefinition::StateQueryMethods#wildcard_match?
+is_singleton: false
+name: wildcard_match?
+params: (*arguments)
+visibility: public

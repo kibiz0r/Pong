@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::DoubleInjection#bind_method_that_self_destructs_and_delegates_to_method_missing
+is_singleton: false
+name: bind_method_that_self_destructs_and_delegates_to_method_missing
+params: ()
+visibility: public

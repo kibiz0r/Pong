@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::TimesCalledMatchers::AtMostMatcher#possible_match?
+is_singleton: false
+name: possible_match?
+params: (times_called)
+visibility: public

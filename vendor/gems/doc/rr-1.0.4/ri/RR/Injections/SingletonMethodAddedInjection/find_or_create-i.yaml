@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::SingletonMethodAddedInjection#find_or_create
+is_singleton: false
+name: find_or_create
+params: (subject_class)
+visibility: public

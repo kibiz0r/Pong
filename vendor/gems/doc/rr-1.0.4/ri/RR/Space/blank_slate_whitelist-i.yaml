@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Space#blank_slate_whitelist
+is_singleton: false
+name: blank_slate_whitelist
+params: ()
+visibility: public

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::MethodDispatches::BaseMethodDispatch#implementation_is_original_method?
+is_singleton: false
+name: implementation_is_original_method?
+params: ()
+visibility: protected

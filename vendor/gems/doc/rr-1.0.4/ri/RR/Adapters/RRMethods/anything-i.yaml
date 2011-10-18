@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets up an Anything wildcard ArgumentEqualityExpectation that succeeds when passed any argument.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(object).method_name(anything) {return_value}\n  object.method_name(&quot;an arbitrary value&quot;) # passes\n"
+full_name: RR::Adapters::RRMethods#anything
+is_singleton: false
+name: anything
+params: ()
+visibility: public

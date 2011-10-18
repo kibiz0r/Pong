@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: args
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: block
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: double
+  rw: R
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: RR::MethodDispatches::BaseMethodDispatch
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Space::Reader
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: call_original_method_missing
+- !ruby/object:RI::MethodSummary 
+  name: call_yields
+- !ruby/object:RI::MethodSummary 
+  name: double_not_found_error
+- !ruby/object:RI::MethodSummary 
+  name: extract_subject_from_return_value
+- !ruby/object:RI::MethodSummary 
+  name: find_double_to_attempt
+- !ruby/object:RI::MethodSummary 
+  name: implementation_is_original_method?
+name: BaseMethodDispatch
+superclass: Object

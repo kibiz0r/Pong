@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::DoubleDefinition::StateQueryMethods#expected_arguments
+is_singleton: false
+name: expected_arguments
+params: ()
+visibility: public

@@ -1,0 +1,47 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: ordered_index
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: recorded_calls
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: RR::RecordedCalls
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: RR::Space::Reader
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "<<"
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: any?
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: double_injection_exists_error
+- !ruby/object:RI::MethodSummary 
+  name: invocation_count_error
+- !ruby/object:RI::MethodSummary 
+  name: match_argument_expectation
+- !ruby/object:RI::MethodSummary 
+  name: match_double_injection
+- !ruby/object:RI::MethodSummary 
+  name: match_error
+- !ruby/object:RI::MethodSummary 
+  name: matching_recorded_calls
+- !ruby/object:RI::MethodSummary 
+  name: ordered_match_error
+- !ruby/object:RI::MethodSummary 
+  name: unordered_match_error
+name: RecordedCalls
+superclass: Object

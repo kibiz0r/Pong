@@ -1,0 +1,64 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: instance
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: ordered_doubles
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: recorded_calls
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: trim_backtrace
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: instance
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: RR::Space.instance is the global state subject for the RR framework.
+constants: []
+
+full_name: RR::Space
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: blank_slate_whitelist
+- !ruby/object:RI::MethodSummary 
+  name: record_call
+- !ruby/object:RI::MethodSummary 
+  name: register_ordered_double
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: reset_bound_objects
+- !ruby/object:RI::MethodSummary 
+  name: reset_double
+- !ruby/object:RI::MethodSummary 
+  name: reset_method_missing_injections
+- !ruby/object:RI::MethodSummary 
+  name: reset_ordered_doubles
+- !ruby/object:RI::MethodSummary 
+  name: reset_recorded_calls
+- !ruby/object:RI::MethodSummary 
+  name: reset_singleton_method_added_injections
+- !ruby/object:RI::MethodSummary 
+  name: verify
+- !ruby/object:RI::MethodSummary 
+  name: verify_double
+- !ruby/object:RI::MethodSummary 
+  name: verify_doubles
+- !ruby/object:RI::MethodSummary 
+  name: verify_ordered_double
+name: Space
+superclass: Object

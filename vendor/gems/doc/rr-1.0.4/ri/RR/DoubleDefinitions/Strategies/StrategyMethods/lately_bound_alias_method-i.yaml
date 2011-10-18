@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::Strategies::StrategyMethods#lately_bound_alias_method
+is_singleton: false
+name: lately_bound_alias_method
+params: (target_method_name, source_method_name)
+visibility: public

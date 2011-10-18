@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: RR::WildcardMatchers</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">RR::WildcardMatchers</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/rr/wildcard_matchers/anything_rb.html">
+                lib/rr/wildcard_matchers/anything.rb
+                </a>
+        <br />
+                <a href="../../files/lib/rr/wildcard_matchers/boolean_rb.html">
+                lib/rr/wildcard_matchers/boolean.rb
+                </a>
+        <br />
+                <a href="../../files/lib/rr/wildcard_matchers/duck_type_rb.html">
+                lib/rr/wildcard_matchers/duck_type.rb
+                </a>
+        <br />
+                <a href="../../files/lib/rr/wildcard_matchers/hash_including_rb.html">
+                lib/rr/wildcard_matchers/hash_including.rb
+                </a>
+        <br />
+                <a href="../../files/lib/rr/wildcard_matchers/is_a_rb.html">
+                lib/rr/wildcard_matchers/is_a.rb
+                </a>
+        <br />
+                <a href="../../files/lib/rr/wildcard_matchers/numeric_rb.html">
+                lib/rr/wildcard_matchers/numeric.rb
+                </a>
+        <br />
+                <a href="../../files/lib/rr/wildcard_matchers/satisfy_rb.html">
+                lib/rr/wildcard_matchers/satisfy.rb
+                </a>
+        <br />
+                <a href="../../files/lib/rr/wildcard_matchers_rb.html">
+                lib/rr/wildcard_matchers.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Writing your own custom wildcard matchers.</h1>
+<p>
+Writing new wildcard matchers is not too difficult. If you&#8216;ve ever
+written a custom expectation in RSpec, the implementation is very similar.
+</p>
+<p>
+As an example, let&#8216;s say that you want a matcher that will match any
+number divisible by a certain integer. In use, it might look like this:
+</p>
+<pre>
+  # Will pass if BananaGrabber#bunch_bananas is called with an integer
+  # divisible by 5.
+
+  mock(BananaGrabber).bunch_bananas(divisible_by(5))
+</pre>
+<p>
+To implement this, we need a class RR::WildcardMatchers::DivisibleBy with
+these instance methods:
+</p>
+<ul>
+<li>==(other)
+
+</li>
+<li>eql?(other) (usually aliased to #==)
+
+</li>
+<li>inspect
+
+</li>
+<li>wildcard_match?(other)
+
+</li>
+</ul>
+<p>
+and optionally, a sensible initialize method. Let&#8216;s look at each of
+these.
+</p>
+<h3>.initialize</h3>
+<p>
+Most custom wildcard matchers will want to define initialize to store some
+information about just what should be matched. DivisibleBy#initialize might
+look like this:
+</p>
+<pre>
+  class RR::WildcardMatchers::DivisibleBy
+    def initialize(divisor)
+      @expected_divisor = divisor
+    end
+  end
+</pre>
+<h3>#==(other)</h3>
+<p>
+DivisibleBy#==(other) should return true if other is a wildcard matcher
+that matches the same things as self, so a natural way to write
+DivisibleBy#== is:
+</p>
+<pre>
+  class RR::WildcardMatchers::DivisibleBy
+    def ==(other)
+      # Ensure that other is actually a DivisibleBy
+      return false unless other.is_a?(self.class)
+
+      # Does other expect to match the same divisor we do?
+      self.expected_divisor = other.expected_divisor
+    end
+  end
+</pre>
+<p>
+Note that this implementation of #== assumes that we&#8216;ve also declared
+</p>
+<pre>
+  attr_reader :expected_divisor
+</pre>
+<h3>inspect</h3>
+<p>
+Technically we don&#8216;t have to declare DivisibleBy#inspect, since
+inspect is defined for every object already. But putting a helpful message
+in inspect will make test failures much clearer, and it only takes about
+two seconds to write it, so let&#8216;s be nice and do so:
+</p>
+<pre>
+  class RR::WildcardMatchers::DivisibleBy
+    def inspect
+      &quot;integer divisible by #{expected.divisor}&quot;
+    end
+  end
+</pre>
+<p>
+Now if we run the example from above:
+</p>
+<pre>
+  mock(BananaGrabber).bunch_bananas(divisible_by(5))
+</pre>
+<p>
+and it fails, we get a helpful message saying
+</p>
+<pre>
+  bunch_bananas(integer divisible by 5)
+  Called 0 times.
+  Expected 1 times.
+</pre>
+<h3>wildcard_matches?(other)</h3>
+<p>
+wildcard_matches? is the method that actually checks the argument against
+the expectation. It should return true if other is considered to match,
+false otherwise. In the case of DivisibleBy, wildcard_matches? reads:
+</p>
+<pre>
+  class RR::WildcardMatchers::DivisibleBy
+    def wildcard_matches?(other)
+      # If other isn't a number, how can it be divisible by anything?
+      return false unless other.is_a?(Numeric)
+
+      # If other is in fact divisible by expected_divisor, then
+      # other modulo expected_divisor should be 0.
+
+      other % expected_divisor == 0
+    end
+  end
+</pre>
+<h3>A finishing touch: wrapping it neatly</h3>
+<p>
+We could stop here if we were willing to resign ourselves to using
+DivisibleBy this way:
+</p>
+<pre>
+  mock(BananaGrabber).bunch_bananas(DivisibleBy.new(5))
+</pre>
+<p>
+But that&#8216;s less expressive than the original:
+</p>
+<pre>
+  mock(BananaGrabber).bunch_bananas(divisible_by(5))
+</pre>
+<p>
+To be able to use the convenient divisible_by matcher rather than the
+uglier DivisibleBy.new version, re-open the module <a
+href="Adapters/RRMethods.html">RR::Adapters::RRMethods</a> and define
+divisible_by there as a simple wrapper around DivisibleBy.new:
+</p>
+<pre>
+  module RR::Adapters::RRMethods
+    def divisible_by(expected_divisor)
+      RR::WildcardMatchers::DivisibleBy.new(expected_divisor)
+    end
+  end
+</pre>
+<h2>Recap</h2>
+<p>
+Here&#8216;s all the code for DivisibleBy in one place for easy reference:
+</p>
+<pre>
+  class RR::WildcardMatchers::DivisibleBy
+    def initialize(divisor)
+      @expected_divisor = divisor
+    end
+
+    def ==(other)
+      # Ensure that other is actually a DivisibleBy
+      return false unless other.is_a?(self.class)
+
+      # Does other expect to match the same divisor we do?
+      self.expected_divisor = other.expected_divisor
+    end
+
+    def inspect
+      &quot;integer divisible by #{expected.divisor}&quot;
+    end
+
+    def wildcard_matches?(other)
+      # If other isn't a number, how can it be divisible by anything?
+      return false unless other.is_a?(Numeric)
+
+      # If other is in fact divisible by expected_divisor, then
+      # other modulo expected_divisor should be 0.
+
+      other % expected_divisor == 0
+    end
+  end
+
+  module RR::Adapters::RRMethods
+    def divisible_by(expected_divisor)
+      RR::WildcardMatchers::DivisibleBy.new(expected_divisor)
+    end
+  end
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="WildcardMatchers/Anything.html" class="link">RR::WildcardMatchers::Anything</a><br />
+Class <a href="WildcardMatchers/Boolean.html" class="link">RR::WildcardMatchers::Boolean</a><br />
+Class <a href="WildcardMatchers/DuckType.html" class="link">RR::WildcardMatchers::DuckType</a><br />
+Class <a href="WildcardMatchers/HashIncluding.html" class="link">RR::WildcardMatchers::HashIncluding</a><br />
+Class <a href="WildcardMatchers/IsA.html" class="link">RR::WildcardMatchers::IsA</a><br />
+Class <a href="WildcardMatchers/Numeric.html" class="link">RR::WildcardMatchers::Numeric</a><br />
+Class <a href="WildcardMatchers/Satisfy.html" class="link">RR::WildcardMatchers::Satisfy</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

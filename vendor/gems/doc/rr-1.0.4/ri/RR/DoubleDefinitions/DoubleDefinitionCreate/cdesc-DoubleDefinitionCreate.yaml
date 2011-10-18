@@ -1,0 +1,64 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: double_injection_strategy
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: implementation_strategy
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: subject
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: verification_strategy
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NO_SUBJECT
+  value: Object.new
+full_name: RR::DoubleDefinitions::DoubleDefinitionCreate
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Space::Reader
+- !ruby/object:RI::IncludedModule 
+  name: StrategySetupMethods
+- !ruby/object:RI::IncludedModule 
+  name: "::RR::DoubleDefinitions::Strategies::StrategyMethods"
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: all_instances_of
+- !ruby/object:RI::MethodSummary 
+  name: any_instance_of
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: default_double_injection_strategy
+- !ruby/object:RI::MethodSummary 
+  name: dont_allow
+- !ruby/object:RI::MethodSummary 
+  name: instance_of
+- !ruby/object:RI::MethodSummary 
+  name: method_name
+- !ruby/object:RI::MethodSummary 
+  name: mock
+- !ruby/object:RI::MethodSummary 
+  name: proxy
+- !ruby/object:RI::MethodSummary 
+  name: root_subject
+- !ruby/object:RI::MethodSummary 
+  name: set_default_double_injection_strategy
+- !ruby/object:RI::MethodSummary 
+  name: strong
+- !ruby/object:RI::MethodSummary 
+  name: stub
+name: DoubleDefinitionCreate
+superclass: Object

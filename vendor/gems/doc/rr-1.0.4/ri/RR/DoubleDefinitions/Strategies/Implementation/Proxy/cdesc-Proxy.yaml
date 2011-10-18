@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method add proxy capabilities to the Double. proxy can be called with mock or stub.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock.proxy(controller.template).render(:partial =&gt; &quot;my/socks&quot;)\n\n  stub.proxy(controller.template).render(:partial =&gt; &quot;my/socks&quot;) do |html|\n    html.should include(&quot;My socks are wet&quot;)\n    html\n  end\n\n  mock.proxy(controller.template).render(:partial =&gt; &quot;my/socks&quot;) do |html|\n    html.should include(&quot;My socks are wet&quot;)\n    &quot;My new return value&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: mock.proxy also takes a block for definitions.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock.proxy(subject) do\n    render(:partial =&gt; &quot;my/socks&quot;)\n\n    render(:partial =&gt; &quot;my/socks&quot;) do |html|\n      html.should include(&quot;My socks are wet&quot;)\n      html\n    end\n\n    render(:partial =&gt; &quot;my/socks&quot;) do |html|\n      html.should include(&quot;My socks are wet&quot;)\n      html\n    end\n\n    render(:partial =&gt; &quot;my/socks&quot;) do |html|\n      html.should include(&quot;My socks are wet&quot;)\n      &quot;My new return value&quot;\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Passing a block to the Double (after the method name and arguments) allows you to intercept the return value. The return value can be modified, validated, and/or overridden by passing in a block. The return value of the block will replace the actual return value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock.proxy(controller.template).render(:partial =&gt; &quot;my/socks&quot;) do |html|\n    html.should include(&quot;My socks are wet&quot;)\n    &quot;My new return value&quot;\n  end\n"
+constants: []
+
+full_name: RR::DoubleDefinitions::Strategies::Implementation::Proxy
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_call
+name: Proxy
+superclass: ImplementationStrategy

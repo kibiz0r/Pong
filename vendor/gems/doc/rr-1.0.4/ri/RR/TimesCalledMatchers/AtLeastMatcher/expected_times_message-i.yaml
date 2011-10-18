@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::TimesCalledMatchers::AtLeastMatcher#expected_times_message
+is_singleton: false
+name: expected_times_message
+params: ()
+visibility: public

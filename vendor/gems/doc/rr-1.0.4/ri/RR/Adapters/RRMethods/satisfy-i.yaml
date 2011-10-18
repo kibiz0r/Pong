@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets up a Satisfy wildcard ArgumentEqualityExpectation that succeeds when the passed argument causes the expectation's proc to return true.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(object).method_name(satisfy {|arg| arg == :foo}) {return_value}\n  object.method_name(:foo) # passes\n"
+full_name: RR::Adapters::RRMethods#satisfy
+is_singleton: false
+name: satisfy
+params: (expectation_proc=nil, &block)
+visibility: public

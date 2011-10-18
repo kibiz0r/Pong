@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: RR::DoubleDefinitions::DoubleDefinitionCreate::StrategySetupMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">RR::DoubleDefinitions::DoubleDefinitionCreate::StrategySetupMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/rr/double_definitions/double_definition_create_rb.html">
+                lib/rr/double_definitions/double_definition_create.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000046">add_double_injection_strategy</a>&nbsp;&nbsp;
+      <a href="#M000045">add_implementation_strategy</a>&nbsp;&nbsp;
+      <a href="#M000047">add_strategy</a>&nbsp;&nbsp;
+      <a href="#M000044">add_verification_strategy</a>&nbsp;&nbsp;
+      <a href="#M000050">double_injection_strategy=</a>&nbsp;&nbsp;
+      <a href="#M000049">implementation_strategy=</a>&nbsp;&nbsp;
+      <a href="#M000043">no_subject?</a>&nbsp;&nbsp;
+      <a href="#M000048">verification_strategy=</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="#M000043" class="method-signature">
+          <span class="method-name">no_subject?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000043-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000043-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 50</span>
+50:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">no_subject?</span>
+51:           <span class="ruby-identifier">subject</span>.<span class="ruby-identifier">__id__</span> <span class="ruby-operator">===</span> <span class="ruby-constant">NO_SUBJECT</span>.<span class="ruby-identifier">__id__</span>
+52:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="#M000046" class="method-signature">
+          <span class="method-name">add_double_injection_strategy</span><span class="method-args">(double_injection_strategy_class, subject=NO_SUBJECT, method_name=nil, &amp;definition_eval_block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000046-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000046-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 67</span>
+67:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_double_injection_strategy</span>(<span class="ruby-identifier">double_injection_strategy_class</span>, <span class="ruby-identifier">subject</span>=<span class="ruby-constant">NO_SUBJECT</span>, <span class="ruby-identifier">method_name</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">definition_eval_block</span>)
+68:           <span class="ruby-identifier">add_strategy</span>(<span class="ruby-identifier">subject</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">definition_eval_block</span>) <span class="ruby-keyword kw">do</span>
+69:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">double_injection_strategy</span> = <span class="ruby-identifier">double_injection_strategy_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+70:           <span class="ruby-keyword kw">end</span>
+71:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="#M000045" class="method-signature">
+          <span class="method-name">add_implementation_strategy</span><span class="method-args">(implementation_strategy_class, subject=NO_SUBJECT, method_name=nil, &amp;definition_eval_block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000045-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000045-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 61</span>
+61:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_implementation_strategy</span>(<span class="ruby-identifier">implementation_strategy_class</span>, <span class="ruby-identifier">subject</span>=<span class="ruby-constant">NO_SUBJECT</span>, <span class="ruby-identifier">method_name</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">definition_eval_block</span>)
+62:           <span class="ruby-identifier">add_strategy</span>(<span class="ruby-identifier">subject</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">definition_eval_block</span>) <span class="ruby-keyword kw">do</span>
+63:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">implementation_strategy</span> = <span class="ruby-identifier">implementation_strategy_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+64:           <span class="ruby-keyword kw">end</span>
+65:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="#M000047" class="method-signature">
+          <span class="method-name">add_strategy</span><span class="method-args">(subject, method_name, definition_eval_block) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000047-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 73</span>
+73:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_strategy</span>(<span class="ruby-identifier">subject</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">definition_eval_block</span>)
+74:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">method_name</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">definition_eval_block</span>
+75:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Cannot pass in a method name and a block&quot;</span>
+76:           <span class="ruby-keyword kw">end</span>
+77:           <span class="ruby-ivar">@subject</span> = <span class="ruby-identifier">subject</span>
+78:           <span class="ruby-keyword kw">yield</span>
+79:           <span class="ruby-comment cmt"># TODO: Allow hash argument to simulate a Struct.</span>
+80:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">no_subject?</span>
+81:             <span class="ruby-keyword kw">self</span>
+82:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">method_name</span>
+83:             <span class="ruby-comment cmt"># TODO: Pass in arguments.</span>
+84:             <span class="ruby-identifier">call</span>(<span class="ruby-identifier">method_name</span>)
+85:           <span class="ruby-keyword kw">else</span>
+86:             <span class="ruby-constant">DoubleDefinitionCreateBlankSlate</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">definition_eval_block</span>)
+87:           <span class="ruby-keyword kw">end</span>
+88:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="#M000044" class="method-signature">
+          <span class="method-name">add_verification_strategy</span><span class="method-args">(verification_strategy_class, subject=NO_SUBJECT, method_name=nil, &amp;definition_eval_block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000044-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000044-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 55</span>
+55:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_verification_strategy</span>(<span class="ruby-identifier">verification_strategy_class</span>, <span class="ruby-identifier">subject</span>=<span class="ruby-constant">NO_SUBJECT</span>, <span class="ruby-identifier">method_name</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">definition_eval_block</span>)
+56:           <span class="ruby-identifier">add_strategy</span>(<span class="ruby-identifier">subject</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">definition_eval_block</span>) <span class="ruby-keyword kw">do</span>
+57:             <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">verification_strategy</span> = <span class="ruby-identifier">verification_strategy_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+58:           <span class="ruby-keyword kw">end</span>
+59:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="#M000050" class="method-signature">
+          <span class="method-name">double_injection_strategy=</span><span class="method-args">(double_injection_strategy)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 99</span>
+ 99:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">double_injection_strategy=</span>(<span class="ruby-identifier">double_injection_strategy</span>)
+100:           <span class="ruby-ivar">@double_injection_strategy</span> = <span class="ruby-identifier">double_injection_strategy</span>
+101:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="#M000049" class="method-signature">
+          <span class="method-name">implementation_strategy=</span><span class="method-args">(implementation_strategy)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 95</span>
+95:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">implementation_strategy=</span>(<span class="ruby-identifier">implementation_strategy</span>)
+96:           <span class="ruby-ivar">@implementation_strategy</span> = <span class="ruby-identifier">implementation_strategy</span>
+97:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="#M000048" class="method-signature">
+          <span class="method-name">verification_strategy=</span><span class="method-args">(verification_strategy)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000048-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition_create.rb, line 90</span>
+90:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verification_strategy=</span>(<span class="ruby-identifier">verification_strategy</span>)
+91:           <span class="ruby-ivar">@verification_strategy</span> = <span class="ruby-identifier">verification_strategy</span>
+92:           <span class="ruby-identifier">verification_strategy</span>
+93:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::Strategies::StrategyMethods#mock!
+is_singleton: false
+name: mock!
+params: (method_name=nil, &definition_eval_block)
+visibility: public

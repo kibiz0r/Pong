@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Double#argument_expectation
+is_singleton: false
+name: argument_expectation
+params: ()
+visibility: protected

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::Injection#subject_respond_to_method?
+is_singleton: false
+name: subject_respond_to_method?
+params: (subject, method_name)
+visibility: protected

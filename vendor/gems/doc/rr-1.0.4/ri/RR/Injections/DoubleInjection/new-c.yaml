@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::DoubleInjection::new
+is_singleton: true
+name: new
+params: (subject_class, method_name)
+visibility: public

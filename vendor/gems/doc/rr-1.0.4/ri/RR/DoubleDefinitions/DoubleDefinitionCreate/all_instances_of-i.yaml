@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Alias for #instance_of"
+full_name: RR::DoubleDefinitions::DoubleDefinitionCreate#all_instances_of
+is_singleton: false
+name: all_instances_of
+params: (subject=NO_SUBJECT, method_name=nil, &definition_eval_block)
+visibility: public

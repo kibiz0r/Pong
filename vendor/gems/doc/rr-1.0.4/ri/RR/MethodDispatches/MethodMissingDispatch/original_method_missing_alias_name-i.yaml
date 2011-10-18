@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::MethodDispatches::MethodMissingDispatch#original_method_missing_alias_name
+is_singleton: false
+name: original_method_missing_alias_name
+params: ()
+visibility: public

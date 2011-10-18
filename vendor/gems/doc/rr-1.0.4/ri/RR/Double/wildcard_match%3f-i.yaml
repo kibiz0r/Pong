@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#wildcard_match? returns true when the passed in arguments wildcard match the ArgumentEqualityExpectation arguments.
+full_name: RR::Double#wildcard_match?
+is_singleton: false
+name: wildcard_match?
+params: (*arguments)
+visibility: public

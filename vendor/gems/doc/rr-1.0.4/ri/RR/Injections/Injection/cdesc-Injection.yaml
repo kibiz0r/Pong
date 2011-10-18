@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: RR::Injections::Injection
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Space::Reader
+- !ruby/object:RI::IncludedModule 
+  name: ClassInstanceMethodDefined
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: instances
+- !ruby/object:RI::MethodSummary 
+  name: original_method
+- !ruby/object:RI::MethodSummary 
+  name: subject_has_method_defined?
+- !ruby/object:RI::MethodSummary 
+  name: subject_has_original_method?
+- !ruby/object:RI::MethodSummary 
+  name: subject_respond_to_method?
+name: Injection
+superclass: Object

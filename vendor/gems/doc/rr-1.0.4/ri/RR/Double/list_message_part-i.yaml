@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Double#list_message_part
+is_singleton: false
+name: list_message_part
+params: (doubles)
+visibility: public

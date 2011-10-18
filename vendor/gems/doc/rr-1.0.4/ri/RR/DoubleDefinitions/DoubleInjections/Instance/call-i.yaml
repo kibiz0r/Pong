@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::DoubleDefinitions::DoubleInjections::Instance#call
+is_singleton: false
+name: call
+params: (double_method_name, *args, &definition_eval_block)
+visibility: public

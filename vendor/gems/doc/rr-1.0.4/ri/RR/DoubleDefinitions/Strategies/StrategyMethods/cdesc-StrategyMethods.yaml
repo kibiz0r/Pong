@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: RR::DoubleDefinitions::Strategies::StrategyMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: any_instance_of!
+- !ruby/object:RI::MethodSummary 
+  name: dont_allow!
+- !ruby/object:RI::MethodSummary 
+  name: instance_of!
+- !ruby/object:RI::MethodSummary 
+  name: lately_bound_alias_method
+- !ruby/object:RI::MethodSummary 
+  name: mock!
+- !ruby/object:RI::MethodSummary 
+  name: proxy!
+- !ruby/object:RI::MethodSummary 
+  name: strong!
+- !ruby/object:RI::MethodSummary 
+  name: stub!
+name: StrategyMethods
+superclass: 

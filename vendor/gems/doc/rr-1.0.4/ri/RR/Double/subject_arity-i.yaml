@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Double#subject_arity
+is_singleton: false
+name: subject_arity
+params: ()
+visibility: protected

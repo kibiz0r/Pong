@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#exact_match? returns true when the passed in arguments exactly match the ArgumentEqualityExpectation arguments.
+full_name: RR::Double#exact_match?
+is_singleton: false
+name: exact_match?
+params: (*arguments)
+visibility: public

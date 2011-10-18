@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::RecordedCalls#ordered_match_error
+is_singleton: false
+name: ordered_match_error
+params: (spy_verification)
+visibility: protected

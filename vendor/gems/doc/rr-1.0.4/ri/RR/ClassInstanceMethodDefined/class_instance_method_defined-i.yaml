@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::ClassInstanceMethodDefined#class_instance_method_defined
+is_singleton: false
+name: class_instance_method_defined
+params: (klass, instance_method, include_super=true)
+visibility: public

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Injections::Injection#subject_has_method_defined?
+is_singleton: false
+name: subject_has_method_defined?
+params: (method_name_in_question)
+visibility: public

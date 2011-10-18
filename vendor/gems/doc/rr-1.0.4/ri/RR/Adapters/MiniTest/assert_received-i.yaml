@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Adapters::MiniTest#assert_received
+is_singleton: false
+name: assert_received
+params: (subject, &block)
+visibility: public

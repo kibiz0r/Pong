@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#yields sets the Double to invoke a passed in block when the Double is called. An Expection will be raised if no block is passed in when the Double is called.
+- !ruby/struct:SM::Flow::P 
+  body: Passing in a block sets the return value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject).method_name.yields(yield_arg1, yield_arg2) {return_value}\n  subject.method_name {|yield_arg1, yield_arg2|}\n"
+full_name: RR::DoubleDefinitions::DoubleDefinition::DefinitionConstructionMethods#yields
+is_singleton: false
+name: yields
+params: (*args, &return_value_block)
+visibility: public

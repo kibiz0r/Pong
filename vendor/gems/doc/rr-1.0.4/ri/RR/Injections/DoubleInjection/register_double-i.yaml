@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: RR::DoubleInjection#register_double adds the passed in Double into this DoubleInjection's list of Double objects.
+full_name: RR::Injections::DoubleInjection#register_double
+is_singleton: false
+name: register_double
+params: (double)
+visibility: public

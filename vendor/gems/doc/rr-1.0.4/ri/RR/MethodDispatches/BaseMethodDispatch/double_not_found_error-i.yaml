@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::MethodDispatches::BaseMethodDispatch#double_not_found_error
+is_singleton: false
+name: double_not_found_error
+params: ()
+visibility: protected

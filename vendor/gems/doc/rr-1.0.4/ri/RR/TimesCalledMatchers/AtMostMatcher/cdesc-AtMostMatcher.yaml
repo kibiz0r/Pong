@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: RR::TimesCalledMatchers::AtMostMatcher
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Terminal
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: attempt?
+- !ruby/object:RI::MethodSummary 
+  name: expected_times_message
+- !ruby/object:RI::MethodSummary 
+  name: matches?
+- !ruby/object:RI::MethodSummary 
+  name: possible_match?
+name: AtMostMatcher
+superclass: TimesCalledMatcher

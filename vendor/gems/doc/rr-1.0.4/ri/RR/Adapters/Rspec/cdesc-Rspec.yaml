@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+comment: 
+constants: []
+
+full_name: RR::Adapters::Rspec
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: RRMethods
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: have_received
+- !ruby/object:RI::MethodSummary 
+  name: setup_mocks_for_rspec
+- !ruby/object:RI::MethodSummary 
+  name: teardown_mocks_for_rspec
+- !ruby/object:RI::MethodSummary 
+  name: verify_mocks_for_rspec
+name: Rspec
+superclass: 

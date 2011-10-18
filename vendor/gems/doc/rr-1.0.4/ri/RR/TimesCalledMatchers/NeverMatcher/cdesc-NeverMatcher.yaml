@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: RR::TimesCalledMatchers::NeverMatcher
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Terminal
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: attempt?
+- !ruby/object:RI::MethodSummary 
+  name: matches?
+- !ruby/object:RI::MethodSummary 
+  name: possible_match?
+name: NeverMatcher
+superclass: TimesCalledMatcher

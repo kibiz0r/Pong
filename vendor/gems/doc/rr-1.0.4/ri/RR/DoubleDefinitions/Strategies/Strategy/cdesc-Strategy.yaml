@@ -1,0 +1,47 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: args
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: definition
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: double_definition_create
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: handler
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: method_name
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: RR::DoubleDefinitions::Strategies::Strategy
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Space::Reader
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: do_call
+- !ruby/object:RI::MethodSummary 
+  name: permissive_argument
+- !ruby/object:RI::MethodSummary 
+  name: reimplementation
+- !ruby/object:RI::MethodSummary 
+  name: subject
+- !ruby/object:RI::MethodSummary 
+  name: verify_subject
+name: Strategy
+superclass: Object

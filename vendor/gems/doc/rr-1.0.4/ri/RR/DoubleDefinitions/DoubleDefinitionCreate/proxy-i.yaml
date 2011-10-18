@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implementation Strategies
+full_name: RR::DoubleDefinitions::DoubleDefinitionCreate#proxy
+is_singleton: false
+name: proxy
+params: (subject=NO_SUBJECT, method_name=nil, &definition_eval_block)
+visibility: public

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::RecordedCalls#match_double_injection
+is_singleton: false
+name: match_double_injection
+params: (spy_verification)
+visibility: protected

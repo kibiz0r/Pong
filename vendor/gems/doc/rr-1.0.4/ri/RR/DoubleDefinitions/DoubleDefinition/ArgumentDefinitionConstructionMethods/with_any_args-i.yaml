@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#with_any_args sets the expectation that the Double can receive any arguments.
+- !ruby/struct:SM::Flow::P 
+  body: Passing in a block sets the return value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject).method_name.with_any_args {:return_value}\n"
+full_name: RR::DoubleDefinitions::DoubleDefinition::ArgumentDefinitionConstructionMethods#with_any_args
+is_singleton: false
+name: with_any_args
+params: (&return_value_block)
+visibility: public

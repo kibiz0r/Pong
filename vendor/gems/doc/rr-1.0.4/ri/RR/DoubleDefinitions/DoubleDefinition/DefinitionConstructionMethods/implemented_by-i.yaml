@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#implemented_by sets the implementation of the Double. This method takes a Proc or a Method. Passing in a Method allows the Double to accept blocks.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  obj = Object.new\n  def obj.foobar\n    yield(1)\n  end\n  mock(obj).method_name.implemented_by(obj.method(:foobar))\n"
+full_name: RR::DoubleDefinitions::DoubleDefinition::DefinitionConstructionMethods#implemented_by
+is_singleton: false
+name: implemented_by
+params: (implementation)
+visibility: public

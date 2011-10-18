@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: subject_class
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BoundObjects
+  value: "{}"
+full_name: RR::Injections::MethodMissingInjection
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: ClassInstanceMethodDefined
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: bind
+- !ruby/object:RI::MethodSummary 
+  name: bind_method
+- !ruby/object:RI::MethodSummary 
+  name: exists?
+- !ruby/object:RI::MethodSummary 
+  name: find_or_create
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: original_method_alias_name
+- !ruby/object:RI::MethodSummary 
+  name: reset
+name: MethodMissingInjection
+superclass: Injection

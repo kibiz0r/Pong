@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGES</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>CHANGES
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Oct 18 05:01:20 -0400 2011</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+1.0.3
+</p>
+<ul>
+<li>Eliminate usage of ObjectSpace._id2ref (Patch Evan Phoenix)
+
+</li>
+<li>Added minitest adapter (Patch Caleb Spare)
+
+</li>
+<li>Added instructions on installing the gem (Patch Gavin Miller)
+
+</li>
+<li>delete missing scratch.rb file from gemspec (Patch bonkydog)
+
+</li>
+</ul>
+<p>
+1.0.2
+</p>
+<ul>
+<li>Fixed Two calls recorded to a mock expecting only one call when called via
+another mock&#8216;s yield block (<a
+href="http://github.com/btakita/rr/issues/closed#issue/42">github.com/btakita/rr/issues/closed#issue/42</a>).
+Patch by Eugene Pimenov (<a
+href="http://github.com/libc">github.com/libc</a>).
+
+</li>
+</ul>
+<p>
+1.0.1
+</p>
+<ul>
+<li>Removed new_instance_of for Ruby 1.9.2 compatibility. instance_of is now an
+alias for any_instance_of.
+
+</li>
+<li>Compatible with Ruby 1.9.2
+
+</li>
+</ul>
+<p>
+1.0.0
+</p>
+<ul>
+<li>Added any_instance_of (aliased by all_instances_of), which binds methods
+directly to the class (instead of the eigenclass).
+
+</li>
+<li>Subclasses of a injected class do not have their methods overridden.
+
+</li>
+<li>any_instance_of and new_instance_of now have a block syntax
+
+</li>
+</ul>
+<p>
+0.10.11
+</p>
+<ul>
+<li>Added RR.blank_slate_whitelist
+
+</li>
+<li>Fixed class_eval method redefinition warning in jruby
+
+</li>
+</ul>
+<p>
+0.10.10
+</p>
+<ul>
+<li>Suite passes for Ruby 1.9.1
+
+</li>
+</ul>
+<p>
+0.10.9
+</p>
+<ul>
+<li>Fixed 1.8.6 bug for real
+
+</li>
+</ul>
+<p>
+0.10.8
+</p>
+<ul>
+<li>Fixed 1.8.6 bug
+
+</li>
+</ul>
+<p>
+0.10.7
+</p>
+<ul>
+<li>Fixed issue with DoubleInjections binding to objects overriding the method
+method.
+
+</li>
+</ul>
+<p>
+0.10.6
+</p>
+<ul>
+<li>Added MIT license
+
+</li>
+<li>Fixed Bug - dont_allow doesn&#8216;t work when it follows stub (<a
+href="http://github.com/btakita/rr/issues#issue/20">github.com/btakita/rr/issues#issue/20</a>)
+
+</li>
+<li>Fixed exception with DoubleInjections on proxy objects (<a
+href="http://github.com/btakita/rr/issues#issue/24">github.com/btakita/rr/issues#issue/24</a>)
+
+</li>
+<li>Fixed Bug - Can&#8216;t stub attribute methods on a BelongsToAssociation
+(<a
+href="http://github.com/btakita/rr/issues#issue/24">github.com/btakita/rr/issues#issue/24</a>)
+
+</li>
+</ul>
+<p>
+0.10.5
+</p>
+<ul>
+<li>Fixed stack overflow caused by double include in Test::Unit adapter [<a
+href="http://github.com/btakita/rr/issues#issue/16">github.com/btakita/rr/issues#issue/16</a>].
+Identified by Dave Myron (<a
+href="http://github.com/contentfree">github.com/contentfree</a>)
+
+</li>
+<li>Fixed warnings (Patch by Bryan Helmkamp)
+
+</li>
+</ul>
+<p>
+0.10.4
+</p>
+<ul>
+<li>Handle lazily defined methods (where respond_to? returns true yet the
+method is not yet defined and the first call to method_missing defines the
+method). This pattern is used in ActiveRecord and ActionMailer.
+
+</li>
+<li>Fixed warning about aliasing instance_exec in jruby. <a
+href="http://github.com/btakita/rr/issues#issue/9">github.com/btakita/rr/issues#issue/9</a>
+(Patch by Nathan Sobo)
+
+</li>
+</ul>
+<p>
+0.10.2
+</p>
+<ul>
+<li><a href="../classes/RR.html">RR</a> properly proxies subjects with private
+methods [<a
+href="http://github.com/btakita/rr/issues/#issue/7">github.com/btakita/rr/issues/#issue/7</a>].
+Identified by Matthew O&#8216;Connor.
+
+</li>
+</ul>
+<p>
+0.10.1
+</p>
+<ul>
+<li>Fixed issue with DoubleInjection not invoking methods that are lazily
+created [<a
+href="http://github.com/btakita/rr/issues/#issue/4">github.com/btakita/rr/issues/#issue/4</a>].
+Identified by davidlee (<a
+href="http://github.com/davidlee">github.com/davidlee</a>)
+
+</li>
+<li>Fixed issue with mock.proxy and returns [<a
+href="http://github.com/btakita/rr/issues/#issue/2">github.com/btakita/rr/issues/#issue/2</a>].
+Identified by trogdoro (<a
+href="http://github.com/trogdoro">github.com/trogdoro</a>)
+
+</li>
+<li>0.10.0
+
+</li>
+<li>Method is no longer invoked if respond_to? returns false. This was in place
+to support ActiveRecord association proxies, and is no longer needed.
+
+</li>
+<li>0.9.0
+
+</li>
+<li>instance_of Doubles now apply to methods invoked in the subject&#8216;s
+initialize method.
+
+</li>
+<li>0.8.1
+
+</li>
+<li>Fixed exception where the Subject uses method delegation via method_missing
+(e.g. certain ActiveRecord AssociationProxy methods)
+
+</li>
+<li>0.8.0
+
+</li>
+<li>Fixed compatability issues with Ruby 1.9
+
+</li>
+<li>Aliased any_number_of_times with any_times
+
+</li>
+<li>Better error messages for have_received and assert_received matchers (Patch
+by Joe Ferris)
+
+</li>
+<li>Better documentation on <a href="../classes/RR.html">RR</a> wilcard
+matchers (Patch by Phil Arnowsky)
+
+</li>
+<li>0.7.1
+
+</li>
+<li>Performance improvements
+
+</li>
+<li>0.7.0
+
+</li>
+<li>Added spies (Patchs by Joe Ferris, Michael Niessner &amp; Mike Mangino)
+
+</li>
+<li>Added strongly typed reimplementation doubles (Patch by Michael Niessner)
+
+</li>
+<li>0.6.2
+
+</li>
+<li>Fixed DoubleDefinition chaining edge cases
+
+</li>
+<li>0.6.1
+
+</li>
+<li>DoubleDefinitionCreatorProxy definition eval block is instance_evaled when
+the arity is not 1. When the arity is 1, the block is yielded with the
+DoubleDefinitionCreatorProxy passed in.
+
+</li>
+<li>0.6.0
+
+</li>
+<li>Friendlier DoubleNotFound error message
+
+</li>
+<li>Implemented Double strategy creation methods (mock, stub, proxy,
+instance_of, and ! equivalents) on DoubleDefinition
+
+</li>
+<li>Implemented hash_including matcher (Patch by Matthew O&#8216;Conner)
+
+</li>
+<li>Implemented satisfy matcher (Patch by Matthew O&#8216;Conner)
+
+</li>
+<li>Implemented DoubleDefinitionCreator#mock!, stub!, and dont_allow!
+
+</li>
+<li>Modified api to method chain Doubles
+
+</li>
+<li>Fix conflict with Mocha overriding Object#verify
+
+</li>
+<li>0.5.0
+
+</li>
+<li>Method chaining Doubles (Patch by Nick Kallen)
+
+</li>
+<li>Chained ordered expectations (Patch by Nick Kallen)
+
+</li>
+<li>Space#verify_doubles can take one or more objects with DoubleInjections to
+be verified
+
+</li>
+<li>0.4.10
+
+</li>
+<li>DoubleDefinitionCreatorProxy does not undef object_id
+
+</li>
+<li>Fixed rdoc pointer to README
+
+</li>
+<li>0.4.9
+
+</li>
+<li>Proxying from <a href="../classes/RR.html">RR</a> module to
+RR::Space.instance
+
+</li>
+<li>0.4.8
+
+</li>
+<li>Fixed issue with Hash arguments
+
+</li>
+<li>0.4.7
+
+</li>
+<li>Improved error message
+
+</li>
+<li>0.4.6
+
+</li>
+<li>Added Double#verbose and Double#verbose?
+
+</li>
+<li>0.4.5
+
+</li>
+<li>Fixed doubles for == and eql? methods
+
+</li>
+<li>0.4.4
+
+</li>
+<li>Doc improvements
+
+</li>
+<li>Methods that are not alphabetic, such as ==, can be doubles
+
+</li>
+<li>0.4.3
+
+</li>
+<li>Doc improvements
+
+</li>
+<li>Cleanup
+
+</li>
+<li>Finished renaming scenario to double
+
+</li>
+<li>0.4.2
+
+</li>
+<li>Renamed DoubleInsertion to DoubleInjection to be consistent with Mocha
+terminology
+
+</li>
+<li>0.4.1
+
+</li>
+<li>Fixed backward compatability issues with rspec
+
+</li>
+<li>Renamed Space#verify_double_insertions to verify_doubles
+
+</li>
+<li>0.4.0
+
+</li>
+<li>Documentation improvements
+
+</li>
+<li>Renamed Double to DoubleInsertion
+
+</li>
+<li>Renamed Scenario to Double
+
+</li>
+<li>0.3.11
+
+</li>
+<li>Fixed [13724] Mock Proxy on Active Record Association proxies causes error
+
+</li>
+<li>0.3.10
+
+</li>
+<li>Fixed [13139] Blocks added to proxy sets the return_value and not the
+after_call callback
+
+</li>
+<li>0.3.9
+
+</li>
+<li>Alias probe to proxy
+
+</li>
+<li>0.3.8
+
+</li>
+<li>Implemented [13009] Better error mesage from TimesCalledMatcher
+
+</li>
+<li>0.3.7
+
+</li>
+<li>Fixed [12928] Reset doubles fails on Rails association proxies
+
+</li>
+<li>0.3.6
+
+</li>
+<li>Fixed [12765] Issues with ObjectSpace._id2ref
+
+</li>
+<li>0.3.5
+
+</li>
+<li>trim_backtrace is only set for Test::Unit
+
+</li>
+<li>0.3.4
+
+</li>
+<li>Implemented instance_of
+
+</li>
+<li>0.3.3
+
+</li>
+<li>Fixed [12495] Error Probing method_missing interaction
+
+</li>
+<li>0.3.2
+
+</li>
+<li>Fixed [12486] ScenarioMethodProxy when Kernel passed into instance methods
+
+</li>
+<li>0.3.1
+
+</li>
+<li>Automatically require Test::Unit and Rspec adapters
+
+</li>
+<li>0.3.0
+
+</li>
+<li>ScenarioCreator strategy method chaining
+
+</li>
+<li>Removed mock_probe
+
+</li>
+<li>Removed stub_probe
+
+</li>
+<li>0.2.5
+
+</li>
+<li>mock takes method_name argument
+
+</li>
+<li>stub takes method_name argument
+
+</li>
+<li>mock_probe takes method_name argument
+
+</li>
+<li>stub_probe takes method_name argument
+
+</li>
+<li>probe takes method_name argument
+
+</li>
+<li>dont_allow takes method_name argument
+
+</li>
+<li>do_not_allow takes method_name argument
+
+</li>
+<li>0.2.4
+
+</li>
+<li>Space#doubles key is now the object id
+
+</li>
+<li>Fixed [12402] Stubbing return value of probes fails after calling the
+stubbed method two times
+
+</li>
+<li>0.2.3
+
+</li>
+<li>Added RRMethods#rr_verify and RRMethods#rr_reset
+
+</li>
+<li>0.2.2
+
+</li>
+<li>Fixed &quot;singleton method bound for a different object&quot;
+
+</li>
+<li>Doing Method aliasing again to store original method
+
+</li>
+<li>0.2.1
+
+</li>
+<li>Added mock_probe
+
+</li>
+<li>Added stub_probe
+
+</li>
+<li>Probe returns the return value of the passed in block, instead of ignoring
+its return value
+
+</li>
+<li>Scenario#after_call returns the return value of the passed in block
+
+</li>
+<li>Not using method aliasing to store original method
+
+</li>
+<li>Renamed DoubleMethods to RRMethods
+
+</li>
+<li>Added RRMethods#mock_probe
+
+</li>
+<li>0.1.15
+
+</li>
+<li>Fixed [12333] Rebinding original_methods causes blocks not to work
+
+</li>
+<li>0.1.14
+
+</li>
+<li>Introduced concept of Terminal and NonTerminal TimesCalledMatchers
+
+</li>
+<li>Doubles that can be called many times can be replaced
+
+</li>
+<li>Terminal Scenarios are called before NonTerminal Scenarios
+
+</li>
+<li>Error message tweaking
+
+</li>
+<li>Raise error when making a Scenarios with NonTerminal TimesMatcher Ordered
+
+</li>
+<li>0.1.13
+
+</li>
+<li>Fixed [12290] Scenario#returns with false causes a return value of nil
+
+</li>
+<li>0.1.12
+
+</li>
+<li>Fixed bug where Creators methods are not removed when methods are defined
+on Object
+
+</li>
+<li>Fixed [12289] Creators methods are not removed in Rails environment
+
+</li>
+<li>0.1.11
+
+</li>
+<li>Fixed [12287] AtLeastMatcher does not cause Scenario to be called
+
+</li>
+<li>0.1.10
+
+</li>
+<li>Fixed [12286] AnyArgumentExpectation#expected_arguments not implemented
+
+</li>
+<li>0.1.9
+
+</li>
+<li>Added DoubleMethods#any_times
+
+</li>
+<li>Added Scenario#any_number_of_times
+
+</li>
+<li>0.1.8
+
+</li>
+<li>TimesCalledError Message Formatted to be on multiple lines
+
+</li>
+<li>ScenarioNotFoundError Message includes all Scenarios for the Double
+
+</li>
+<li>ScenarioOrderError shows list of remaining ordered scenarios
+
+</li>
+<li>0.1.7
+
+</li>
+<li>Fixed [12194] Double#reset_doubles are not clearing Ordered Scenarios bug
+
+</li>
+<li>Added Space#reset
+
+</li>
+<li>Space#reset_doubles and Space#reset_ordered_scenarios is now protected
+
+</li>
+<li>Added Scenario#at_least
+
+</li>
+<li>Added Scenario#at_most
+
+</li>
+<li>0.1.6
+
+</li>
+<li>[12120] probe allows a the return value to be intercepted
+
+</li>
+<li>0.1.5
+
+</li>
+<li>TimesCalledExpectation says how many times were called and how many times
+called were expected on error
+
+</li>
+<li>0.1.4
+
+</li>
+<li>TimesCalledError prints the backtrace to where the Scenario was defined
+when being verified
+
+</li>
+<li>Error message includes method name when Scenario is not found
+
+</li>
+<li>0.1.3
+
+</li>
+<li>Fixed issue where Double#placeholder_name issues when Double method name
+has a ! or ?
+
+</li>
+<li>0.1.2
+
+</li>
+<li>Scenario#returns also accepts an argument
+
+</li>
+<li>Implemented Scenario#yields
+
+</li>
+<li>0.1.1
+
+</li>
+<li>Trim the backtrace for Rspec and Test::Unit
+
+</li>
+<li>Rspec and Test::Unit integration fixes
+
+</li>
+<li>0.1.0
+
+</li>
+<li>Initial Release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

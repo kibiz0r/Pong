@@ -1,0 +1,59 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: RR::Adapters::RRMethods
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: "::RR::DoubleDefinitions::Strategies::StrategyMethods"
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: all_instances_of
+- !ruby/object:RI::MethodSummary 
+  name: any_instance_of
+- !ruby/object:RI::MethodSummary 
+  name: any_instance_of
+- !ruby/object:RI::MethodSummary 
+  name: any_times
+- !ruby/object:RI::MethodSummary 
+  name: anything
+- !ruby/object:RI::MethodSummary 
+  name: boolean
+- !ruby/object:RI::MethodSummary 
+  name: dont_allow
+- !ruby/object:RI::MethodSummary 
+  name: duck_type
+- !ruby/object:RI::MethodSummary 
+  name: hash_including
+- !ruby/object:RI::MethodSummary 
+  name: instance_of
+- !ruby/object:RI::MethodSummary 
+  name: is_a
+- !ruby/object:RI::MethodSummary 
+  name: mock
+- !ruby/object:RI::MethodSummary 
+  name: new_instance_of
+- !ruby/object:RI::MethodSummary 
+  name: numeric
+- !ruby/object:RI::MethodSummary 
+  name: proxy
+- !ruby/object:RI::MethodSummary 
+  name: received
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: satisfy
+- !ruby/object:RI::MethodSummary 
+  name: spy
+- !ruby/object:RI::MethodSummary 
+  name: strong
+- !ruby/object:RI::MethodSummary 
+  name: stub
+- !ruby/object:RI::MethodSummary 
+  name: verify
+name: RRMethods
+superclass: 

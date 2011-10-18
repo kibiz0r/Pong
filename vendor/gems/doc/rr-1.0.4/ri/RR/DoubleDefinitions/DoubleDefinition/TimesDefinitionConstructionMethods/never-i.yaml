@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#never sets the expectation that the Double will never be called.
+- !ruby/struct:SM::Flow::P 
+  body: This method does not accept a block because it will never be called.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject).method_name.never\n"
+full_name: RR::DoubleDefinitions::DoubleDefinition::TimesDefinitionConstructionMethods#never
+is_singleton: false
+name: never
+params: ()
+visibility: public

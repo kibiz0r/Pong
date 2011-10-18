@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "TODO: Refactor to a side-effect-free strategy."
+constants: []
+
+full_name: RR::HashWithObjectIdKey
+includes: []
+
+instance_methods: []
+
+name: HashWithObjectIdKey
+superclass: "::Hash"

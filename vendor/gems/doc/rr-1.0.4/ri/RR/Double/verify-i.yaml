@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#verify verifies the the TimesCalledExpectation is satisfied for this double. A TimesCalledError is raised if the TimesCalledExpectation is not met.
+full_name: RR::Double#verify
+is_singleton: false
+name: verify
+params: ()
+visibility: public

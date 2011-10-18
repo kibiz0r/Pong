@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Double#ordered? returns true when the Double is ordered.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(subject).method_name.ordered?\n"
+full_name: RR::DoubleDefinitions::DoubleDefinition::StateQueryMethods#ordered?
+is_singleton: false
+name: ordered?
+params: ()
+visibility: public

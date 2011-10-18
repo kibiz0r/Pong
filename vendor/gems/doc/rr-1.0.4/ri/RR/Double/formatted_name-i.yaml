@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::Double#formatted_name
+is_singleton: false
+name: formatted_name
+params: (method_name, args)
+visibility: public

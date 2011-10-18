@@ -1,0 +1,81 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: definition
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: double_injection
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: times_called
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: times_called_expectation
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: RR::Double is the use case for a method call. It has the ArgumentEqualityExpectation, TimesCalledExpectation, and the implementation.
+constants: []
+
+full_name: RR::Double
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Space::Reader
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: args
+- !ruby/object:RI::MethodSummary 
+  name: argument_expectation
+- !ruby/object:RI::MethodSummary 
+  name: arity_matches?
+- !ruby/object:RI::MethodSummary 
+  name: attempt?
+- !ruby/object:RI::MethodSummary 
+  name: exact_match?
+- !ruby/object:RI::MethodSummary 
+  name: expected_arguments
+- !ruby/object:RI::MethodSummary 
+  name: formatted_name
+- !ruby/object:RI::MethodSummary 
+  name: formatted_name
+- !ruby/object:RI::MethodSummary 
+  name: implementation_is_original_method?
+- !ruby/object:RI::MethodSummary 
+  name: list_message_part
+- !ruby/object:RI::MethodSummary 
+  name: method_call
+- !ruby/object:RI::MethodSummary 
+  name: method_name
+- !ruby/object:RI::MethodSummary 
+  name: ordered?
+- !ruby/object:RI::MethodSummary 
+  name: subject_accepts_only_varargs?
+- !ruby/object:RI::MethodSummary 
+  name: subject_accepts_varargs?
+- !ruby/object:RI::MethodSummary 
+  name: subject_arity
+- !ruby/object:RI::MethodSummary 
+  name: terminal?
+- !ruby/object:RI::MethodSummary 
+  name: times_matcher
+- !ruby/object:RI::MethodSummary 
+  name: verbose?
+- !ruby/object:RI::MethodSummary 
+  name: verify
+- !ruby/object:RI::MethodSummary 
+  name: verify_argument_expectation_is_set
+- !ruby/object:RI::MethodSummary 
+  name: verify_method_signature
+- !ruby/object:RI::MethodSummary 
+  name: verify_times_matcher_is_set
+- !ruby/object:RI::MethodSummary 
+  name: wildcard_match?
+name: Double
+superclass: Object

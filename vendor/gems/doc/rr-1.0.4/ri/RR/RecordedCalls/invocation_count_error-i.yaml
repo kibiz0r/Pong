@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::RecordedCalls#invocation_count_error
+is_singleton: false
+name: invocation_count_error
+params: (spy_verification, matching_recorded_calls)
+visibility: protected

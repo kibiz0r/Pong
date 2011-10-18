@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.rdoc</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.rdoc</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.rdoc
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Oct 18 05:01:20 -0400 2011</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="../classes/RR.html">RR</a></h1>
+<p>
+<a href="../classes/RR.html">RR</a> (Double Ruby) is a test double
+framework that features a rich selection of double techniques and a terse
+syntax.
+</p>
+<p>
+To get started, install <a href="../classes/RR.html">RR</a> from the
+command prompt:
+</p>
+<pre>
+    gem install rr
+</pre>
+<h2>More Information</h2>
+<h3>Mailing Lists</h3>
+<ul>
+<li>double-ruby-users@rubyforge.org
+
+</li>
+<li>double-ruby-devel@rubyforge.org
+
+</li>
+</ul>
+<h3>Websites</h3>
+<ul>
+<li><a
+href="http://rubyforge.org/projects/double-ruby">rubyforge.org/projects/double-ruby</a>
+
+</li>
+<li><a href="http://github.com/btakita/rr">github.com/btakita/rr</a>
+
+</li>
+</ul>
+<h2>What is a Test Double?</h2>
+<p>
+A Test Double is a generalization of something that replaces a real object
+to make it easier to test another object. Its like a stunt double for
+tests. The following are test doubles:
+</p>
+<ul>
+<li>Mocks
+
+</li>
+<li>Stubs
+
+</li>
+<li>Fakes
+
+</li>
+<li>Spies
+
+</li>
+<li>Proxies
+
+</li>
+</ul>
+<p>
+<a
+href="http://xunitpatterns.com/Test%20Double.html">xunitpatterns.com/Test%20Double.html</a>
+</p>
+<p>
+Currently <a href="../classes/RR.html">RR</a> implements mocks, stubs,
+proxies, and spies. Fakes usually require custom code, so it is beyond the
+scope of <a href="../classes/RR.html">RR</a>.
+</p>
+<h2>Using <a href="../classes/RR.html">RR</a></h2>
+<h3>test/unit</h3>
+<pre>
+  class Test::Unit::TestCase
+    include RR::Adapters::TestUnit
+  end
+</pre>
+<h3>rspec</h3>
+<pre>
+  Spec::Runner.configure do |config|
+    config.mock_with :rr
+    # or if that doesn't work due to a version incompatibility
+    # config.mock_with RR::Adapters::Rspec
+  end
+</pre>
+<h2>standalone</h2>
+<pre>
+  extend RR::Adapters::RRMethods
+  mock(object).method_name {:return_value}
+
+  object.method_name # Returns :return_value
+
+  RR.verify # Verifies the Double expectations are satisfied
+</pre>
+<h2>Syntax between <a href="../classes/RR.html">RR</a> and other double/mock frameworks</h2>
+<h3>Terse Syntax</h3>
+<p>
+One of the goals of <a href="../classes/RR.html">RR</a> is to make doubles
+more scannable. This is accomplished by making the double declaration look
+as much as the actual method invocation as possible. Here is <a
+href="../classes/RR.html">RR</a> compared to other mock frameworks:
+</p>
+<pre>
+  flexmock(User).should_receive(:find).with('42').and_return(jane) # Flexmock
+  User.should_receive(:find).with('42').and_return(jane) # Rspec
+  User.expects(:find).with('42').returns {jane} # Mocha
+  User.should_receive(:find).with('42') {jane} # Rspec using return value blocks
+  mock(User).find('42') {jane} # RR
+</pre>
+<h3>Double Injections (a.k.a Partial Mocking)</h3>
+<p>
+<a href="../classes/RR.html">RR</a> utilizes a technique known as
+&quot;double injection&quot;.
+</p>
+<pre>
+  my_object = MyClass.new
+  mock(my_object).hello
+</pre>
+<p>
+Compare this with doing a mock in mocha:
+</p>
+<pre>
+  my_mocked_object = mock()
+  my_mocked_object.expects(:hello)
+</pre>
+<h2>Pure Mock objects</h2>
+<p>
+If you wish to use objects for the sole purpose of being a mock, you can do
+so by creating an empty object.
+</p>
+<pre>
+  mock(my_mock_object = Object.new).hello
+</pre>
+<p>
+or by using mock!
+</p>
+<pre>
+  my_mock_object = mock!.hello.subject # Mocks the #hello method and retrieves that object via the #subject method
+</pre>
+<h3>No should_receive or expects method</h3>
+<p>
+<a href="../classes/RR.html">RR</a> uses method_missing to set your method
+expectation. This means you do not need to use a method such as
+should_receive or expects.
+</p>
+<pre>
+  mock(my_object).hello # The hello method on my_object is mocked
+</pre>
+<p>
+Mocha:
+</p>
+<pre>
+  my_object.expects(:hello) # expects sets the hello method expectation
+</pre>
+<p>
+Rspec mocks:
+</p>
+<pre>
+  my_object.should_receive(:hello) # should_receive sets the hello method expectation
+</pre>
+<h3>with method call is not necessary</h3>
+<p>
+Since <a href="../classes/RR.html">RR</a> uses method_missing, it also
+makes using the with method unnecessary in most circumstances to set the
+argument expectations.
+</p>
+<pre>
+  mock(my_object).hello('bob', 'jane')
+</pre>
+<p>
+Mocha:
+</p>
+<pre>
+  my_object.expects(:hello).with('bob', 'jane')
+</pre>
+<p>
+Rspec mocks:
+</p>
+<pre>
+  my_object.should_receive(:hello).with('bob', 'jane')
+</pre>
+<h3>using a block to set the return value</h3>
+<p>
+<a href="../classes/RR.html">RR</a> supports using a block to set the
+return value. <a href="../classes/RR.html">RR</a> also has the returns
+method. Both of the examples are equivalent.
+</p>
+<pre>
+  mock(my_object).hello('bob', 'jane') {'Hello Bob and Jane'}
+  mock(my_object).hello('bob', 'jane').returns('Hello Bob and Jane')
+</pre>
+<p>
+Mocha:
+</p>
+<pre>
+  my_object.expects(:hello).with('bob', 'jane').returns('Hello Bob and Jane')
+</pre>
+<p>
+Rspec mocks:
+</p>
+<pre>
+  my_object.should_receive(:hello).with('bob', 'jane').and_return('Hello Bob and Jane')
+  my_object.should_receive(:hello).with('bob', 'jane') {'Hello Bob and Jane'} #rspec also supports blocks for the return value
+</pre>
+<h2>Using <a href="../classes/RR.html">RR</a></h2>
+<p>
+To create a double on an object, you can use the following methods:
+</p>
+<ul>
+<li>mock or mock!
+
+</li>
+<li>stub or stub!
+
+</li>
+<li>dont_allow or dont_allow!
+
+</li>
+<li>proxy or proxy!
+
+</li>
+<li>instance_of or instance_of!
+
+</li>
+</ul>
+<p>
+These methods are composable. mock, stub, and dont_allow can be used by
+themselves and are mutually exclusive. proxy and instance_of must be
+chained with mock or stub. You can also chain proxy and instance_of
+together.
+</p>
+<p>
+The ! (bang) version of these methods causes the subject object of the
+Double to be instantiated.
+</p>
+<h3>mock</h3>
+<p>
+mock replaces the method on the object with an expectation and
+implementation. The expectations are a mock will be called with certain
+arguments a certain number of times (the default is once). You can also set
+the return value of the method invocation.
+</p>
+<p>
+See <a
+href="http://xunitpatterns.com/Mock%20Object.html">xunitpatterns.com/Mock%20Object.html</a>
+</p>
+<p>
+The following example sets an expectation that the view will receive a
+method call to render with the arguments {:partial =&gt;
+&quot;user_info&quot;} once. When the method is called
+&quot;Information&quot; is returned.
+</p>
+<pre>
+  view = controller.template
+  mock(view).render(:partial =&gt; &quot;user_info&quot;) {&quot;Information&quot;}
+</pre>
+<p>
+You can also allow any number of arguments to be passed into the mock by
+using:
+</p>
+<pre>
+  mock(view).render.with_any_args.twice do |*args|
+    if args.first == {:partial =&gt; &quot;user_info}
+      &quot;User Info&quot;
+    else
+      &quot;Stuff in the view #{args.inspect}&quot;
+    end
+  end
+</pre>
+<h3>stub</h3>
+<p>
+stub replaces the method on the object with only an implementation. You can
+still use arguments to differentiate which stub gets invoked.
+</p>
+<p>
+See <a
+href="http://xunitpatterns.com/Test%20Stub.html">xunitpatterns.com/Test%20Stub.html</a>
+</p>
+<p>
+The following example makes the User.find method return jane when passed
+&#8216;42&#8217; and returns bob when passed &#8216;99&#8217;. If another
+id is passed to User.find, an exception is raised.
+</p>
+<pre>
+  jane = User.new
+  bob = User.new
+  stub(User).find('42') {jane}
+  stub(User).find('99') {bob}
+  stub(User).find do |id|
+    raise &quot;Unexpected id #{id.inspect} passed to me&quot;
+  end
+</pre>
+<h3>dont_allow - aliased with do_not_allow, dont_call, and do_not_call</h3>
+<p>
+dont_allow sets an expectation on the Double that it will never be called.
+If the Double is called, then a TimesCalledError is raised.
+</p>
+<pre>
+  dont_allow(User).find('42')
+  User.find('42') # raises a TimesCalledError
+</pre>
+<h3>mock.proxy</h3>
+<p>
+mock.proxy replaces the method on the object with an expectation,
+implementation, and also invokes the actual method. mock.proxy also
+intercepts the return value and passes it into the return value block.
+</p>
+<p>
+The following example makes sets an expectation that view.render({:partial
+=&gt; &quot;right_navigation&quot;}) gets called once and return the actual
+content of the rendered partial template. A call to view.render({:partial
+=&gt; &quot;user_info&quot;}) will render the user_info partial template
+and send the content into the block and is represented by the html
+variable. An assertion is done on the html and &quot;Different html&quot;
+is returned.
+</p>
+<pre>
+  view = controller.template
+  mock.proxy(view).render(:partial =&gt; &quot;right_navigation&quot;)
+  mock.proxy(view).render(:partial =&gt; &quot;user_info&quot;) do |html|
+    html.should include(&quot;John Doe&quot;)
+    &quot;Different html&quot;
+  end
+</pre>
+<p>
+You can also use mock.proxy to set expectations on the returned value. In
+the following example, a call to User.find(&#8216;5&#8217;) does the normal
+ActiveRecord implementation and passes the actual value, represented by the
+variable bob, into the block. bob is then set with a mock.proxy for
+projects to return only the first 3 projects. bob is also mocked with
+valid? to return false.
+</p>
+<pre>
+  mock.proxy(User).find('5') do |bob|
+    mock.proxy(bob).projects do |projects|
+      projects[0..3]
+    end
+    mock(bob).valid? {false}
+    bob
+  end
+</pre>
+<h3>stub.proxy</h3>
+<p>
+Intercept the return value of a method call. The following example verifies
+render partial will be called and renders the partial.
+</p>
+<pre>
+  view = controller.template
+  stub.proxy(view).render(:partial =&gt; &quot;user_info&quot;) do |html|
+    html.should include(&quot;Joe Smith&quot;)
+    html
+  end
+</pre>
+<h3>any_instance_of</h3>
+<p>
+Allows stubs to be added to all instances of a class. It works by binding
+to methods from the class itself, rather than the eigenclass. This allows
+all instances (excluding instances with the method redefined in the
+eigenclass) to get the change.
+</p>
+<p>
+Due to Ruby runtime limitations, mocks will not work as expected.
+It&#8216;s not obviously feasible (without an ObjectSpace lookup) to
+support all of <a href="../classes/RR.html">RR</a>&#8216;s methods (such as
+mocking). ObjectSpace is not readily supported in jRuby, since it causes
+general slowness in the interpreter. I&#8216;m of the opinion that test
+speed is more important than having mocks on all instances of a class. If
+there is another solution, I&#8216;d be willing to add it.
+</p>
+<pre>
+  any_instance_of(User) do |u|
+    stub(u).valid? {false}
+  end
+  # or
+  any_instance_of(User, :valid? =&gt; false)
+  # or
+  any_instance_of(User, :valid? =&gt; lambda {false})
+</pre>
+<h3>new_instance_of</h3>
+<p>
+Stubs the new method of the class and allows doubles to be bound to new
+instances.
+</p>
+<p>
+Mocks can be used, because new instances are deterministically bound.
+</p>
+<pre>
+  new_instance_of(User) do |u|
+    mock(u).valid? {false}
+  end
+
+  # Deprecated syntax
+  mock.instance_of(User).valid? {false}
+</pre>
+<h3>Spies</h3>
+<p>
+Adding a DoubleInjection to an Object + Method (done by stub, mock, or
+dont_allow) causes <a href="../classes/RR.html">RR</a> to record any method
+invocations to the Object + method. Assertions can then be made on the
+recorded method calls.
+</p>
+<h4>test/unit</h4>
+<pre>
+  subject = Object.new
+  stub(subject).foo
+  subject.foo(1)
+  assert_received(subject) {|subject| subject.foo(1)}
+  assert_received(subject) {|subject| subject.bar} # This fails
+</pre>
+<h4>rspec</h4>
+<pre>
+  subject = Object.new
+  stub(subject).foo
+  subject.foo(1)
+  subject.should have_received.foo(1)
+  subject.should have_received.bar # this fails
+</pre>
+<h3>Block Syntax</h3>
+<p>
+The block syntax has two modes
+</p>
+<ul>
+<li>A normal block mode with a DoubleDefinitionCreatorProxy argument
+
+<p>
+script = MyScript.new mock(script) do |expect|
+</p>
+<pre>
+  expect.system(&quot;cd #{RAILS_ENV}&quot;) {true}
+  expect.system(&quot;rake foo:bar&quot;) {true}
+  expect.system(&quot;rake baz&quot;) {true}
+</pre>
+<p>
+end
+</p>
+</li>
+<li>An instance_eval mode where the DoubleDefinitionCreatorProxy is
+instance_evaled
+
+<pre>
+  script = MyScript.new
+  mock(script) do
+    system(&quot;cd #{RAILS_ENV}&quot;) {true}
+    system(&quot;rake foo:bar&quot;) {true}
+    system(&quot;rake baz&quot;) {true}
+  end
+</pre>
+</li>
+</ul>
+<h3>Block Syntax with explicit DoubleDefinitionCreatorProxy argument</h3>
+<h3>Double Graphs</h3>
+<p>
+<a href="../classes/RR.html">RR</a> has a method-chaining api support for
+Double graphs. For example, lets say you want an object to receive a method
+call to foo, and have the return value receive a method call to bar.
+</p>
+<p>
+In <a href="../classes/RR.html">RR</a>, you would do:
+</p>
+<pre>
+  stub(object).foo.stub!.bar {:baz}
+  object.foo.bar # :baz
+  # or
+  stub(object).foo {stub!.bar {:baz}}
+  object.foo.bar # :baz
+  # or
+  bar = stub!.bar {:baz}
+  stub(object).foo {bar}
+  object.foo.bar # :baz
+</pre>
+<h3>Argument Wildcard matchers</h3>
+<h4>anything</h4>
+<pre>
+  mock(object).foobar(1, anything)
+  object.foobar(1, :my_symbol)
+</pre>
+<h4>is_a</h4>
+<pre>
+  mock(object).foobar(is_a(Time))
+  object.foobar(Time.now)
+</pre>
+<h4>numeric</h4>
+<pre>
+  mock(object).foobar(numeric)
+  object.foobar(99)
+</pre>
+<h4>boolean</h4>
+<pre>
+  mock(object).foobar(boolean)
+  object.foobar(false)
+</pre>
+<h4>duck_type</h4>
+<pre>
+  mock(object).foobar(duck_type(:walk, :talk))
+  arg = Object.new
+  def arg.walk; 'waddle'; end
+  def arg.talk; 'quack'; end
+  object.foobar(arg)
+</pre>
+<h4>Ranges</h4>
+<pre>
+  mock(object).foobar(1..10)
+  object.foobar(5)
+</pre>
+<h4>Regexps</h4>
+<pre>
+  mock(object).foobar(/on/)
+  object.foobar(&quot;ruby on rails&quot;)
+</pre>
+<h4>hash_including</h4>
+<pre>
+  mock(object).foobar(hash_including(:red =&gt; &quot;#FF0000&quot;, :blue =&gt; &quot;#0000FF&quot;))
+  object.foobar({:red =&gt; &quot;#FF0000&quot;, :blue =&gt; &quot;#0000FF&quot;, :green =&gt; &quot;#00FF00&quot;})
+</pre>
+<h4>satisfy</h4>
+<pre>
+  mock(object).foobar(satisfy {|arg| arg.length == 2})
+  object.foobar(&quot;xy&quot;)
+</pre>
+<h4>Writing your own Argument Matchers</h4>
+<p>
+Writing a custom argument wildcard matcher is not difficult. See <a
+href="../classes/RR/WildcardMatchers.html">RR::WildcardMatchers</a> for
+details.
+</p>
+<h3>Invocation Amount Wildcard Matchers</h3>
+<h4>any_times</h4>
+<pre>
+  mock(object).method_name(anything).times(any_times) {return_value}
+</pre>
+<h2>Special Thanks To</h2>
+<p>
+With any development effort, there are countless people who have
+contributed to making it possible. We all are standing on the shoulders of
+giants. If you have directly contributed to <a
+href="../classes/RR.html">RR</a> and I missed you in this list, please let
+me know and I will add you. Thanks!
+</p>
+<ul>
+<li>Andreas Haller for patches
+
+</li>
+<li>Aslak Hellesoy for Developing Rspec
+
+</li>
+<li>Bryan Helmkamp for patches
+
+</li>
+<li>Caleb Spare for patches
+
+</li>
+<li>Christopher Redinger for patches
+
+</li>
+<li>Dan North for syntax ideas
+
+</li>
+<li>Dave Astels for some BDD inspiration
+
+</li>
+<li>Dave Myron for a bug report
+
+</li>
+<li>David Chelimsky for encouragement to make the <a
+href="../classes/RR.html">RR</a> framework, for developing the Rspec mock
+framework, syntax ideas, and patches
+
+</li>
+<li>Daniel Sudol for identifing performance issues with <a
+href="../classes/RR.html">RR</a>
+
+</li>
+<li>Dmitry Ratnikov for patches
+
+</li>
+<li>Eugene Pimenov for patches
+
+</li>
+<li>Evan Phoenix for patches
+
+</li>
+<li>Felix Morio for pairing with me
+
+</li>
+<li>Gabriel Horner for patches
+
+</li>
+<li>Gavin Miller for patches
+
+</li>
+<li>Gerard Meszaros for his excellent book &quot;xUnit Test Patterns&quot;
+
+</li>
+<li>James Mead for developing Mocha
+
+</li>
+<li>Jeff Whitmire for documentation suggestions
+
+</li>
+<li>Jim Weirich for developing Flexmock, the first Terse ruby mock framework in
+Ruby
+
+</li>
+<li>Joe Ferris for patches
+
+</li>
+<li>Matthew O&#8216;Connor for patches and pairing with me
+
+</li>
+<li>Michael Niessner for patches and pairing with me
+
+</li>
+<li>Mike Mangino (from Elevated Rails) for patches and pairing with me
+
+</li>
+<li>Myron Marston for bug reports
+
+</li>
+<li>Nick Kallen for documentation suggestions, bug reports, and patches
+
+</li>
+<li>Nathan Sobo for various ideas and inspiration for cleaner and more
+expressive code
+
+</li>
+<li>Parker Thompson for pairing with me
+
+</li>
+<li>Phil Darnowsky for patches
+
+</li>
+<li>Pivotal Labs for sponsoring <a href="../classes/RR.html">RR</a> development
+
+</li>
+<li>Stephen Baker for Developing Rspec
+
+</li>
+<li>Tatsuya Ono for patches
+
+</li>
+<li>Tuomas Kareinen for a bug report
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::RecordedCalls#matching_recorded_calls
+is_singleton: false
+name: matching_recorded_calls
+params: (spy_verification)
+visibility: protected

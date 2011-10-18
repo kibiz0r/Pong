@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: RR</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">RR</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/rr/adapters/minitest_rb.html">
+                lib/rr/adapters/minitest.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/adapters/rr_methods_rb.html">
+                lib/rr/adapters/rr_methods.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/adapters/rspec_rb.html">
+                lib/rr/adapters/rspec.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/adapters/test_unit_rb.html">
+                lib/rr/adapters/test_unit.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/blank_slate_rb.html">
+                lib/rr/blank_slate.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/class_instance_method_defined_rb.html">
+                lib/rr/class_instance_method_defined.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_rb.html">
+                lib/rr/double.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/child_double_definition_create_rb.html">
+                lib/rr/double_definitions/child_double_definition_create.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/double_definition_rb.html">
+                lib/rr/double_definitions/double_definition.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/double_definition_create_rb.html">
+                lib/rr/double_definitions/double_definition_create.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/double_definition_create_blank_slate_rb.html">
+                lib/rr/double_definitions/double_definition_create_blank_slate.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/double_injections/any_instance_of_rb.html">
+                lib/rr/double_definitions/double_injections/any_instance_of.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/double_injections/instance_rb.html">
+                lib/rr/double_definitions/double_injections/instance.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/double_injection/any_instance_of_rb.html">
+                lib/rr/double_definitions/strategies/double_injection/any_instance_of.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/double_injection/double_injection_strategy_rb.html">
+                lib/rr/double_definitions/strategies/double_injection/double_injection_strategy.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/double_injection/instance_rb.html">
+                lib/rr/double_definitions/strategies/double_injection/instance.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/implementation/implementation_strategy_rb.html">
+                lib/rr/double_definitions/strategies/implementation/implementation_strategy.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/implementation/proxy_rb.html">
+                lib/rr/double_definitions/strategies/implementation/proxy.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/implementation/reimplementation_rb.html">
+                lib/rr/double_definitions/strategies/implementation/reimplementation.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/implementation/strongly_typed_reimplementation_rb.html">
+                lib/rr/double_definitions/strategies/implementation/strongly_typed_reimplementation.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/strategy_rb.html">
+                lib/rr/double_definitions/strategies/strategy.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/strategy_methods_rb.html">
+                lib/rr/double_definitions/strategies/strategy_methods.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/verification/dont_allow_rb.html">
+                lib/rr/double_definitions/strategies/verification/dont_allow.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/verification/mock_rb.html">
+                lib/rr/double_definitions/strategies/verification/mock.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/verification/stub_rb.html">
+                lib/rr/double_definitions/strategies/verification/stub.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_definitions/strategies/verification/verification_strategy_rb.html">
+                lib/rr/double_definitions/strategies/verification/verification_strategy.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/double_matches_rb.html">
+                lib/rr/double_matches.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/argument_equality_error_rb.html">
+                lib/rr/errors/argument_equality_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/double_definition_error_rb.html">
+                lib/rr/errors/double_definition_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/double_not_found_error_rb.html">
+                lib/rr/errors/double_not_found_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/double_order_error_rb.html">
+                lib/rr/errors/double_order_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/rr_error_rb.html">
+                lib/rr/errors/rr_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/spy_verification_errors/double_injection_not_found_error_rb.html">
+                lib/rr/errors/spy_verification_errors/double_injection_not_found_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/spy_verification_errors/invocation_count_error_rb.html">
+                lib/rr/errors/spy_verification_errors/invocation_count_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/spy_verification_errors/spy_verification_error_rb.html">
+                lib/rr/errors/spy_verification_errors/spy_verification_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/subject_does_not_implement_method_error_rb.html">
+                lib/rr/errors/subject_does_not_implement_method_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/subject_has_different_arity_error_rb.html">
+                lib/rr/errors/subject_has_different_arity_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/errors/times_called_error_rb.html">
+                lib/rr/errors/times_called_error.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/expectations/any_argument_expectation_rb.html">
+                lib/rr/expectations/any_argument_expectation.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/expectations/argument_equality_expectation_rb.html">
+                lib/rr/expectations/argument_equality_expectation.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/expectations/times_called_expectation_rb.html">
+                lib/rr/expectations/times_called_expectation.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/hash_with_object_id_key_rb.html">
+                lib/rr/hash_with_object_id_key.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/injections/double_injection_rb.html">
+                lib/rr/injections/double_injection.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/injections/injection_rb.html">
+                lib/rr/injections/injection.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/injections/method_missing_injection_rb.html">
+                lib/rr/injections/method_missing_injection.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/injections/singleton_method_added_injection_rb.html">
+                lib/rr/injections/singleton_method_added_injection.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/method_dispatches/base_method_dispatch_rb.html">
+                lib/rr/method_dispatches/base_method_dispatch.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/method_dispatches/method_dispatch_rb.html">
+                lib/rr/method_dispatches/method_dispatch.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/method_dispatches/method_missing_dispatch_rb.html">
+                lib/rr/method_dispatches/method_missing_dispatch.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/proc_from_block_rb.html">
+                lib/rr/proc_from_block.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/recorded_calls_rb.html">
+                lib/rr/recorded_calls.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/space_rb.html">
+                lib/rr/space.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/spy_verification_rb.html">
+                lib/rr/spy_verification.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/spy_verification_proxy_rb.html">
+                lib/rr/spy_verification_proxy.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/any_times_matcher_rb.html">
+                lib/rr/times_called_matchers/any_times_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/at_least_matcher_rb.html">
+                lib/rr/times_called_matchers/at_least_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/at_most_matcher_rb.html">
+                lib/rr/times_called_matchers/at_most_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/integer_matcher_rb.html">
+                lib/rr/times_called_matchers/integer_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/never_matcher_rb.html">
+                lib/rr/times_called_matchers/never_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/non_terminal_rb.html">
+                lib/rr/times_called_matchers/non_terminal.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/proc_matcher_rb.html">
+                lib/rr/times_called_matchers/proc_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/range_matcher_rb.html">
+                lib/rr/times_called_matchers/range_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/terminal_rb.html">
+                lib/rr/times_called_matchers/terminal.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/times_called_matchers/times_called_matcher_rb.html">
+                lib/rr/times_called_matchers/times_called_matcher.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/wildcard_matchers/anything_rb.html">
+                lib/rr/wildcard_matchers/anything.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/wildcard_matchers/boolean_rb.html">
+                lib/rr/wildcard_matchers/boolean.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/wildcard_matchers/duck_type_rb.html">
+                lib/rr/wildcard_matchers/duck_type.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/wildcard_matchers/hash_including_rb.html">
+                lib/rr/wildcard_matchers/hash_including.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/wildcard_matchers/is_a_rb.html">
+                lib/rr/wildcard_matchers/is_a.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/wildcard_matchers/numeric_rb.html">
+                lib/rr/wildcard_matchers/numeric.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr/wildcard_matchers/satisfy_rb.html">
+                lib/rr/wildcard_matchers/satisfy.rb
+                </a>
+        <br />
+                <a href="../files/lib/rr_rb.html">
+                lib/rr.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="RR/Adapters/RRMethods.html">Adapters::RRMethods</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="RR/Adapters.html" class="link">RR::Adapters</a><br />
+Module <a href="RR/BlankSlate.html" class="link">RR::BlankSlate</a><br />
+Module <a href="RR/ClassInstanceMethodDefined.html" class="link">RR::ClassInstanceMethodDefined</a><br />
+Module <a href="RR/DoubleDefinitions.html" class="link">RR::DoubleDefinitions</a><br />
+Module <a href="RR/Errors.html" class="link">RR::Errors</a><br />
+Module <a href="RR/Expectations.html" class="link">RR::Expectations</a><br />
+Module <a href="RR/Extensions.html" class="link">RR::Extensions</a><br />
+Module <a href="RR/Injections.html" class="link">RR::Injections</a><br />
+Module <a href="RR/MethodDispatches.html" class="link">RR::MethodDispatches</a><br />
+Module <a href="RR/WildcardMatchers.html" class="link">RR::WildcardMatchers</a><br />
+Class <a href="RR/Double.html" class="link">RR::Double</a><br />
+Class <a href="RR/DoubleMatches.html" class="link">RR::DoubleMatches</a><br />
+Class <a href="RR/ProcFromBlock.html" class="link">RR::ProcFromBlock</a><br />
+Class <a href="RR/RecordedCalls.html" class="link">RR::RecordedCalls</a><br />
+Class <a href="RR/Space.html" class="link">RR::Space</a><br />
+Class <a href="RR/SpyVerification.html" class="link">RR::SpyVerification</a><br />
+Class <a href="RR/SpyVerificationProxy.html" class="link">RR::SpyVerificationProxy</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

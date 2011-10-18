@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: RR::DoubleDefinitions::DoubleDefinition::StateQueryMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">RR::DoubleDefinitions::DoubleDefinition::StateQueryMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/rr/double_definitions/double_definition_rb.html">
+                lib/rr/double_definitions/double_definition.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000072">exact_match?</a>&nbsp;&nbsp;
+      <a href="#M000075">expected_arguments</a>&nbsp;&nbsp;
+      <a href="#M000076">implementation_is_original_method?</a>&nbsp;&nbsp;
+      <a href="#M000079">implementation_strategy</a>&nbsp;&nbsp;
+      <a href="#M000070">ordered?</a>&nbsp;&nbsp;
+      <a href="#M000078">strong?</a>&nbsp;&nbsp;
+      <a href="#M000074">terminal?</a>&nbsp;&nbsp;
+      <a href="#M000071">verbose?</a>&nbsp;&nbsp;
+      <a href="#M000077">verify_method_signature?</a>&nbsp;&nbsp;
+      <a href="#M000073">wildcard_match?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="#M000072" class="method-signature">
+          <span class="method-name">exact_match?</span><span class="method-args">(*arguments)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000072-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000072-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 300</span>
+300:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exact_match?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>)
+301:           <span class="ruby-identifier">raise</span>(<span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">DoubleDefinitionError</span>, <span class="ruby-node">&quot;#argument_expectation must be defined on #{inspect}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@argument_expectation</span>
+302:           <span class="ruby-ivar">@argument_expectation</span>.<span class="ruby-identifier">exact_match?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>)
+303:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="#M000075" class="method-signature">
+          <span class="method-name">expected_arguments</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000075-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 315</span>
+315:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">expected_arguments</span>
+316:           <span class="ruby-identifier">argument_expectation</span> <span class="ruby-value">? </span><span class="ruby-identifier">argument_expectation</span>.<span class="ruby-identifier">expected_arguments</span> <span class="ruby-operator">:</span> []
+317:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="#M000076" class="method-signature">
+          <span class="method-name">implementation_is_original_method?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000076-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 319</span>
+319:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">implementation_is_original_method?</span>
+320:           <span class="ruby-identifier">implementation_strategy</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Strategies</span><span class="ruby-operator">::</span><span class="ruby-constant">Implementation</span><span class="ruby-operator">::</span><span class="ruby-constant">Proxy</span>)
+321:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="#M000070" class="method-signature">
+          <span class="method-name">ordered?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Double#ordered? returns true when the <a
+href="../../Double.html">Double</a> is ordered.
+</p>
+<pre>
+  mock(subject).method_name.ordered?
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000070-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000070-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 290</span>
+290:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ordered?</span>
+291:           <span class="ruby-ivar">@ordered</span>
+292:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <span class="method-name">strong?</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for verify_method_signature?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="#M000074" class="method-signature">
+          <span class="method-name">terminal?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000074-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 310</span>
+310:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">terminal?</span>
+311:           <span class="ruby-identifier">raise</span>(<span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">DoubleDefinitionError</span>, <span class="ruby-node">&quot;#argument_expectation must be defined on #{inspect}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@times_matcher</span>
+312:           <span class="ruby-ivar">@times_matcher</span>.<span class="ruby-identifier">terminal?</span>
+313:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="#M000071" class="method-signature">
+          <span class="method-name">verbose?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Double#verbose? returns true when verbose has been called on it. It returns
+true when the double is set to print each method call it receives.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000071-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000071-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 296</span>
+296:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verbose?</span>
+297:           <span class="ruby-ivar">@verbose</span> <span class="ruby-operator">?</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+298:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="#M000077" class="method-signature">
+          <span class="method-name">verify_method_signature?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000077-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000077-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 323</span>
+323:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify_method_signature?</span>
+324:           <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-ivar">@verify_method_signature</span>
+325:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="#M000073" class="method-signature">
+          <span class="method-name">wildcard_match?</span><span class="method-args">(*arguments)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000073-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000073-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 305</span>
+305:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">wildcard_match?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>)
+306:           <span class="ruby-identifier">raise</span>(<span class="ruby-constant">Errors</span><span class="ruby-operator">::</span><span class="ruby-constant">DoubleDefinitionError</span>, <span class="ruby-node">&quot;#argument_expectation must be defined on #{inspect}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@argument_expectation</span>
+307:           <span class="ruby-ivar">@argument_expectation</span>.<span class="ruby-identifier">wildcard_match?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>)
+308:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
+
+        <div class="method-heading">
+          <a href="#M000079" class="method-signature">
+          <span class="method-name">implementation_strategy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000079-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000079-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/rr/double_definitions/double_definition.rb, line 329</span>
+329:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">implementation_strategy</span>
+330:           <span class="ruby-identifier">double_definition_create</span>.<span class="ruby-identifier">implementation_strategy</span>
+331:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

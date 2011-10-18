@@ -1,0 +1,105 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::H 
+  level: 1
+  text: Writing your own custom wildcard matchers.
+- !ruby/struct:SM::Flow::P 
+  body: Writing new wildcard matchers is not too difficult. If you've ever written a custom expectation in RSpec, the implementation is very similar.
+- !ruby/struct:SM::Flow::P 
+  body: "As an example, let's say that you want a matcher that will match any number divisible by a certain integer. In use, it might look like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Will pass if BananaGrabber#bunch_bananas is called with an integer\n  # divisible by 5.\n\n  mock(BananaGrabber).bunch_bananas(divisible_by(5))\n"
+- !ruby/struct:SM::Flow::P 
+  body: "To implement this, we need a class RR::WildcardMatchers::DivisibleBy with these instance methods:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ==(other)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "eql?(other) (usually aliased to #==)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: inspect
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: wildcard_match?(other)
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: and optionally, a sensible initialize method. Let's look at each of these.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: .initialize
+- !ruby/struct:SM::Flow::P 
+  body: "Most custom wildcard matchers will want to define initialize to store some information about just what should be matched. DivisibleBy#initialize might look like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class RR::WildcardMatchers::DivisibleBy\n    def initialize(divisor)\n      @expected_divisor = divisor\n    end\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "#==(other)"
+- !ruby/struct:SM::Flow::P 
+  body: "DivisibleBy#==(other) should return true if other is a wildcard matcher that matches the same things as self, so a natural way to write DivisibleBy#== is:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class RR::WildcardMatchers::DivisibleBy\n    def ==(other)\n      # Ensure that other is actually a DivisibleBy\n      return false unless other.is_a?(self.class)\n\n      # Does other expect to match the same divisor we do?\n      self.expected_divisor = other.expected_divisor\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Note that this implementation of #== assumes that we've also declared"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  attr_reader :expected_divisor\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "#inspect"
+- !ruby/struct:SM::Flow::P 
+  body: "Technically we don't have to declare DivisibleBy#inspect, since inspect is defined for every object already. But putting a helpful message in inspect will make test failures much clearer, and it only takes about two seconds to write it, so let's be nice and do so:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class RR::WildcardMatchers::DivisibleBy\n    def inspect\n      &quot;integer divisible by #{expected.divisor}&quot;\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Now if we run the example from above:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(BananaGrabber).bunch_bananas(divisible_by(5))\n"
+- !ruby/struct:SM::Flow::P 
+  body: and it fails, we get a helpful message saying
+- !ruby/struct:SM::Flow::VERB 
+  body: "  bunch_bananas(integer divisible by 5)\n  Called 0 times.\n  Expected 1 times.\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "#wildcard_matches?(other)"
+- !ruby/struct:SM::Flow::P 
+  body: "wildcard_matches? is the method that actually checks the argument against the expectation. It should return true if other is considered to match, false otherwise. In the case of DivisibleBy, wildcard_matches? reads:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class RR::WildcardMatchers::DivisibleBy\n    def wildcard_matches?(other)\n      # If other isn't a number, how can it be divisible by anything?\n      return false unless other.is_a?(Numeric)\n\n      # If other is in fact divisible by expected_divisor, then\n      # other modulo expected_divisor should be 0.\n\n      other % expected_divisor == 0\n    end\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "A finishing touch: wrapping it neatly"
+- !ruby/struct:SM::Flow::P 
+  body: "We could stop here if we were willing to resign ourselves to using DivisibleBy this way:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(BananaGrabber).bunch_bananas(DivisibleBy.new(5))\n"
+- !ruby/struct:SM::Flow::P 
+  body: "But that's less expressive than the original:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(BananaGrabber).bunch_bananas(divisible_by(5))\n"
+- !ruby/struct:SM::Flow::P 
+  body: "To be able to use the convenient divisible_by matcher rather than the uglier DivisibleBy.new version, re-open the module RR::Adapters::RRMethods and define divisible_by there as a simple wrapper around DivisibleBy.new:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module RR::Adapters::RRMethods\n    def divisible_by(expected_divisor)\n      RR::WildcardMatchers::DivisibleBy.new(expected_divisor)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Recap
+- !ruby/struct:SM::Flow::P 
+  body: "Here's all the code for DivisibleBy in one place for easy reference:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class RR::WildcardMatchers::DivisibleBy\n    def initialize(divisor)\n      @expected_divisor = divisor\n    end\n\n    def ==(other)\n      # Ensure that other is actually a DivisibleBy\n      return false unless other.is_a?(self.class)\n\n      # Does other expect to match the same divisor we do?\n      self.expected_divisor = other.expected_divisor\n    end\n\n    def inspect\n      &quot;integer divisible by #{expected.divisor}&quot;\n    end\n\n    def wildcard_matches?(other)\n      # If other isn't a number, how can it be divisible by anything?\n      return false unless other.is_a?(Numeric)\n\n      # If other is in fact divisible by expected_divisor, then\n      # other modulo expected_divisor should be 0.\n\n      other % expected_divisor == 0\n    end\n  end\n\n  module RR::Adapters::RRMethods\n    def divisible_by(expected_divisor)\n      RR::WildcardMatchers::DivisibleBy.new(expected_divisor)\n    end\n  end\n"
+constants: []
+
+full_name: RR::WildcardMatchers
+includes: []
+
+instance_methods: []
+
+name: WildcardMatchers
+superclass: 

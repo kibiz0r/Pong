@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::MethodDispatches::BaseMethodDispatch#extract_subject_from_return_value
+is_singleton: false
+name: extract_subject_from_return_value
+params: (return_value)
+visibility: protected

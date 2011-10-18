@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: RR::SpyVerification#set_argument_expectation_for_args
+is_singleton: false
+name: set_argument_expectation_for_args
+params: (args)
+visibility: protected

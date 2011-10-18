@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets up a HashIncluding wildcard ArgumentEqualityExpectation that succeeds when the passed argument contains at least those keys and values of the expectation.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mock(object).method_name(hash_including(:foo =&gt; 1)) {return_value}\n  object.method_name({:foo =&gt; 1, :bar =&gt; 2) # passes\n"
+full_name: RR::Adapters::RRMethods#hash_including
+is_singleton: false
+name: hash_including
+params: (expected_hash)
+visibility: public
