@@ -11,14 +11,16 @@ namespace Pong
             Allegro.RunMain(AllegroMain);
         }
 
+        public static BigBang BigBang;
+
         public static void AllegroMain()
         {
             InitializeAllegro();
 
-            var bigBang = new BigBang();
-            var game = bigBang.Get<IPongGame>();
-            var display = bigBang.Get<IPongDisplay>();
-            var input = bigBang.Get<IPongInput>();
+            BigBang = new BigBang();
+            var game = CreateGame();
+            var display = CreateDisplay();
+            var input = CreateInput();
 
             while (game.Running)
             {
@@ -52,58 +54,38 @@ namespace Pong
 
         public static IPongGame CreateGame()
         {
-            return new PongGame(null,
-                new PlayerInitializer(
-                    new PaddleFactory()
-                ),
-                new PlayerFactory(),
-                new BallFactory(),
-                new RandomBallInitializer()
-                )
-            {
-                Width = Display.Current.Width,
-                Height = Display.Current.Height,
-                PlayerSlots = new IPlayerSlot[] {
-                    new PlayerSlot
-                    {
-                        Color = new Color(1, 0, 0),
-                        JoinReadyPosition = new Point(100, 50),
-                        JoinReadyFontDrawFlags = FontDrawFlags.AlignLeft,
-                        SpawnPosition = new Point(50, Display.Current.Height / 2),
-                        StartKey = Key.Num1,
-                    },
-                    new PlayerSlot
-                    {
-                        Color = new Color(0, 0, 1),
-                        JoinReadyPosition = new Point(Display.Current.Width - 100, 50),
-                        JoinReadyFontDrawFlags = FontDrawFlags.AlignRight,
-                        SpawnPosition = new Point(Display.Current.Width - 50, Display.Current.Height / 2),
-                        StartKey = Key.Num0
-                    }
+            var game = BigBang.Get<PongGame>();
+            game.Width = Display.Current.Width;
+            game.Height = Display.Current.Height;
+            game.PlayerSlots = new IPlayerSlot[] {
+                new PlayerSlot
+                {
+                    Color = new Color(1, 0, 0),
+                    JoinReadyPosition = new Point(100, 50),
+                    JoinReadyFontDrawFlags = FontDrawFlags.AlignLeft,
+                    SpawnPosition = new Point(50, Display.Current.Height / 2),
+                    StartKey = Key.Num1,
+                },
+                new PlayerSlot
+                {
+                    Color = new Color(0, 0, 1),
+                    JoinReadyPosition = new Point(Display.Current.Width - 100, 50),
+                    JoinReadyFontDrawFlags = FontDrawFlags.AlignRight,
+                    SpawnPosition = new Point(Display.Current.Width - 50, Display.Current.Height / 2),
+                    StartKey = Key.Num0
                 }
             };
+            return game;
         }
 
         public static IPongDisplay CreateDisplay()
         {
-            return new PongDisplay(
-                new ScreenRenderer(),
-                new PlayerSlotRenderer(
-                    new FontRenderer
-                    {
-                        Font = Content.Arial
-                    }
-                ),
-                new BallRenderer(),
-                new PaddleRenderer()
-            );
+            return BigBang.Get<IPongDisplay>();
         }
 
         public static IPongInput CreateInput()
         {
-            return new PongInput(
-                new KeyboardInput()
-            );
+            return BigBang.Get<IPongInput>();
         }
     }
 }

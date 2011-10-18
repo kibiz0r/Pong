@@ -16,7 +16,7 @@ namespace Pong
             Bind<IScreenRenderer>().To<ScreenRenderer>();
             Bind<IPongDisplay>().To<PongDisplay>();
             Bind<IPlayerSlotRenderer>().To<PlayerSlotRenderer>();
-            Bind<IFontRenderer>().To<FontRenderer>();
+            Bind<IFontRenderer>().ToMethod(c => new FontRenderer { Font = Content.Arial });
             Bind<IBallRenderer>().To<BallRenderer>();
             Bind<IPaddleRenderer>().To<PaddleRenderer>();
             Bind<IPongInput>().To<PongInput>();
