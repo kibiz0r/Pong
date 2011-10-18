@@ -7,7 +7,7 @@ namespace Pong
     {
         public PongGame()
         {
-            IsRunning = true;
+            Running = true;
         }
 
         public IGameInitializer GameInitializer
@@ -42,7 +42,7 @@ namespace Pong
 
         public void Join(IPlayerSlot playerSlot)
         {
-            if (playerSlot.IsReady)
+            if (playerSlot.Ready)
             {
                 return;
             }
@@ -61,10 +61,10 @@ namespace Pong
 
         public bool HasStarted
         {
-            get { return PlayerSlots.All(p => p.IsReady); }
+            get { return PlayerSlots.All(p => p.Ready); }
         }
 
-        public bool IsRunning
+        public bool Running
         {
             get;
             private set;
@@ -72,7 +72,7 @@ namespace Pong
 
         public void Exit()
         {
-            IsRunning = false;
+            Running = false;
         }
 
         public int Width

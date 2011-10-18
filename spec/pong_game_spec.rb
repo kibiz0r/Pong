@@ -7,46 +7,75 @@ describe PongGame do
   before do
     assume IPlayer, :player1, :player2
     assume IPlayerSlot, :player_slot1, :player_slot2
-    stub(@player_slot1).is_ready { false }
-    stub(@player_slot2).is_ready { false }
     dependency :player_slots => [@player_slot1, @player_slot2].of_type(IPlayerSlot)
   end
 
   describe "#join" do
-    before do
-      stub(@player_factory).create(@player_slot1) { @player1 }
-      stub(@player_factory).create(@player_slot2) { @player2 }
+    context "when the slot is occupied" do
+      before do
+        stub(@player_slot1).ready { true }
+        stub(@player_slot2).ready { true }
+      end
+
+      it "ignores the join" do
+        subject.join @player_slot1
+      end
     end
 
-    it "assigns a player to the slot" do
-      mock(@player_slot1).join(@player1)
-      mock(@player_slot2).join(@player2)
+    context "when the slot is unoccupied" do
+      before do
+        stub(@player_factory).create(@player_slot1) { @player1 }
+        stub(@player_factory).create(@player_slot2) { @player2 }
+        stub(@player_slot1).ready { false }
+        stub(@player_slot2).ready { false }
+      end
 
-      subject.join @player_slot1
-      subject.join @player_slot2
+      it "assigns a player to the slot" do
+        mock(@player_slot1).join(@player1)
+        mock(@player_slot2).join(@player2)
+
+        subject.join @player_slot1
+        subject.join @player_slot2
+      end
     end
   end
 
-  describe "#has_started" do
-    it "is false when no player slots are ready" do
-      stub(@player_slot1).is_ready { false }
-      stub(@player_slot2).is_ready { false }
-
-      subject.has_started.should be_false
+  context "no player slots are ready" do
+    before do
+      stub(@player_slot1).ready { false }
+      stub(@player_slot2).ready { false }
     end
 
-    it "is false when only some player slots are ready" do
-      stub(@player_slot1).is_ready { false }
-      stub(@player_slot2).is_ready { true }
+    it { should_not have_started }
+  end
 
-      subject.has_started.should be_false
+  context "some player slots are ready" do
+    before do
+      stub(@player_slot1).ready { false }
+      stub(@player_slot2).ready { true }
     end
 
-    it "is true when all player slots are ready" do
-      stub(@player_slot1).is_ready { true }
-      stub(@player_slot2).is_ready { true }
+    it { should_not have_started }
+  end
 
-      subject.has_started.should be_true
+  context "all player slots are ready" do
+    before do
+      stub(@player_slot1).ready { true }
+      stub(@player_slot2).ready { true }
     end
+
+    it { should have_started }
+  end
+
+  context "before exit is called" do
+    it { should be_running }
+  end
+
+  context "after exit is called" do
+    before do
+      subject.exit
+    end
+
+    it { should_not be_running }
   end
 end

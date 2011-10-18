@@ -9,7 +9,7 @@ namespace Pong
         {
             get;
         }
-        bool IsRunning
+        bool Running
         {
             get;
         }

@@ -24,7 +24,7 @@ namespace Pong
         {
             get;
         }
-        bool IsReady
+        bool Ready
         {
             get;
         }

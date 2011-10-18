@@ -1,8 +1,10 @@
 require "rspec"
-require "bin/Debug/Pong.exe"
-require "System.Core"
 require "rr"
+require "System.Core"
+require "bin/Debug/AllegroSharp.dll"
+require "bin/Debug/Pong.exe"
 
+include AllegroSharp
 include Pong
 
 class String
@@ -27,12 +29,27 @@ class String
   end
 end
 
+class RSpec::Matchers::BePredicate
+  def predicate
+    "#{@expected}".to_sym
+  end
+end
+
+class RSpec::Matchers::Has
+  def predicate(sym)
+    "#{sym.to_s.sub("have_","has_")}".to_sym
+  end
+end
+
 module AssumptionHelpers
+  def assumed_modules
+    @assumed_modules ||= {}
+  end
+
   def assume(mod, *ivars)
     ivars << nil if ivars.empty?
-    @assumptions ||= {}
 
-    @assumptions[mod] ||= Class.new do
+    assumed_modules[mod] ||= Class.new do
       include mod
       attr_accessor :assumed_ivar
 
@@ -50,10 +67,20 @@ module AssumptionHelpers
     end
 
     assumptions = ivars.map do |ivar|
-      @assumptions[mod].new.tap do |assumption|
-        if ivar
-          assumption.assumed_ivar = "@#{ivar}"
-          instance_variable_set "@#{ivar}", assumption
+      if ivar.is_a? Hash
+        ivar.map do |ivar, properties|
+          assumed_module = assume mod, ivar
+          properties.each do |key, value|
+            instance_variable_set "@#{key}", value
+            stub(assumed_module, key).returns value
+          end
+        end
+      else
+        assumed_modules[mod].new.tap do |assumption|
+          if ivar
+            assumption.assumed_ivar = "@#{ivar}"
+            instance_variable_set "@#{ivar}", assumption
+          end
         end
       end
     end
@@ -68,19 +95,19 @@ end
 module DependencyHelpers
   module ClassMethods
     def dependencies(*deps)
+      deps.each do |dep|
+        dependency dep
+      end
+    end
+
+    def dependency(dep)
       before do
-        @dependencies ||= []
-        deps.each do |dep|
-          mod = "I#{dep.to_s.camelize}".constantize
-          assume mod, dep
-          @dependencies << dep
-        end
+        dependency dep
       end
 
       subject do
-        @dependencies ||= []
         described_class.new.tap do |subj|
-          @dependencies.each do |dep|
+          dependency_list.each do |dep|
             subj.send :"#{dep}=", instance_variable_get("@#{dep}")
           end
         end
@@ -88,11 +115,29 @@ module DependencyHelpers
     end
   end
 
+  def dependency_list
+    @dependency_list ||= []
+  end
+
+  def dependencies(*deps)
+    deps.each do |dep|
+      dependency dep
+    end
+  end
+
   def dependency(dep)
-    @dependencies ||= []
-    ivar, value = dep.first
-    instance_variable_set "@#{ivar}", value
-    @dependencies << ivar
+    key, value = if dep.is_a? Hash
+                   dep.first
+                 elsif dep.is_a? Symbol
+                   [dep, "I#{dep.to_s.camelize}".constantize]
+                 else
+                   raise "wtf is this? #{dep.inspect}"
+                 end
+    if value.is_a? Module
+      value = assume value, key
+    end
+    instance_variable_set "@#{key}", value
+    dependency_list << key
   end
 end
 

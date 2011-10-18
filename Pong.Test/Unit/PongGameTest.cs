@@ -148,19 +148,19 @@ namespace Pong.Test
             [Test]
             public void Join_causes_a_player_slot_to_become_ready()
             {
-                Assert.False(Subject.PlayerSlot1.IsReady);
-                Assert.False(Subject.PlayerSlot2.IsReady);
+                Assert.False(Subject.PlayerSlot1.Ready);
+                Assert.False(Subject.PlayerSlot2.Ready);
                 Subject.Join(Subject.PlayerSlot1);
-                Assert.That(Subject.PlayerSlot2.IsReady);
+                Assert.That(Subject.PlayerSlot2.Ready);
                 Subject.Join(Subject.PlayerSlot1);
-                Assert.That(Subject.PlayerSlot1.IsReady);
+                Assert.That(Subject.PlayerSlot1.Ready);
             }
     
             [Test]
             public void Ignores_joining_occupied_slot()
             {
                 var playerSlot = Mock<IPlayerSlot>();
-                playerSlot.Mocks(p => p.IsReady).Returns(true);
+                playerSlot.Mocks(p => p.Ready).Returns(true);
                 Subject.Join(playerSlot.Object);
             }
         }
@@ -169,9 +169,9 @@ namespace Pong.Test
         [Test]
         public void Exit_causes_game_to_stop_running()
         {
-            Assert.That(Subject.IsRunning);
+            Assert.That(Subject.Running);
             Subject.Exit();
-            Assert.False(Subject.IsRunning);
+            Assert.False(Subject.Running);
         }
         #endregion
     }

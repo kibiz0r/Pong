@@ -20,7 +20,7 @@ task :vendor_gems do
 end
 
 task :spec do
-  sh "rspec spec/*"
+  sh "rspec spec/*_spec.rb"
 end
 
 task :test do

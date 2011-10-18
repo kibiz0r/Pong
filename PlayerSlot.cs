@@ -24,7 +24,7 @@ namespace Pong
             get;
             set;
         }
-        public bool IsReady
+        public bool Ready
         {
             get { return Player != null; }
         }

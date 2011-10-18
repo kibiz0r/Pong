@@ -18,7 +18,7 @@ namespace Pong
             var display = CreateDisplay();
             var input = CreateInput();
 
-            while (game.IsRunning)
+            while (game.Running)
             {
                 input.Apply(game);
                 //game.Update(10);
@@ -83,24 +83,27 @@ namespace Pong
 
         public static IPongDisplay CreateDisplay()
         {
-            return new PongDisplay(
-                new Renderer(),
-                new PlayerSlotRenderer(
-                    new FontRenderer
+            return new PongDisplay
+            {
+                ScreenRenderer = new ScreenRenderer(),
+                PlayerSlotRenderer = new PlayerSlotRenderer
+                {
+                    FontRenderer = new FontRenderer
                     {
                         Font = Content.Arial
                     }
-                ),
-                new BallRenderer(),
-                new PaddleRenderer()
-            );
+                },
+                BallRenderer = new BallRenderer(),
+                PaddleRenderer = new PaddleRenderer()
+            };
         }
 
         public static IPongInput CreateInput()
         {
-            return new PongInput(
-                new KeyboardInput()
-            );
+            return new PongInput
+            {
+                KeyboardInput = new KeyboardInput()
+            };
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Pong.Test
         public void Join_makes_slot_ready()
         {
             var playerSlot = new PlayerSlot();
-            Assert.False(playerSlot.IsReady);
+            Assert.False(playerSlot.Ready);
             playerSlot.Join(Mock<IPlayer>().Object);
-            Assert.That(playerSlot.IsReady);
+            Assert.That(playerSlot.Ready);
         }
     }
 }

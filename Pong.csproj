@@ -50,9 +50,7 @@
     <Compile Include="KeyboardInput.cs" />
     <Compile Include="IPlayerSlot.cs" />
     <Compile Include="PlayerSlot.cs" />
-    <Compile Include="IRenderer.cs" />
     <Compile Include="IPongDisplay.cs" />
-    <Compile Include="Renderer.cs" />
     <Compile Include="IPlayerSlotRenderer.cs" />
     <Compile Include="PlayerSlotRenderer.cs" />
     <Compile Include="IFontRenderer.cs" />
@@ -80,6 +78,8 @@
     <Compile Include="RandomBallInitializer.cs" />
     <Compile Include="IGameInitializer.cs" />
     <Compile Include="GameInitializer.cs" />
+    <Compile Include="ScreenRenderer.cs" />
+    <Compile Include="IScreenRenderer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
