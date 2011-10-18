@@ -7,7 +7,7 @@ describe PongGame do
   before do
     assume IPlayer, :player1, :player2
     assume IPlayerSlot, :player_slot1, :player_slot2
-    dependency :player_slots => [@player_slot1, @player_slot2].of_type(IPlayerSlot)
+    property :player_slots => [@player_slot1, @player_slot2].of_type(IPlayerSlot)
   end
 
   describe "#join" do

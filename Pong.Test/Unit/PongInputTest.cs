@@ -38,7 +38,7 @@ namespace Pong.Test
         public void SetUp()
         {
             Keyboard = Stub<IKeyboardInput>();
-            Input = new PongInput { KeyboardInput = Keyboard.Object };
+            Input = new PongInput(Keyboard.Object);
             PlayerSlot1 = Stub<IPlayerSlot>();
             PlayerSlot1.Setup(p => p.StartKey).Returns(Key.Enter);
             PlayerSlot2 = Stub<IPlayerSlot>();

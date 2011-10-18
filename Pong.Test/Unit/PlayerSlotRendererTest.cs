@@ -24,7 +24,7 @@ namespace Pong.Test
         public void SetUp()
         {
             FontRenderer = Mock<IFontRenderer>();
-            PlayerSlotRenderer = new PlayerSlotRenderer { FontRenderer = FontRenderer.Object };
+            PlayerSlotRenderer = new PlayerSlotRenderer(FontRenderer.Object);
         }
 
         [Test]

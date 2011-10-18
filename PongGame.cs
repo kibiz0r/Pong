@@ -5,40 +5,22 @@ namespace Pong
 {
     public class PongGame : IPongGame
     {
-        public PongGame()
+        public PongGame(IGameInitializer gameInitializer, IPlayerInitializer playerInitializer,
+            IPlayerFactory playerFactory, IBallFactory ballFactory, IBallInitializer ballInitializer)
         {
+            this.gameInitializer = gameInitializer;
+            this.playerInitializer = playerInitializer;
+            this.playerFactory = playerFactory;
+            this.ballFactory = ballFactory;
+            this.ballInitializer = ballInitializer;
             Running = true;
         }
 
-        public IGameInitializer GameInitializer
-        {
-            get;
-            set;
-        }
-
-        public IPlayerInitializer PlayerInitializer
-        {
-            get;
-            set;
-        }
-
-        public IPlayerFactory PlayerFactory
-        {
-            get;
-            set;
-        }
-
-        public IBallFactory BallFactory
-        {
-            get;
-            set;
-        }
-
-        public IBallInitializer BallInitializer
-        {
-            get;
-            set;
-        }
+        private readonly IGameInitializer gameInitializer;
+        private readonly IPlayerInitializer playerInitializer;
+        private readonly IPlayerFactory playerFactory;
+        private readonly IBallFactory ballFactory;
+        private readonly IBallInitializer ballInitializer;
 
         public void Join(IPlayerSlot playerSlot)
         {
@@ -47,15 +29,15 @@ namespace Pong
                 return;
             }
             var wasStarted = HasStarted;
-            playerSlot.Join(PlayerFactory.Create(playerSlot));
+            playerSlot.Join(playerFactory.Create(playerSlot));
             if (!wasStarted && HasStarted)
             {
                 foreach (var player in Players)
                 {
-                    PlayerInitializer.Initialize(player);
+                    playerInitializer.Initialize(player);
                 }
-                Ball = BallFactory.Create(new Point(Width / 2, Height / 2));
-                BallInitializer.Initialize(Ball);
+                Ball = ballFactory.Create(new Point(Width / 2, Height / 2));
+                ballInitializer.Initialize(Ball);
             }
         }
 

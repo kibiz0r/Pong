@@ -102,13 +102,15 @@ module DependencyHelpers
 
     def dependency(dep)
       before do
-        dependency dep
+        dependency_list << track_ivar(dep)
       end
 
       subject do
-        described_class.new.tap do |subj|
-          dependency_list.each do |dep|
-            subj.send :"#{dep}=", instance_variable_get("@#{dep}")
+        described_class.new(*dependency_list.map { |dep|
+          instance_variable_get "@#{dep}"
+        }).tap do |subj|
+          property_list.each do |prop|
+            subj.send :"#{prop}=", instance_variable_get("@#{prop}")
           end
         end
       end
@@ -119,25 +121,33 @@ module DependencyHelpers
     @dependency_list ||= []
   end
 
-  def dependencies(*deps)
-    deps.each do |dep|
-      dependency dep
+  def track_ivars(*ivars)
+    ivars.each do |ivar|
+      track_ivar ivar
     end
   end
 
-  def dependency(dep)
-    key, value = if dep.is_a? Hash
-                   dep.first
-                 elsif dep.is_a? Symbol
-                   [dep, "I#{dep.to_s.camelize}".constantize]
+  def track_ivar(ivar)
+    key, value = if ivar.is_a? Hash
+                   ivar.first
+                 elsif ivar.is_a? Symbol
+                   [ivar, "I#{ivar.to_s.camelize}".constantize]
                  else
-                   raise "wtf is this? #{dep.inspect}"
+                   raise "wtf is this? #{ivar.inspect}"
                  end
     if value.is_a? Module
       value = assume value, key
     end
     instance_variable_set "@#{key}", value
-    dependency_list << key
+    key
+  end
+
+  def property(prop)
+    property_list << track_ivar(prop)
+  end
+
+  def property_list
+    @property_list ||= []
   end
 end
 

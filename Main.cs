@@ -50,14 +50,15 @@ namespace Pong
 
         public static IPongGame CreateGame()
         {
-            return new PongGame
-            {
-                PlayerFactory = new PlayerFactory(),
-                PlayerInitializer = new PlayerInitializer(
+            return new PongGame(null,
+                new PlayerInitializer(
                     new PaddleFactory()
                 ),
-                BallFactory = new BallFactory(),
-                BallInitializer = new RandomBallInitializer(),
+                new PlayerFactory(),
+                new BallFactory(),
+                new RandomBallInitializer()
+                )
+            {
                 Width = Display.Current.Width,
                 Height = Display.Current.Height,
                 PlayerSlots = new IPlayerSlot[] {
@@ -83,27 +84,24 @@ namespace Pong
 
         public static IPongDisplay CreateDisplay()
         {
-            return new PongDisplay
-            {
-                ScreenRenderer = new ScreenRenderer(),
-                PlayerSlotRenderer = new PlayerSlotRenderer
-                {
-                    FontRenderer = new FontRenderer
+            return new PongDisplay(
+                new ScreenRenderer(),
+                new PlayerSlotRenderer(
+                    new FontRenderer
                     {
                         Font = Content.Arial
                     }
-                },
-                BallRenderer = new BallRenderer(),
-                PaddleRenderer = new PaddleRenderer()
-            };
+                ),
+                new BallRenderer(),
+                new PaddleRenderer()
+            );
         }
 
         public static IPongInput CreateInput()
         {
-            return new PongInput
-            {
-                KeyboardInput = new KeyboardInput()
-            };
+            return new PongInput(
+                new KeyboardInput()
+            );
         }
     }
 }

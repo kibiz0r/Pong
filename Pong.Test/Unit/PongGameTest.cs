@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Pong.Test
 {
-    [TestFixture]
+    /*[TestFixture]
     public class PongGameTest : TestHelper
     {
         public PongGame _subject;
@@ -77,12 +77,12 @@ namespace Pong.Test
         {
             get;
             set;
-        }*/
+        }
 
         [SetUp]
         public void SetUp()
         {
-            /*PlayerSlot1 = new PlayerSlot
+            PlayerSlot1 = new PlayerSlot
             {
                 SpawnPosition = Player1SpawnPosition
             };
@@ -103,7 +103,7 @@ namespace Pong.Test
                 PlayerSlots = new IPlayerSlot[] { PlayerSlot1, PlayerSlot2 },
                 Width = 80,
                 Height = 140
-            };*/
+            };
         }
 
         public static readonly Point MiddleOfField = new Point(40, 70);
@@ -174,6 +174,6 @@ namespace Pong.Test
             Assert.False(Subject.Running);
         }
         #endregion
-    }
+    }*/
 }
 

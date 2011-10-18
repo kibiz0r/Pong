@@ -4,18 +4,22 @@ namespace Pong
 {
     public class PongInput : IPongInput
     {
-        public IKeyboardInput KeyboardInput;
+        public PongInput(IKeyboardInput keyboardInput)
+        {
+            this.keyboardInput = keyboardInput;
+        }
+        private readonly IKeyboardInput keyboardInput;
 
         public void Apply(IPongGame game)
         {
-            KeyboardInput.Poll();
-            if (KeyboardInput.IsPressed(Key.Escape))
+            keyboardInput.Poll();
+            if (keyboardInput.IsPressed(Key.Escape))
             {
                 game.Exit();
             }
             foreach (var playerSlot in game.PlayerSlots)
             {
-                if (KeyboardInput.IsPressed(playerSlot.StartKey))
+                if (keyboardInput.IsPressed(playerSlot.StartKey))
                 {
                     game.Join(playerSlot);
                 }

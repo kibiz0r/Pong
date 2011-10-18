@@ -7,14 +7,15 @@ namespace Pong.Test
         public abstract RiggedBallInitializer BallInitializer { get; set; }
         public PongGame Create2PlayerPongGame()
         {
-            return new PongGame
-            {
-                PlayerInitializer = new PlayerInitializer(
+            return new PongGame(null,
+                new PlayerInitializer(
                     new PaddleFactory()
                 ),
-                PlayerFactory = new PlayerFactory(),
-                BallFactory = new BallFactory(),
-                BallInitializer = BallInitializer,
+                new PlayerFactory(),
+                new BallFactory(),
+                BallInitializer
+                )
+            {
                 PlayerSlots = new IPlayerSlot[]
                 {
                     new PlayerSlot { SpawnPosition = Player1SpawnPosition },

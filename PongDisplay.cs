@@ -5,43 +5,36 @@ namespace Pong
 {
     public class PongDisplay : IPongDisplay
     {
-        public IScreenRenderer ScreenRenderer
+        public PongDisplay(IScreenRenderer screenRenderer, IPlayerSlotRenderer playerSlotRenderer,
+            IBallRenderer ballRenderer, IPaddleRenderer paddleRenderer)
         {
-            get;
-            set;
+            this.screenRenderer = screenRenderer;
+            this.playerSlotRenderer = playerSlotRenderer;
+            this.ballRenderer = ballRenderer;
+            this.paddleRenderer = paddleRenderer;
         }
-        public IPlayerSlotRenderer PlayerSlotRenderer
-        {
-            get;
-            set;
-        }
-        public IBallRenderer BallRenderer
-        {
-            get;
-            set;
-        }
-        public IPaddleRenderer PaddleRenderer
-        {
-            get;
-            set;
-        }
+
+        private readonly IScreenRenderer screenRenderer;
+        private readonly IPlayerSlotRenderer playerSlotRenderer;
+        private readonly IBallRenderer ballRenderer;
+        private readonly IPaddleRenderer paddleRenderer;
 
         public void Render(IPongGame game)
         {
-            ScreenRenderer.Clear();
+            screenRenderer.Clear();
             foreach (var playerSlot in game.PlayerSlots)
             {
-                PlayerSlotRenderer.Render(playerSlot);
+                playerSlotRenderer.Render(playerSlot);
             }
             if (game.HasStarted)
             {
-                BallRenderer.Render(game.Ball);
+                ballRenderer.Render(game.Ball);
                 foreach (var player in game.Players)
                 {
-                    PaddleRenderer.Render(player.Paddle);
+                    paddleRenderer.Render(player.Paddle);
                 }
             }
-            ScreenRenderer.Flip();
+            screenRenderer.Flip();
         }
     }
 }

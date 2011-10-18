@@ -3,11 +3,15 @@ namespace Pong
 {
     public class PlayerSlotRenderer : IPlayerSlotRenderer
     {
-        public IFontRenderer FontRenderer;
+        public PlayerSlotRenderer(IFontRenderer fontRenderer)
+        {
+            this.fontRenderer = fontRenderer;
+        }
+        private readonly IFontRenderer fontRenderer;
 
         public void Render(IPlayerSlot playerSlot)
         {
-            FontRenderer.Render(playerSlot.Color, playerSlot.JoinReadyPosition, playerSlot.JoinReadyFontDrawFlags, playerSlot.Ready ? playerSlot.ReadyText : playerSlot.JoinText);
+            fontRenderer.Render(playerSlot.Color, playerSlot.JoinReadyPosition, playerSlot.JoinReadyFontDrawFlags, playerSlot.Ready ? playerSlot.ReadyText : playerSlot.JoinText);
         }
     }
 }
