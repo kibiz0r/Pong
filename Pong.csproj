@@ -35,6 +35,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>vendor\clr\Ninject-2.2.0.0-release-net-4.0-no-web\Ninject.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -80,6 +84,7 @@
     <Compile Include="GameInitializer.cs" />
     <Compile Include="ScreenRenderer.cs" />
     <Compile Include="IScreenRenderer.cs" />
+    <Compile Include="BigBang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

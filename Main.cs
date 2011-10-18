@@ -1,5 +1,6 @@
 using System;
 using AllegroSharp;
+using Ninject;
 
 namespace Pong
 {
@@ -14,9 +15,10 @@ namespace Pong
         {
             InitializeAllegro();
 
-            var game = CreateGame();
-            var display = CreateDisplay();
-            var input = CreateInput();
+            var bigBang = new BigBang();
+            var game = bigBang.Get<IPongGame>();
+            var display = bigBang.Get<IPongDisplay>();
+            var input = bigBang.Get<IPongInput>();
 
             while (game.Running)
             {

@@ -15,7 +15,7 @@ task :vendor_gems do
     "rspec" => "2.7.0",
     "rr" => "1.0.4"
   }.each do |gem, version|
-    sh "gem install --install-dir=vendor/gems #{gem} --version #{version}"
+    sh "gem install --install-dir=vendor/ruby #{gem} --version #{version}"
   end
 end
 
