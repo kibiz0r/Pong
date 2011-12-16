@@ -1,0 +1,63 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: START
+  value: /#{"^".encode('UTF-8')}/
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NL
+  value: Regexp.new("\n".encode('UTF-8'))
+- !ruby/object:RI::Constant 
+  comment: 
+  name: START
+  value: /^/
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NL
+  value: /\n/n
+full_name: Gherkin::Formatter::PrettyFormatter
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Colors
+- !ruby/object:RI::IncludedModule 
+  name: Escaping
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: background
+- !ruby/object:RI::MethodSummary 
+  name: comment
+- !ruby/object:RI::MethodSummary 
+  name: eof
+- !ruby/object:RI::MethodSummary 
+  name: examples
+- !ruby/object:RI::MethodSummary 
+  name: exception
+- !ruby/object:RI::MethodSummary 
+  name: feature
+- !ruby/object:RI::MethodSummary 
+  name: flush_table
+- !ruby/object:RI::MethodSummary 
+  name: py_string
+- !ruby/object:RI::MethodSummary 
+  name: row
+- !ruby/object:RI::MethodSummary 
+  name: scenario
+- !ruby/object:RI::MethodSummary 
+  name: scenario_outline
+- !ruby/object:RI::MethodSummary 
+  name: step
+- !ruby/object:RI::MethodSummary 
+  name: steps
+- !ruby/object:RI::MethodSummary 
+  name: syntax_error
+- !ruby/object:RI::MethodSummary 
+  name: tag
+name: PrettyFormatter
+superclass: Object

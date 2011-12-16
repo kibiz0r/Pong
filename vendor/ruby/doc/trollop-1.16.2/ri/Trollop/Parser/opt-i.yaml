@@ -1,0 +1,45 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Define an option. <tt>name</tt> is the option name, a unique identifier for the option that you will use internally, which should be a symbol or a string. <tt>desc</tt> is a string description which will be displayed in help messages.
+- !ruby/struct:SM::Flow::P 
+  body: "Takes the following optional arguments:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +:long+
+    body: Specify the long form of the argument, i.e. the form with two dashes. If unspecified, will be automatically derived based on the argument name by turning the <tt>name</tt> option into a string, and replacing any _'s by -'s.
+  - !ruby/struct:SM::Flow::LI 
+    label: +:short+
+    body: Specify the short form of the argument, i.e. the form with one dash. If unspecified, will be automatically derived from <tt>name</tt>.
+  - !ruby/struct:SM::Flow::LI 
+    label: +:type+
+    body: Require that the argument take a parameter or parameters of type <tt>type</tt>. For a single parameter, the value can be a member of <tt>SINGLE_ARG_TYPES</tt>, or a corresponding Ruby class (e.g. <tt>Integer</tt> for +:int+). For multiple-argument parameters, the value can be any member of <tt>MULTI_ARG_TYPES</tt> constant. If unset, the default argument type is +:flag+, meaning that the argument does not take a parameter. The specification of +:type+ is not necessary if a +:default+ is given.
+  - !ruby/struct:SM::Flow::LI 
+    label: +:default+
+    body: "Set the default value for an argument. Without a default value, the hash returned by #parse (and thus Trollop::options) will have a <tt>nil</tt> value for this key unless the argument is given on the commandline. The argument type is derived automatically from the class of the default value given, so specifying a +:type+ is not necessary if a +:default+ is given. (But see below for an important caveat when +:multi+: is specified too.) If the argument is a flag, and the default is set to <tt>true</tt>, then if it is specified on the the commandline the value will be <tt>false</tt>."
+  - !ruby/struct:SM::Flow::LI 
+    label: +:required+
+    body: If set to <tt>true</tt>, the argument must be provided on the commandline.
+  - !ruby/struct:SM::Flow::LI 
+    label: +:multi+
+    body: If set to <tt>true</tt>, allows multiple occurrences of the option on the commandline. Otherwise, only a single instance of the option is allowed. (Note that this is different from taking multiple parameters. See below.)
+  type: :LABELED
+- !ruby/struct:SM::Flow::P 
+  body: "Note that there are two types of argument multiplicity: an argument can take multiple values, e.g. &quot;--arg 1 2 3&quot;. An argument can also be allowed to occur multiple times, e.g. &quot;--arg 1 --arg 2&quot;."
+- !ruby/struct:SM::Flow::P 
+  body: Arguments that take multiple values should have a +:type+ parameter drawn from <tt>MULTI_ARG_TYPES</tt> (e.g. +:strings+), or a +:default:+ value of an array of the correct type (e.g. [String]). The value of this argument will be an array of the parameters on the commandline.
+- !ruby/struct:SM::Flow::P 
+  body: Arguments that can occur multiple times should be marked with +:multi+ =&gt; <tt>true</tt>. The value of this argument will also be an array. In contrast with regular non-multi options, if not specified on the commandline, the default value will be [], not nil.
+- !ruby/struct:SM::Flow::P 
+  body: These two attributes can be combined (e.g. +:type+ =&gt; +:strings+, +:multi+ =&gt; <tt>true</tt>), in which case the value of the argument will be an array of arrays.
+- !ruby/struct:SM::Flow::P 
+  body: "There's one ambiguous case to be aware of: when +:multi+: is true and a +:default+ is set to an array (of something), it's ambiguous whether this is a multi-value argument as well as a multi-occurrence argument. In thise case, Trollop assumes that it's not a multi-value argument. If you want a multi-value, multi-occurrence argument with a default value, you must specify +:type+ as well."
+full_name: Trollop::Parser#opt
+is_singleton: false
+name: opt
+params: (name, desc="", opts={})
+visibility: public

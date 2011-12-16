@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>JRuby</tt> Wraps Java's org.w3c.dom.document and returns Nokogiri::XML::Document
+full_name: Nokogiri::XML::Document::wrap
+is_singleton: true
+name: wrap
+params: (document)
+visibility: public

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Gherkin::Formatter::Argument::format
+is_singleton: true
+name: format
+params: (string, argument_format, arguments)
+visibility: public

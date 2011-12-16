@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Defines a set of words which cause parsing to terminate when encountered, such that any options to the left of the word are parsed as usual, and options to the right of the word are left intact.
+- !ruby/struct:SM::Flow::P 
+  body: A typical use case would be for subcommand support, where these would be set to the list of subcommands. A subsequent Trollop invocation would then be used to parse subcommand options, after shifting the subcommand off of ARGV.
+full_name: Trollop::Parser#stop_on
+is_singleton: false
+name: stop_on
+params: (*words)
+visibility: public

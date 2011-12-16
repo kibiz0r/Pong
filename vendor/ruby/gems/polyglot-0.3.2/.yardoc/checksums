@@ -1,0 +1,4 @@
+lib/polyglot.rb bd5d19b9e318d549fafefdd2d0267983ee8baeb6
+lib/polyglot/version.rb 651a75cbdd6bba20fb0cb1211dc6a430a606dc7f
+lib/term/ansicolor/version.rb d87792db6d7d2753dc077e7008f60b8af9f82445
+lib/term/ansicolor.rb 5bf5752f9f4b2908dc01bdbdb8a93d80a7664401

@@ -1,0 +1,194 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The encoding for the document
+  name: encoding
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A list of errors encountered while parsing
+  name: errors
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The XML source
+  name: source
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: from_io
+- !ruby/object:RI::MethodSummary 
+  name: from_memory
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Reader parser allows you to effectively pull parse an XML document. Once instantiated, call Nokogiri::XML::Reader#each to iterate over each node. Note that you may only iterate over the document once!
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_NONE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Element node type
+  name: TYPE_ELEMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Attribute node type
+  name: TYPE_ATTRIBUTE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text node type
+  name: TYPE_TEXT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: CDATA node type
+  name: TYPE_CDATA
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Entity Reference node type
+  name: TYPE_ENTITY_REFERENCE
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Entity node type
+  name: TYPE_ENTITY
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PI node type
+  name: TYPE_PROCESSING_INSTRUCTION
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Comment node type
+  name: TYPE_COMMENT
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document node type
+  name: TYPE_DOCUMENT
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document Type node type
+  name: TYPE_DOCUMENT_TYPE
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document Fragment node type
+  name: TYPE_DOCUMENT_FRAGMENT
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Notation node type
+  name: TYPE_NOTATION
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Whitespace node type
+  name: TYPE_WHITESPACE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Significant Whitespace node type
+  name: TYPE_SIGNIFICANT_WHITESPACE
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Element end node type
+  name: TYPE_END_ELEMENT
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Entity end node type
+  name: TYPE_END_ENTITY
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: XML Declaration node type
+  name: TYPE_XML_DECLARATION
+  value: "17"
+full_name: Nokogiri::XML::Reader
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: attr_nodes
+- !ruby/object:RI::MethodSummary 
+  name: attribute
+- !ruby/object:RI::MethodSummary 
+  name: attribute_at
+- !ruby/object:RI::MethodSummary 
+  name: attribute_count
+- !ruby/object:RI::MethodSummary 
+  name: attribute_nodes
+- !ruby/object:RI::MethodSummary 
+  name: attributes
+- !ruby/object:RI::MethodSummary 
+  name: attributes?
+- !ruby/object:RI::MethodSummary 
+  name: base_uri
+- !ruby/object:RI::MethodSummary 
+  name: default?
+- !ruby/object:RI::MethodSummary 
+  name: depth
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: empty_element?
+- !ruby/object:RI::MethodSummary 
+  name: inner_xml
+- !ruby/object:RI::MethodSummary 
+  name: lang
+- !ruby/object:RI::MethodSummary 
+  name: local_name
+- !ruby/object:RI::MethodSummary 
+  name: name
+- !ruby/object:RI::MethodSummary 
+  name: namespace_uri
+- !ruby/object:RI::MethodSummary 
+  name: namespaces
+- !ruby/object:RI::MethodSummary 
+  name: node_type
+- !ruby/object:RI::MethodSummary 
+  name: outer_xml
+- !ruby/object:RI::MethodSummary 
+  name: prefix
+- !ruby/object:RI::MethodSummary 
+  name: read
+- !ruby/object:RI::MethodSummary 
+  name: state
+- !ruby/object:RI::MethodSummary 
+  name: value
+- !ruby/object:RI::MethodSummary 
+  name: value?
+- !ruby/object:RI::MethodSummary 
+  name: xml_version
+name: Reader
+superclass: Object

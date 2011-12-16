@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>multipart_request (Webrat::MerbMultipartSupport)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/webrat/merb_multipart_support.rb, line 8</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">multipart_request</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">env</span> = {})
+      <span class="ruby-identifier">multipart</span> = <span class="ruby-constant">Merb</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">MultipartRequestHelper</span><span class="ruby-operator">::</span><span class="ruby-constant">Post</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
+      <span class="ruby-identifier">body</span>, <span class="ruby-identifier">head</span> = <span class="ruby-identifier">multipart</span>.<span class="ruby-identifier">to_multipart</span>
+      <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;CONTENT_TYPE&quot;</span>] = <span class="ruby-identifier">head</span>
+      <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;CONTENT_LENGTH&quot;</span>] = <span class="ruby-identifier">body</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">env</span>[<span class="ruby-identifier">:input</span>] = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">body</span>)
+      <span class="ruby-identifier">request</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">env</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Trollop::Parser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/trollop.rb, line 70</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>
+    <span class="ruby-ivar">@version</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@leftovers</span> = []
+    <span class="ruby-ivar">@specs</span> = {}
+    <span class="ruby-ivar">@long</span> = {}
+    <span class="ruby-ivar">@short</span> = {}
+    <span class="ruby-ivar">@order</span> = []
+    <span class="ruby-ivar">@constraints</span> = []
+    <span class="ruby-ivar">@stop_words</span> = []
+    <span class="ruby-ivar">@stop_on_unknown</span> = <span class="ruby-keyword kw">false</span>
+
+    <span class="ruby-comment cmt">#instance_eval(&amp;b) if b # can't take arguments</span>
+    <span class="ruby-identifier">cloaker</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>).<span class="ruby-identifier">bind</span>(<span class="ruby-keyword kw">self</span>).<span class="ruby-identifier">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">b</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

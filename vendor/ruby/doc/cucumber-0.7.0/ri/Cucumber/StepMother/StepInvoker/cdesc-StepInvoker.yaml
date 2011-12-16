@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: Cucumber::StepMother::StepInvoker
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: eof
+- !ruby/object:RI::MethodSummary 
+  name: py_string
+- !ruby/object:RI::MethodSummary 
+  name: row
+- !ruby/object:RI::MethodSummary 
+  name: step
+name: StepInvoker
+superclass: Object

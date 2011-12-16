@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Thrown by Parser if the user passes in '-h' or '--version'. Handled automatically by Trollop#options.
+constants: []
+
+full_name: Trollop::VersionNeeded
+includes: []
+
+instance_methods: []
+
+name: VersionNeeded
+superclass: StandardError

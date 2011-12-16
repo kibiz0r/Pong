@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create the internal subset of a document.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc.create_internal_subset(&quot;chapter&quot;, &quot;-//OASIS//DTD DocBook XML//EN&quot;, &quot;chapter.dtd&quot;)\n  # =&gt; &lt;!DOCTYPE chapter PUBLIC &quot;-//OASIS//DTD DocBook XML//EN&quot; &quot;chapter.dtd&quot;&gt;\n\n  doc.create_internal_subset(&quot;chapter&quot;, nil, &quot;chapter.dtd&quot;)\n  # =&gt; &lt;!DOCTYPE chapter SYSTEM &quot;chapter.dtd&quot;&gt;\n"
+full_name: Nokogiri::XML::Node#create_internal_subset
+is_singleton: false
+name: create_internal_subset
+params: |
+  create_internal_subset(name, external_id, system_id)
+
+visibility: public

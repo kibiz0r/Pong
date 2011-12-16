@@ -52,14 +52,12 @@ namespace Pong.Test.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Two players join")]
-        public virtual void TwoPlayersJoin()
+        [NUnit.Framework.DescriptionAttribute("\nGive I have a game of Pong")]
+        public virtual void _GiveIHaveAGameOfPong()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Two players join", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("\nGive I have a game of Pong", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
-#line 4
-testRunner.Given("I have a game of Pong");
 #line 5
 testRunner.When("two players join");
 #line 6

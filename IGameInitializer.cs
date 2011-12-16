@@ -3,7 +3,7 @@ namespace Pong
 {
     public interface IGameInitializer
     {
-        void Initialize(IPongGame game);
+        void InitializeGame(IPongGame game);
     }
 }
 

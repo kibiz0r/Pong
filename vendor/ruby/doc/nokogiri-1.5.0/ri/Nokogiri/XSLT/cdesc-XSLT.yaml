@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: parse
+- !ruby/object:RI::MethodSummary 
+  name: quote_params
+- !ruby/object:RI::MethodSummary 
+  name: register
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "call-seq:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  register(uri, custom_handler_class)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Register a class that implements custom XLST transformation functions.
+constants: []
+
+full_name: Nokogiri::XSLT
+includes: []
+
+instance_methods: []
+
+name: XSLT
+superclass: 

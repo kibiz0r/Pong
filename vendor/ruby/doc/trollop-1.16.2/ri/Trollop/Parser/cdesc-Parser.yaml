@@ -1,0 +1,77 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The values from the commandline that were not interpreted by #parse."
+  name: leftovers
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The complete configuration hashes for each option. (Mainly useful for testing.)
+  name: specs
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The commandline parser. In typical usage, the methods in this class will be handled internally by Trollop::options. In this case, only the #opt, #banner and #version, #depends, and #conflicts methods will typically be called."
+- !ruby/struct:SM::Flow::P 
+  body: "If you want to instantiate this class yourself (for more complicated argument-parsing logic), call #parse to actually produce the output hash, and consider calling it from within Trollop::with_standard_exception_handling."
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The set of values that indicate a flag option when passed as the +:type+ parameter of #opt."
+  name: FLAG_TYPES
+  value: "[:flag, :bool, :boolean]"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The set of values that indicate a single-parameter (normal) option when passed as the +:type+ parameter of #opt."
+  - !ruby/struct:SM::Flow::P 
+    body: A value of <tt>io</tt> corresponds to a readable IO resource, including a filename, URI, or the strings 'stdin' or '-'.
+  name: SINGLE_ARG_TYPES
+  value: "[:int, :integer, :string, :double, :float, :io, :date]"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The set of values that indicate a multiple-parameter option (i.e., that takes multiple space-separated values on the commandline) when passed as the +:type+ parameter of #opt."
+  name: MULTI_ARG_TYPES
+  value: "[:ints, :integers, :strings, :doubles, :floats, :ios, :dates]"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The complete set of legal values for the +:type+ parameter of #opt."
+  name: TYPES
+  value: FLAG_TYPES + SINGLE_ARG_TYPES + MULTI_ARG_TYPES
+full_name: Trollop::Parser
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: banner
+- !ruby/object:RI::MethodSummary 
+  name: conflicts
+- !ruby/object:RI::MethodSummary 
+  name: depends
+- !ruby/object:RI::MethodSummary 
+  name: die
+- !ruby/object:RI::MethodSummary 
+  name: educate
+- !ruby/object:RI::MethodSummary 
+  name: opt
+- !ruby/object:RI::MethodSummary 
+  name: parse
+- !ruby/object:RI::MethodSummary 
+  name: stop_on
+- !ruby/object:RI::MethodSummary 
+  name: stop_on_unknown
+- !ruby/object:RI::MethodSummary 
+  name: text
+- !ruby/object:RI::MethodSummary 
+  name: version
+name: Parser
+superclass: Object

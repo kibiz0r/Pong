@@ -4,7 +4,7 @@ using Moq;
 
 namespace Pong.Test
 {
-    public class GameInitializerTest : TestHelper
+    /*public class GameInitializerTest : TestHelper
     {
         public GameInitializer _subject;
         public GameInitializer Subject
@@ -72,6 +72,6 @@ namespace Pong.Test
             BallInitializer.Mocks(b => b.Initialize(Ball.Object));
             Subject.Initialize(Game.Object);
         }
-    }
+    }*/
 }
 

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Nokogiri::HTML::ElementDescription#deprecated_attributes
+is_singleton: false
+name: deprecated_attributes
+params: ()
+visibility: public

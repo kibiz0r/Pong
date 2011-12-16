@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse (Trollop::Parser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/trollop.rb, line 285</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span> <span class="ruby-identifier">cmdline</span>=<span class="ruby-constant">ARGV</span>
+    <span class="ruby-identifier">vals</span> = {}
+    <span class="ruby-identifier">required</span> = {}
+
+    <span class="ruby-identifier">opt</span> <span class="ruby-identifier">:version</span>, <span class="ruby-value str">&quot;Print version and exit&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@version</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">:version</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@long</span>[<span class="ruby-value str">&quot;version&quot;</span>]
+    <span class="ruby-identifier">opt</span> <span class="ruby-identifier">:help</span>, <span class="ruby-value str">&quot;Show this message&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">:help</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@long</span>[<span class="ruby-value str">&quot;help&quot;</span>]
+
+    <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span>, <span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">required</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:required</span>]
+      <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>]
+      <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = [] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:multi</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>] <span class="ruby-comment cmt"># multi arguments default to [], not nil</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">resolve_default_short_options</span>
+
+    <span class="ruby-comment cmt">## resolve symbols</span>
+    <span class="ruby-identifier">given_args</span> = {}
+    <span class="ruby-ivar">@leftovers</span> = <span class="ruby-identifier">each_arg</span> <span class="ruby-identifier">cmdline</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span>, <span class="ruby-identifier">params</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">sym</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^-([^-])$/</span>
+        <span class="ruby-ivar">@short</span>[<span class="ruby-identifier">$1</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^--([^-]\S*)$/</span>
+        <span class="ruby-ivar">@long</span>[<span class="ruby-identifier">$1</span>]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">CommandlineError</span>, <span class="ruby-node">&quot;invalid argument syntax: '#{arg}'&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">CommandlineError</span>, <span class="ruby-node">&quot;unknown argument '#{arg}'&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">sym</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">given_args</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">sym</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-identifier">:multi</span>]
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">CommandlineError</span>, <span class="ruby-node">&quot;option '#{arg}' specified multiple times&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">given_args</span>[<span class="ruby-identifier">sym</span>] <span class="ruby-operator">||=</span> {}
+
+      <span class="ruby-identifier">given_args</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-identifier">:arg</span>] = <span class="ruby-identifier">arg</span>
+      <span class="ruby-identifier">given_args</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-identifier">:params</span>] <span class="ruby-operator">||=</span> []
+
+      <span class="ruby-comment cmt"># The block returns the number of parameters taken.</span>
+      <span class="ruby-identifier">num_params_taken</span> = <span class="ruby-value">0</span>
+
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">SINGLE_ARG_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-identifier">:type</span>])
+          <span class="ruby-identifier">given_args</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-identifier">:params</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>, <span class="ruby-value">1</span>]  <span class="ruby-comment cmt"># take the first parameter</span>
+          <span class="ruby-identifier">num_params_taken</span> = <span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">MULTI_ARG_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-identifier">:type</span>])
+          <span class="ruby-identifier">given_args</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-identifier">:params</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">params</span>        <span class="ruby-comment cmt"># take all the parameters</span>
+          <span class="ruby-identifier">num_params_taken</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">num_params_taken</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## check for version and help args</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">VersionNeeded</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">given_args</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:version</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">HelpNeeded</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">given_args</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">:help</span>
+
+    <span class="ruby-comment cmt">## check constraint satisfaction</span>
+    <span class="ruby-ivar">@constraints</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">syms</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">constraint_sym</span> = <span class="ruby-identifier">syms</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span><span class="ruby-operator">|</span> <span class="ruby-identifier">given_args</span>[<span class="ruby-identifier">sym</span>] }
+      <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">constraint_sym</span>
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:depends</span>
+        <span class="ruby-identifier">syms</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span><span class="ruby-operator">|</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">CommandlineError</span>, <span class="ruby-node">&quot;--#{@specs[constraint_sym][:long]} requires --#{@specs[sym][:long]}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">given_args</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">sym</span> }
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:conflicts</span>
+        <span class="ruby-identifier">syms</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span><span class="ruby-operator">|</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">CommandlineError</span>, <span class="ruby-node">&quot;--#{@specs[constraint_sym][:long]} conflicts with --#{@specs[sym][:long]}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">given_args</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">sym</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">sym</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">constraint_sym</span>) }
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">required</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">CommandlineError</span>, <span class="ruby-node">&quot;option --#{@specs[sym][:long]} must be specified&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">given_args</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">sym</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## parse parameters</span>
+    <span class="ruby-identifier">given_args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span>, <span class="ruby-identifier">given_data</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">given_data</span>[<span class="ruby-identifier">:arg</span>]
+      <span class="ruby-identifier">params</span> = <span class="ruby-identifier">given_data</span>[<span class="ruby-identifier">:params</span>]
+
+      <span class="ruby-identifier">opts</span> = <span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">sym</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">CommandlineError</span>, <span class="ruby-node">&quot;option '#{arg}' needs a parameter&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">:flag</span>
+
+      <span class="ruby-identifier">vals</span>[<span class="ruby-node">&quot;#{sym}_given&quot;</span>.<span class="ruby-identifier">intern</span>] = <span class="ruby-keyword kw">true</span> <span class="ruby-comment cmt"># mark argument as specified on the commandline</span>
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:flag</span>
+        <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:int</span>, <span class="ruby-identifier">:ints</span>
+        <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pg</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">parse_integer_parameter</span> <span class="ruby-identifier">p</span>, <span class="ruby-identifier">arg</span> } }
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:float</span>, <span class="ruby-identifier">:floats</span>
+        <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pg</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">parse_float_parameter</span> <span class="ruby-identifier">p</span>, <span class="ruby-identifier">arg</span> } }
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:string</span>, <span class="ruby-identifier">:strings</span>
+        <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pg</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_s</span> } }
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:io</span>, <span class="ruby-identifier">:ios</span>
+        <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pg</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">parse_io_parameter</span> <span class="ruby-identifier">p</span>, <span class="ruby-identifier">arg</span> } }
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:date</span>, <span class="ruby-identifier">:dates</span>
+        <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pg</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">parse_date_parameter</span> <span class="ruby-identifier">p</span>, <span class="ruby-identifier">arg</span> } }
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">SINGLE_ARG_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>])
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:multi</span>]       <span class="ruby-comment cmt"># single parameter</span>
+          <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-value">0</span>][<span class="ruby-value">0</span>]
+        <span class="ruby-keyword kw">else</span>                      <span class="ruby-comment cmt"># multiple options, each with a single parameter</span>
+          <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>[<span class="ruby-value">0</span>] }
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">MULTI_ARG_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>]) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:multi</span>]
+        <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>] = <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">sym</span>][<span class="ruby-value">0</span>]  <span class="ruby-comment cmt"># single option, with multiple parameters</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># else: multiple options, with multiple parameters</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## modify input in place with only those</span>
+    <span class="ruby-comment cmt">## arguments we didn't process</span>
+    <span class="ruby-identifier">cmdline</span>.<span class="ruby-identifier">clear</span>
+    <span class="ruby-ivar">@leftovers</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cmdline</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">l</span> }
+
+    <span class="ruby-comment cmt">## allow openstruct-style accessors</span>
+    <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">vals</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">m</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">m</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span>]
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">vals</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

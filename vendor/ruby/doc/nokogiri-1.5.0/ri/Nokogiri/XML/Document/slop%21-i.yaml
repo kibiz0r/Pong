@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Explore a document with shortcut methods. See Nokogiri::Slop for details.
+- !ruby/struct:SM::Flow::P 
+  body: "Note that any nodes that have been instantiated before #slop! is called will not be decorated with sloppy behavior. So, if you're in irb, the preferred idiom is:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  irb&gt; doc = Nokogiri::Slop my_markup\n"
+- !ruby/struct:SM::Flow::P 
+  body: and not
+- !ruby/struct:SM::Flow::VERB 
+  body: "  irb&gt; doc = Nokogiri::HTML my_markup\n  ... followed by irb's implicit inspect (and therefore instantiation of every node) ...\n  irb&gt; doc.slop!\n  ... which does absolutely nothing.\n"
+full_name: Nokogiri::XML::Document#slop!
+is_singleton: false
+name: slop!
+params: ()
+visibility: public

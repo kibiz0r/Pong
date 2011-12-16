@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Marks two (or more!) options as requiring each other. Only handles undirected (i.e., mutual) dependencies. Directed dependencies are better modeled with Trollop::die.
+full_name: Trollop::Parser#depends
+is_singleton: false
+name: depends
+params: (*syms)
+visibility: public

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "returns namespaces in scope for self -- those defined on self element directly or any ancestor node -- as an array of Namespace objects. Default namespaces (&quot;xmlns=&quot; style) for self are included in this array; Default namespaces for ancestors, however, are not. See also #namespaces"
+full_name: Nokogiri::XML::Node#namespace_scopes
+is_singleton: false
+name: namespace_scopes
+params: |
+  namespace_scopes()
+
+visibility: public

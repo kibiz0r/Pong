@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Thrown by Parser in the event of a commandline error. Not needed if you're using the Trollop::options entry.
+constants: []
+
+full_name: Trollop::CommandlineError
+includes: []
+
+instance_methods: []
+
+name: CommandlineError
+superclass: StandardError

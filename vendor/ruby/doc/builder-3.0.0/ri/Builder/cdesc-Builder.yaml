@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: check_for_name_collision
+comment: []
+
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BlankSlate
+  value: "::BasicObject"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BlankSlate
+  value: "::BlankSlate"
+full_name: Builder
+includes: []
+
+instance_methods: []
+
+name: Builder
+superclass: 

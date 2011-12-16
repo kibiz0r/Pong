@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: features
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: scenarios
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: steps
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: Gherkin::Tools::StatsListener
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: background
+- !ruby/object:RI::MethodSummary 
+  name: comment
+- !ruby/object:RI::MethodSummary 
+  name: eof
+- !ruby/object:RI::MethodSummary 
+  name: examples
+- !ruby/object:RI::MethodSummary 
+  name: feature
+- !ruby/object:RI::MethodSummary 
+  name: py_string
+- !ruby/object:RI::MethodSummary 
+  name: row
+- !ruby/object:RI::MethodSummary 
+  name: scenario
+- !ruby/object:RI::MethodSummary 
+  name: scenario_outline
+- !ruby/object:RI::MethodSummary 
+  name: step
+- !ruby/object:RI::MethodSummary 
+  name: syntax_error
+- !ruby/object:RI::MethodSummary 
+  name: tag
+name: StatsListener
+superclass: Object

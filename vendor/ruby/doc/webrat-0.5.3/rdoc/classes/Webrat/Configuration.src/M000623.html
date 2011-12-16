@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>mode= (Webrat::Configuration)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/webrat/core/configuration.rb, line 87</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mode=</span>(<span class="ruby-identifier">mode</span>)
+      <span class="ruby-ivar">@mode</span> = <span class="ruby-identifier">mode</span>.<span class="ruby-identifier">to_sym</span>
+
+      <span class="ruby-comment cmt"># This is a temporary hack to support backwards compatibility</span>
+      <span class="ruby-comment cmt"># with Merb 1.0.8 until it's updated to use the new Webrat.configure</span>
+      <span class="ruby-comment cmt"># syntax</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@mode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:merb</span>
+        <span class="ruby-identifier">require</span>(<span class="ruby-value str">&quot;webrat/merb_adapter&quot;</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">require</span>(<span class="ruby-node">&quot;webrat/#{mode}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

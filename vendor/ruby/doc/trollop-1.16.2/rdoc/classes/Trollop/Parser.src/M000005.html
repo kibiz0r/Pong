@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>opt (Trollop::Parser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/trollop.rb, line 125</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">opt</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">desc</span>=<span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-identifier">opts</span>={}
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;you already have an argument named '#{name}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">member?</span> <span class="ruby-identifier">name</span>
+
+    <span class="ruby-comment cmt">## fill in :type</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-comment cmt"># normalize</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:boolean</span>, <span class="ruby-identifier">:bool</span>; <span class="ruby-identifier">:flag</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:integer</span>; <span class="ruby-identifier">:int</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:integers</span>; <span class="ruby-identifier">:ints</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:double</span>; <span class="ruby-identifier">:float</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:doubles</span>; <span class="ruby-identifier">:floats</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Class</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>].<span class="ruby-identifier">name</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'TrueClass'</span>, <span class="ruby-value str">'FalseClass'</span>; <span class="ruby-identifier">:flag</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'String'</span>; <span class="ruby-identifier">:string</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Integer'</span>; <span class="ruby-identifier">:int</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Float'</span>; <span class="ruby-identifier">:float</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'IO'</span>; <span class="ruby-identifier">:io</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Date'</span>; <span class="ruby-identifier">:date</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;unsupported argument type '#{opts[:type].class.name}'&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>; <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;unsupported argument type '#{opts[:type]}'&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>])
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>]
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## for options with :multi =&gt; true, an array default doesn't imply</span>
+    <span class="ruby-comment cmt">## a multi-valued argument. for that you have to specify a :type</span>
+    <span class="ruby-comment cmt">## as well. (this is how we disambiguate an ambiguous situation;</span>
+    <span class="ruby-comment cmt">## see the docs for Parser#opt for details.)</span>
+    <span class="ruby-identifier">disambiguated_default</span> =
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:multi</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>]
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>].<span class="ruby-identifier">first</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>]
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">type_from_default</span> =
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">disambiguated_default</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Integer</span>; <span class="ruby-identifier">:int</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Numeric</span>; <span class="ruby-identifier">:float</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TrueClass</span>, <span class="ruby-constant">FalseClass</span>; <span class="ruby-identifier">:flag</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>; <span class="ruby-identifier">:string</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">IO</span>; <span class="ruby-identifier">:io</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Date</span>; <span class="ruby-identifier">:date</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>].<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;multiple argument type cannot be deduced from an empty array for '#{opts[:default][0].class.name}'&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>][<span class="ruby-value">0</span>]    <span class="ruby-comment cmt"># the first element determines the types</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Integer</span>; <span class="ruby-identifier">:ints</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Numeric</span>; <span class="ruby-identifier">:floats</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>; <span class="ruby-identifier">:strings</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">IO</span>; <span class="ruby-identifier">:ios</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Date</span>; <span class="ruby-identifier">:dates</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;unsupported multiple argument type '#{opts[:default][0].class.name}'&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>; <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;unsupported argument type '#{opts[:default].class.name}'&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;:type specification and default type don't match (default type is #{type_from_default})&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">type_from_default</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">type_from_default</span>
+
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">type_from_default</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">:flag</span>
+
+    <span class="ruby-comment cmt">## fill in :long</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;_&quot;</span>, <span class="ruby-value str">&quot;-&quot;</span>)
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>] =
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^--([^-].*)$/</span>
+        <span class="ruby-identifier">$1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^[^-]/</span>
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;invalid long option name #{opts[:long].inspect}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;long option name #{opts[:long].inspect} is already taken; please specify a (different) :long&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@long</span>[<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>]]
+
+    <span class="ruby-comment cmt">## fill in :short</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:none</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>] = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^-(.)$/</span>; <span class="ruby-identifier">$1</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">:none</span>, <span class="ruby-regexp re">/^.$/</span>; <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>]
+      <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;invalid short option name '#{opts[:short].inspect}'&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;short option name #{opts[:short].inspect} is already taken; please specify a (different) :short&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@short</span>[<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>]]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;a short option name can't be a number or a dash&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>] <span class="ruby-operator">=~</span> <span class="ruby-constant">INVALID_SHORT_ARG_REGEX</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">## fill in :default for flags</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>] = <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:flag</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>].<span class="ruby-identifier">nil?</span>
+
+    <span class="ruby-comment cmt">## autobox :default for :multi (multi-occurrence) arguments</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>] = [<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>]] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:multi</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+
+    <span class="ruby-comment cmt">## fill in :multi</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:multi</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">false</span>
+
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:desc</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">desc</span>
+    <span class="ruby-ivar">@long</span>[<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:long</span>]] = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@short</span>[<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>]] = <span class="ruby-identifier">name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:short</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">:none</span>
+    <span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">opts</span>
+    <span class="ruby-ivar">@order</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">:opt</span>, <span class="ruby-identifier">name</span>]
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

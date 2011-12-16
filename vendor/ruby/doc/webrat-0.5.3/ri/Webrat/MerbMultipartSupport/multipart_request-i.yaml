@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Webrat::MerbMultipartSupport#multipart_request
+is_singleton: false
+name: multipart_request
+params: (path, params = {}, env = {})
+visibility: public

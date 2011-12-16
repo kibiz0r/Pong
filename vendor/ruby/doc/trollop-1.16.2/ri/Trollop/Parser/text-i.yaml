@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Alias for #banner"
+full_name: Trollop::Parser#text
+is_singleton: false
+name: text
+params: (s;)
+visibility: public

@@ -1,0 +1,10 @@
+History.txt bbb0cc72c5e605933f797032e2b286d8f8e95dc2
+lib/rack/test/methods.rb 29a2539358996e94dd040d99f849a754ab4cc746
+lib/rack/test/mock_digest_request.rb fd7d5389c434c3b8241c9566b26ec651f967acb5
+lib/rack/test/cookie_jar.rb 7b9041f2da0c17f21b1b8d87f6cc66af4526a171
+lib/rack/mock_session.rb 2dc06f7e898d82fbf971f2fe78e8a3b738fef12f
+README.rdoc f8fbb51257e5e3b3a1fe1007ff82ad48609eff15
+MIT-LICENSE.txt 40e5bcb94a9274153ca9ea13875c4403fa863753
+lib/rack/test.rb 8ba4d54a8f9bb93d116cbcd60627fa808920ea6e
+lib/rack/test/uploaded_file.rb 3839495f32d519dc583dd384f75f6cc02953781c
+lib/rack/test/utils.rb b7ad70d23e0e98e8a3665512cf33d24438317cd9

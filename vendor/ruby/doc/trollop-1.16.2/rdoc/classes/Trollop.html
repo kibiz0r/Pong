@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Trollop</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Trollop</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/trollop_rb.html">
+                lib/trollop.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000003">die</a>&nbsp;&nbsp;
+      <a href="#M000001">options</a>&nbsp;&nbsp;
+      <a href="#M000002">with_standard_exception_handling</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Trollop/CommandlineError.html" class="link">Trollop::CommandlineError</a><br />
+Class <a href="Trollop/HelpNeeded.html" class="link">Trollop::HelpNeeded</a><br />
+Class <a href="Trollop/Parser.html" class="link">Trollop::Parser</a><br />
+Class <a href="Trollop/VersionNeeded.html" class="link">Trollop::VersionNeeded</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;1.16.2&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FLOAT_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^-?((\d+(\.\d+)?)|(\.\d+))([eE][-+]?[\d]+)?$/</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Regex for floating point numbers
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PARAM_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/^-(-|\.$|[^\d\.])/</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Regex for parameters
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Trollop.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Trollop.src/M000003.html');return false;">
+          <span class="method-name">die</span><span class="method-args">(arg, msg=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Informs the user that their usage of &#8216;arg&#8217; was wrong, as
+detailed by &#8216;msg&#8217;, and dies. Example:
+</p>
+<pre>
+  options do
+    opt :volume, :default =&gt; 0.0
+  end
+
+  die :volume, &quot;too loud&quot; if opts[:volume] &gt; 10.0
+  die :volume, &quot;too soft&quot; if opts[:volume] &lt; 0.1
+</pre>
+<p>
+In the one-argument case, simply print that message, a notice about -h, and
+<a href="Trollop.html#M000003">die</a>. Example:
+</p>
+<pre>
+  options do
+    opt :whatever # ...
+  end
+
+  Trollop::die &quot;need at least one filename&quot; if ARGV.empty?
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Trollop.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Trollop.src/M000001.html');return false;">
+          <span class="method-name">options</span><span class="method-args">(args=ARGV, *a, &amp;b)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The easy, syntactic-sugary entry method into <a
+href="Trollop.html">Trollop</a>. Creates a <a
+href="Trollop/Parser.html">Parser</a>, passes the block to it, then parses
+<tt>args</tt> with it, handling any errors or requests for help or version
+information appropriately (and then exiting). Modifies <tt>args</tt> in
+place. Returns a hash of option values.
+</p>
+<p>
+The block passed in should contain zero or more calls to <tt>opt</tt> (<a
+href="Trollop/Parser.html#M000005">Parser#opt</a>), zero or more calls to
+<tt>text</tt> (<a href="Trollop/Parser.html#M000008">Parser#text</a>), and
+probably a call to <tt>version</tt> (<a
+href="Trollop/Parser.html#M000006">Parser#version</a>).
+</p>
+<p>
+The returned block contains a value for every option specified with
+<tt>opt</tt>. The value will be the value given on the commandline, or the
+default value if the option was not specified on the commandline. For every
+option specified on the commandline, a key &quot;&lt;option
+name&gt;_given&quot; will also be set in the hash.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  require 'trollop'
+  opts = Trollop::options do
+    opt :monkey, &quot;Use monkey mode&quot;                     # a flag --monkey, defaulting to false
+    opt :goat, &quot;Use goat mode&quot;, :default =&gt; true       # a flag --goat, defaulting to true
+    opt :num_limbs, &quot;Number of limbs&quot;, :default =&gt; 4   # an integer --num-limbs &lt;i&gt;, defaulting to 4
+    opt :num_thumbs, &quot;Number of thumbs&quot;, :type =&gt; :int # an integer --num-thumbs &lt;i&gt;, defaulting to nil
+  end
+
+  ## if called with no arguments
+  p opts # =&gt; { :monkey =&gt; false, :goat =&gt; true, :num_limbs =&gt; 4, :num_thumbs =&gt; nil }
+
+  ## if called with --monkey
+  p opts # =&gt; {:monkey_given=&gt;true, :monkey=&gt;true, :goat=&gt;true, :num_limbs=&gt;4, :help=&gt;false, :num_thumbs=&gt;nil}
+</pre>
+<p>
+See more examples at <a
+href="http://trollop.rubyforge.org">trollop.rubyforge.org</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Trollop.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Trollop.src/M000002.html');return false;">
+          <span class="method-name">with_standard_exception_handling</span><span class="method-args">(parser) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If Trollop::options doesn&#8216;t do quite what you want, you can create a
+<a href="Trollop/Parser.html">Parser</a> object and call <a
+href="Trollop/Parser.html#M000013">Parser#parse</a> on it. That method will
+throw <a href="Trollop/CommandlineError.html">CommandlineError</a>, <a
+href="Trollop/HelpNeeded.html">HelpNeeded</a> and <a
+href="Trollop/VersionNeeded.html">VersionNeeded</a> exceptions when
+necessary; if you want to have these handled for you in the standard manner
+(e.g. show the help and then exit upon an <a
+href="Trollop/HelpNeeded.html">HelpNeeded</a> exception), call your code
+from within a block passed to this method.
+</p>
+<p>
+Note that this method will call System#exit after handling an exception!
+</p>
+<p>
+Usage example:
+</p>
+<pre>
+  require 'trollop'
+  p = Trollop::Parser.new do
+    opt :monkey, &quot;Use monkey mode&quot;                     # a flag --monkey, defaulting to false
+    opt :goat, &quot;Use goat mode&quot;, :default =&gt; true       # a flag --goat, defaulting to true
+  end
+
+  opts = Trollop::with_standard_exception_handling p do
+    p.parse ARGV
+    raise Trollop::HelpNeeded if ARGV.empty? # show help screen
+  end
+</pre>
+<p>
+Requires passing in the parser object.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The easy, syntactic-sugary entry method into Trollop. Creates a Parser, passes the block to it, then parses <tt>args</tt> with it, handling any errors or requests for help or version information appropriately (and then exiting). Modifies <tt>args</tt> in place. Returns a hash of option values.
+- !ruby/struct:SM::Flow::P 
+  body: The block passed in should contain zero or more calls to <tt>opt</tt> (Parser#opt), zero or more calls to <tt>text</tt> (Parser#text), and probably a call to <tt>version</tt> (Parser#version).
+- !ruby/struct:SM::Flow::P 
+  body: The returned block contains a value for every option specified with <tt>opt</tt>. The value will be the value given on the commandline, or the default value if the option was not specified on the commandline. For every option specified on the commandline, a key &quot;&lt;option name&gt;_given&quot; will also be set in the hash.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'trollop'\n  opts = Trollop::options do\n    opt :monkey, &quot;Use monkey mode&quot;                     # a flag --monkey, defaulting to false\n    opt :goat, &quot;Use goat mode&quot;, :default =&gt; true       # a flag --goat, defaulting to true\n    opt :num_limbs, &quot;Number of limbs&quot;, :default =&gt; 4   # an integer --num-limbs &lt;i&gt;, defaulting to 4\n    opt :num_thumbs, &quot;Number of thumbs&quot;, :type =&gt; :int # an integer --num-thumbs &lt;i&gt;, defaulting to nil\n  end\n\n  ## if called with no arguments\n  p opts # =&gt; { :monkey =&gt; false, :goat =&gt; true, :num_limbs =&gt; 4, :num_thumbs =&gt; nil }\n\n  ## if called with --monkey\n  p opts # =&gt; {:monkey_given=&gt;true, :monkey=&gt;true, :goat=&gt;true, :num_limbs=&gt;4, :help=&gt;false, :num_thumbs=&gt;nil}\n"
+- !ruby/struct:SM::Flow::P 
+  body: See more examples at http://trollop.rubyforge.org.
+full_name: Trollop#options
+is_singleton: false
+name: options
+params: (args=ARGV, *a, &b)
+visibility: public

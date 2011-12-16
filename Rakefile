@@ -11,10 +11,15 @@ task :build_ironruby do
 end
 
 task :vendor_gems do
-  {
-    "rspec" => "2.7.0",
-    "rr" => "1.0.4"
-  }.each do |gem, version|
+  [
+    # ["rspec", "2.7.0"],
+    # ["rr", "1.0.4"],
+    # ["gherkin", "1.0.27"],
+    # ["cucumber", "0.7.0"],
+    # ["ramaze", "2009.07"],
+    # ["rack-test", "0.5.0"],
+    ["webrat", "0.5.3"]
+  ].each do |gem, version|
     sh "gem install --install-dir=vendor/ruby #{gem} --version #{version}"
   end
 end

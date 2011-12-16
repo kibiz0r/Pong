@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Similar to #stop_on, but stops on any unknown word when encountered (unless it is a parameter for an argument). This is useful for cases where you don't know the set of subcommands ahead of time, i.e., without first parsing the global options."
+full_name: Trollop::Parser#stop_on_unknown
+is_singleton: false
+name: stop_on_unknown
+params: ()
+visibility: public

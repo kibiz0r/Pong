@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Trollop::Parser</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Trollop::Parser</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/trollop_rb.html">
+                lib/trollop.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The commandline parser. In typical usage, the methods in this class will be
+handled internally by Trollop::options. In this case, only the <a
+href="Parser.html#M000005">opt</a>, <a
+href="Parser.html#M000007">banner</a> and <a
+href="Parser.html#M000006">version</a>, <a
+href="Parser.html#M000009">depends</a>, and <a
+href="Parser.html#M000010">conflicts</a> methods will typically be called.
+</p>
+<p>
+If you want to instantiate this class yourself (for more complicated
+argument-parsing logic), call <a href="Parser.html#M000013">parse</a> to
+actually produce the output hash, and consider calling it from within
+Trollop::with_standard_exception_handling.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000007">banner</a>&nbsp;&nbsp;
+      <a href="#M000010">conflicts</a>&nbsp;&nbsp;
+      <a href="#M000009">depends</a>&nbsp;&nbsp;
+      <a href="#M000015">die</a>&nbsp;&nbsp;
+      <a href="#M000014">educate</a>&nbsp;&nbsp;
+      <a href="#M000004">new</a>&nbsp;&nbsp;
+      <a href="#M000005">opt</a>&nbsp;&nbsp;
+      <a href="#M000013">parse</a>&nbsp;&nbsp;
+      <a href="#M000011">stop_on</a>&nbsp;&nbsp;
+      <a href="#M000012">stop_on_unknown</a>&nbsp;&nbsp;
+      <a href="#M000008">text</a>&nbsp;&nbsp;
+      <a href="#M000006">version</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FLAG_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">[:flag, :bool, :boolean]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The set of values that indicate a flag option when passed as the +:type+
+parameter of <a href="Parser.html#M000005">opt</a>.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SINGLE_ARG_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">[:int, :integer, :string, :double, :float, :io, :date]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The set of values that indicate a single-parameter (normal) option when
+passed as the +:type+ parameter of <a href="Parser.html#M000005">opt</a>.
+
+<p>
+A value of <tt>io</tt> corresponds to a readable IO resource, including a
+filename, URI, or the strings &#8216;stdin&#8217; or &#8217;-&#8217;.
+</p>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MULTI_ARG_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">[:ints, :integers, :strings, :doubles, :floats, :ios, :dates]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The set of values that indicate a multiple-parameter option (i.e., that
+takes multiple space-separated values on the commandline) when passed as
+the +:type+ parameter of <a href="Parser.html#M000005">opt</a>.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">FLAG_TYPES + SINGLE_ARG_TYPES + MULTI_ARG_TYPES</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The complete set of legal values for the +:type+ parameter of <a
+href="Parser.html#M000005">opt</a>.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">leftovers</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The values from the commandline that were not interpreted by <a
+href="Parser.html#M000013">parse</a>.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">specs</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The complete configuration hashes for each option. (Mainly useful for
+testing.)
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000004.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(*a, &amp;b)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initializes the parser, and instance-evaluates any block given.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000007.html');return false;">
+          <span class="method-name">banner</span><span class="method-args">(s;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds <a href="Parser.html#M000008">text</a> to the help display. Can be
+interspersed with calls to <a href="Parser.html#M000005">opt</a> to build a
+multi-section help page.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000010.html');return false;">
+          <span class="method-name">conflicts</span><span class="method-args">(*syms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Marks two (or more!) options as conflicting.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000009.html');return false;">
+          <span class="method-name">depends</span><span class="method-args">(*syms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Marks two (or more!) options as requiring each other. Only handles
+undirected (i.e., mutual) dependencies. Directed dependencies are better
+modeled with Trollop::die.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000015.html');return false;">
+          <span class="method-name">die</span><span class="method-args">(arg, msg)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The per-parser <a href="Parser.html#M000006">version</a> of Trollop::die
+(see that for documentation).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000014.html');return false;">
+          <span class="method-name">educate</span><span class="method-args">(stream=$stdout)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Print the help message to <tt>stream</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000005.html');return false;">
+          <span class="method-name">opt</span><span class="method-args">(name, desc=&quot;&quot;, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Define an option. <tt>name</tt> is the option name, a unique identifier for
+the option that you will use internally, which should be a symbol or a
+string. <tt>desc</tt> is a string description which will be displayed in
+help messages.
+</p>
+<p>
+Takes the following optional arguments:
+</p>
+<dl>
+<dt>+:long+</dt><dd>Specify the long form of the argument, i.e. the form with two dashes. If
+unspecified, will be automatically derived based on the argument name by
+turning the <tt>name</tt> option into a string, and replacing any _&#8216;s
+by -&#8217;s.
+
+</dd>
+<dt>+:short+</dt><dd>Specify the short form of the argument, i.e. the form with one dash. If
+unspecified, will be automatically derived from <tt>name</tt>.
+
+</dd>
+<dt>+:type+</dt><dd>Require that the argument take a parameter or parameters of type
+<tt>type</tt>. For a single parameter, the value can be a member of
+<tt>SINGLE_ARG_TYPES</tt>, or a corresponding Ruby class (e.g.
+<tt>Integer</tt> for +:int+). For multiple-argument parameters, the value
+can be any member of <tt>MULTI_ARG_TYPES</tt> constant. If unset, the
+default argument type is +:flag+, meaning that the argument does not take a
+parameter. The specification of +:type+ is not necessary if a +:default+ is
+given.
+
+</dd>
+<dt>+:default+</dt><dd>Set the default value for an argument. Without a default value, the hash
+returned by <a href="Parser.html#M000013">parse</a> (and thus
+Trollop::options) will have a <tt>nil</tt> value for this key unless the
+argument is given on the commandline. The argument type is derived
+automatically from the class of the default value given, so specifying a
++:type+ is not necessary if a +:default+ is given. (But see below for an
+important caveat when +:multi+: is specified too.) If the argument is a
+flag, and the default is set to <tt>true</tt>, then if it is specified on
+the the commandline the value will be <tt>false</tt>.
+
+</dd>
+<dt>+:required+</dt><dd>If set to <tt>true</tt>, the argument must be provided on the commandline.
+
+</dd>
+<dt>+:multi+</dt><dd>If set to <tt>true</tt>, allows multiple occurrences of the option on the
+commandline. Otherwise, only a single instance of the option is allowed.
+(Note that this is different from taking multiple parameters. See below.)
+
+</dd>
+</dl>
+<p>
+Note that there are two types of argument multiplicity: an argument can
+take multiple values, e.g. &quot;&#8212;arg 1 2 3&quot;. An argument can
+also be allowed to occur multiple times, e.g. &quot;&#8212;arg 1 &#8212;arg
+2&quot;.
+</p>
+<p>
+Arguments that take multiple values should have a +:type+ parameter drawn
+from <tt>MULTI_ARG_TYPES</tt> (e.g. +:strings+), or a +:default:+ value of
+an array of the correct type (e.g. [String]). The value of this argument
+will be an array of the parameters on the commandline.
+</p>
+<p>
+Arguments that can occur multiple times should be marked with +:multi+
+=&gt; <tt>true</tt>. The value of this argument will also be an array. In
+contrast with regular non-multi options, if not specified on the
+commandline, the default value will be [], not nil.
+</p>
+<p>
+These two attributes can be combined (e.g. +:type+ =&gt; +:strings+,
++:multi+ =&gt; <tt>true</tt>), in which case the value of the argument will
+be an array of arrays.
+</p>
+<p>
+There&#8216;s one ambiguous case to be aware of: when +:multi+: is true and
+a +:default+ is set to an array (of something), it&#8216;s ambiguous
+whether this is a multi-value argument as well as a multi-occurrence
+argument. In thise case, <a href="../Trollop.html">Trollop</a> assumes that
+it&#8216;s not a multi-value argument. If you want a multi-value,
+multi-occurrence argument with a default value, you must specify +:type+ as
+well.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000013.html');return false;">
+          <span class="method-name">parse</span><span class="method-args">(cmdline=ARGV)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Parses the commandline. Typically called by Trollop::options, but you can
+call it directly if you need more control.
+</p>
+<p>
+throws <a href="CommandlineError.html">CommandlineError</a>, <a
+href="HelpNeeded.html">HelpNeeded</a>, and <a
+href="VersionNeeded.html">VersionNeeded</a> exceptions.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000011.html');return false;">
+          <span class="method-name">stop_on</span><span class="method-args">(*words)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Defines a set of words which cause parsing to terminate when encountered,
+such that any options to the left of the word are parsed as usual, and
+options to the right of the word are left intact.
+</p>
+<p>
+A typical use case would be for subcommand support, where these would be
+set to the list of subcommands. A subsequent <a
+href="../Trollop.html">Trollop</a> invocation would then be used to <a
+href="Parser.html#M000013">parse</a> subcommand options, after shifting the
+subcommand off of ARGV.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000012.html');return false;">
+          <span class="method-name">stop_on_unknown</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Similar to <a href="Parser.html#M000011">stop_on</a>, but stops on any
+unknown word when encountered (unless it is a parameter for an argument).
+This is useful for cases where you don&#8216;t know the set of subcommands
+ahead of time, i.e., without first parsing the global options.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <span class="method-name">text</span><span class="method-args">(s;)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Parser.html#M000007">banner</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Parser.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Parser.src/M000006.html');return false;">
+          <span class="method-name">version</span><span class="method-args">(s=nil;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the <a href="Parser.html#M000006">version</a> string. If set, the user
+can request the <a href="Parser.html#M000006">version</a> on the
+commandline. Should probably be of the form &quot;&lt;program name&gt;
+&lt;<a href="Parser.html#M000006">version</a> number&gt;&quot;.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

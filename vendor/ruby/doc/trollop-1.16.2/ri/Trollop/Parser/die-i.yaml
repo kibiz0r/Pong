@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The per-parser version of Trollop::die (see that for documentation).
+full_name: Trollop::Parser#die
+is_singleton: false
+name: die
+params: (arg, msg)
+visibility: public

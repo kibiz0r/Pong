@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If Trollop::options doesn't do quite what you want, you can create a Parser object and call Parser#parse on it. That method will throw CommandlineError, HelpNeeded and VersionNeeded exceptions when necessary; if you want to have these handled for you in the standard manner (e.g. show the help and then exit upon an HelpNeeded exception), call your code from within a block passed to this method.
+- !ruby/struct:SM::Flow::P 
+  body: Note that this method will call System#exit after handling an exception!
+- !ruby/struct:SM::Flow::P 
+  body: "Usage example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'trollop'\n  p = Trollop::Parser.new do\n    opt :monkey, &quot;Use monkey mode&quot;                     # a flag --monkey, defaulting to false\n    opt :goat, &quot;Use goat mode&quot;, :default =&gt; true       # a flag --goat, defaulting to true\n  end\n\n  opts = Trollop::with_standard_exception_handling p do\n    p.parse ARGV\n    raise Trollop::HelpNeeded if ARGV.empty? # show help screen\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Requires passing in the parser object.
+full_name: Trollop#with_standard_exception_handling
+is_singleton: false
+name: with_standard_exception_handling
+params: (parser) {|| ...}
+visibility: public

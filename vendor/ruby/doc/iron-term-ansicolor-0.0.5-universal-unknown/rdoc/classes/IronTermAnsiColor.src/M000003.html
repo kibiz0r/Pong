@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_color (IronTermAnsiColor)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/iron-term-ansicolor.rb, line 51</span>
+51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_color</span>(<span class="ruby-identifier">num</span>)
+52:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+53:       <span class="ruby-constant">Console</span>.<span class="ruby-identifier">reset_color</span>
+54:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+55:       <span class="ruby-comment cmt">#since we can't do bold, invert the colors</span>
+56:       <span class="ruby-identifier">bg</span> = <span class="ruby-constant">Console</span>.<span class="ruby-identifier">background_color</span>
+57:       <span class="ruby-constant">Console</span>.<span class="ruby-identifier">background_color</span> = <span class="ruby-constant">Console</span>.<span class="ruby-identifier">foreground_color</span>
+58:       <span class="ruby-constant">Console</span>.<span class="ruby-identifier">foreground_color</span> = <span class="ruby-identifier">bg</span>       
+59:     <span class="ruby-keyword kw">else</span>
+60:       <span class="ruby-constant">Console</span>.<span class="ruby-identifier">foreground_color</span> = <span class="ruby-constant">FGCOLORS</span>[<span class="ruby-identifier">num</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Console</span>.<span class="ruby-identifier">foreground_color</span>
+61:       <span class="ruby-constant">Console</span>.<span class="ruby-identifier">background_color</span> = <span class="ruby-constant">BGCOLORS</span>[<span class="ruby-identifier">num</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Console</span>.<span class="ruby-identifier">background_color</span>
+62:     <span class="ruby-keyword kw">end</span>
+63:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

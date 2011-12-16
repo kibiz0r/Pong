@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Marks two (or more!) options as conflicting.
+full_name: Trollop::Parser#conflicts
+is_singleton: false
+name: conflicts
+params: (*syms)
+visibility: public

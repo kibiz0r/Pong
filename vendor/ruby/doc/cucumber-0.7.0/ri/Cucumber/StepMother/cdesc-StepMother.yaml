@@ -1,0 +1,61 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: log
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: options
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: visitor
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is the meaty part of Cucumber that ties everything together.
+constants: []
+
+full_name: Cucumber::StepMother
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constantize
+- !ruby/object:RI::IncludedModule 
+  name: Formatter::Duration
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: after_configuration
+- !ruby/object:RI::MethodSummary 
+  name: announce
+- !ruby/object:RI::MethodSummary 
+  name: ask
+- !ruby/object:RI::MethodSummary 
+  name: embed
+- !ruby/object:RI::MethodSummary 
+  name: invoke
+- !ruby/object:RI::MethodSummary 
+  name: invoke_steps
+- !ruby/object:RI::MethodSummary 
+  name: load_code_file
+- !ruby/object:RI::MethodSummary 
+  name: load_code_files
+- !ruby/object:RI::MethodSummary 
+  name: load_plain_text_features
+- !ruby/object:RI::MethodSummary 
+  name: load_programming_language
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: py_string
+- !ruby/object:RI::MethodSummary 
+  name: table
+- !ruby/object:RI::MethodSummary 
+  name: unknown_programming_language?
+- !ruby/object:RI::MethodSummary 
+  name: unmatched_step_definitions
+name: StepMother
+superclass: Object

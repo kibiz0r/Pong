@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Creates a new instance that replays events to <tt>listener</tt>, filtered by <tt>filters</tt>, an Array that can contain one of the following:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Line numbers (Fixnum) to filter on.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Name regexen (Regexp) to filter on. Matches against :feature, :background, :scenario, :scenario_outline and :examples
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Tag expressions (String) to filter on.
+  type: :BULLET
+full_name: Gherkin::Parser::FilterListener::new
+is_singleton: true
+name: new
+params: (listener, filters)
+visibility: public

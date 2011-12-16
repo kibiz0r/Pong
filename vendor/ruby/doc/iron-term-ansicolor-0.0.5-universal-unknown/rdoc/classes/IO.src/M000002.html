@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>write (IO)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/iron-term-ansicolor.rb, line 81</span>
+81:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">str</span>)
+82:     <span class="ruby-identifier">result</span> = <span class="ruby-value">0</span>
+83:     <span class="ruby-identifier">str</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_s</span>
+84:     <span class="ruby-identifier">match</span> = <span class="ruby-constant">ANSI_REGEXP</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">str</span>)
+85:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">match</span>.<span class="ruby-identifier">nil?</span>
+86:       <span class="ruby-comment cmt">#no ansi code in string</span>
+87:       <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">syswrite</span> <span class="ruby-identifier">str</span>
+88:     <span class="ruby-keyword kw">else</span>
+89:       <span class="ruby-comment cmt">#write what comes before the ansi code in the current color</span>
+90:       <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">syswrite</span> <span class="ruby-identifier">str</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">match</span>.<span class="ruby-identifier">begin</span>(<span class="ruby-value">1</span>) <span class="ruby-operator">-</span> <span class="ruby-value">2</span>]
+91:       <span class="ruby-identifier">set_color</span>(<span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span>)
+92:       <span class="ruby-comment cmt">#write what comes after the ansi code in the new color</span>
+93:       <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">str</span>[(<span class="ruby-identifier">match</span>.<span class="ruby-identifier">end</span>(<span class="ruby-value">1</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)<span class="ruby-operator">..</span><span class="ruby-value">-1</span>])
+94:     <span class="ruby-keyword kw">end</span>
+95:     <span class="ruby-identifier">result</span>
+96:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

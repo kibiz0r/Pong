@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>step (Gherkin::Formatter::PrettyFormatter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/gherkin/formatter/pretty_formatter.rb, line 58</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">step</span>(<span class="ruby-identifier">keyword</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">line</span>, <span class="ruby-identifier">status</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">exception</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">arguments</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">location</span>=<span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">flush_table</span>
+        <span class="ruby-identifier">status_param</span> = <span class="ruby-node">&quot;#{status}_param&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">status</span>
+        <span class="ruby-identifier">name</span> = <span class="ruby-constant">Gherkin</span><span class="ruby-operator">::</span><span class="ruby-constant">Formatter</span><span class="ruby-operator">::</span><span class="ruby-constant">Argument</span>.<span class="ruby-identifier">format</span>(<span class="ruby-identifier">name</span>, <span class="ruby-ivar">@format</span>, (<span class="ruby-identifier">arguments</span> <span class="ruby-operator">||</span> [])) 
+        <span class="ruby-comment cmt">#{|arg| status_param ? self.__send__(status_param, arg, @monochrome) : arg} if arguments</span>
+
+        <span class="ruby-identifier">step</span> = <span class="ruby-node">&quot;#{keyword}#{indent(name, '    ')}&quot;</span>
+        <span class="ruby-identifier">step</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">status</span>, <span class="ruby-identifier">step</span>, <span class="ruby-ivar">@monochrome</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">status</span>
+
+        <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;#{grab_comments!('    ')}    #{step}#{indented_step_location!(location)}&quot;</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

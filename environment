@@ -1,5 +1,7 @@
 export GEM_PATH="vendor/ruby"
+export MONO_PATH="vendor/ruby/gems/gherkin-2.5.3/lib"
 
 alias ir="mono --debug IronLanguages/bin/Release/ir.exe"
 alias gem="ruby IronLanguages/Languages/Ruby/Scripts/bin/gem"
 alias rspec="ir vendor/ruby/bin/rspec"
+alias cucumber="ir vendor/ruby/bin/cucumber"

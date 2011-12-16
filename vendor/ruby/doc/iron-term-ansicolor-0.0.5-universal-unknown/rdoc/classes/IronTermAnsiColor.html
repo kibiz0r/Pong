@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: IronTermAnsiColor</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">IronTermAnsiColor</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/iron-term-ansicolor_rb.html">
+                lib/iron-term-ansicolor.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000003">set_color</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">System</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ANSI_REGEXP</td>
+          <td>=</td>
+          <td class="context-item-value">/\e\[([1349][0-7][0-7]?|[01])m/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FGCOLORS</td>
+          <td>=</td>
+          <td class="context-item-value">{     30 =&gt; ConsoleColor.black,     31 =&gt; ConsoleColor.dark_red,     32 =&gt; ConsoleColor.dark_green,     33 =&gt; ConsoleColor.dark_yellow,     34 =&gt; ConsoleColor.dark_blue,     35 =&gt; ConsoleColor.dark_magenta,     36 =&gt; ConsoleColor.dark_cyan,     37 =&gt; ConsoleColor.gray,     90 =&gt; ConsoleColor.dark_gray,     91 =&gt; ConsoleColor.red,     92 =&gt; ConsoleColor.green,     93 =&gt; ConsoleColor.yellow,     94 =&gt; ConsoleColor.blue,     95 =&gt; ConsoleColor.magenta,     96 =&gt; ConsoleColor.cyan,     97 =&gt; ConsoleColor.white</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BGCOLORS</td>
+          <td>=</td>
+          <td class="context-item-value">{     40 =&gt; ConsoleColor.black,     41 =&gt; ConsoleColor.dark_red,     42 =&gt; ConsoleColor.dark_green,     43 =&gt; ConsoleColor.dark_yellow,     44 =&gt; ConsoleColor.dark_blue,     45 =&gt; ConsoleColor.dark_magenta,     46 =&gt; ConsoleColor.dark_cyan,     47 =&gt; ConsoleColor.gray,     100 =&gt; ConsoleColor.dark_gray,     101 =&gt; ConsoleColor.red,     102 =&gt; ConsoleColor.green,     103 =&gt; ConsoleColor.yellow,     104 =&gt; ConsoleColor.blue,     105 =&gt; ConsoleColor.magenta,     106 =&gt; ConsoleColor.cyan,     107 =&gt; ConsoleColor.white</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="IronTermAnsiColor.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('IronTermAnsiColor.src/M000003.html');return false;">
+          <span class="method-name">set_color</span><span class="method-args">(num)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the title string of this document. If there is no head element, the title is not set.
+full_name: Nokogiri::HTML::Document#title=
+is_singleton: false
+name: title=
+params: (text)
+visibility: public

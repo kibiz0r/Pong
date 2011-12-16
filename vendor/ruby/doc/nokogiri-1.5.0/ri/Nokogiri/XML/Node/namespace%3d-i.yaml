@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Set the default namespace on this node (as would be defined with an &quot;xmlns=&quot; attribute in XML source), as a Namespace object <tt>ns</tt>. Note that a Namespace added this way will NOT be serialized as an xmlns attribute for this node. You probably want #default_namespace= instead, or perhaps #add_namespace_definition with a nil prefix argument."
+full_name: Nokogiri::XML::Node#namespace=
+is_singleton: false
+name: namespace=
+params: (ns)
+visibility: public

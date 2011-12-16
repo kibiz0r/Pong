@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Adds a default namespace supplied as a string <tt>url</tt> href, to self. The consequence is as an xmlns attribute with supplied argument were present in parsed XML. A default namespace set with this method will now show up in #attributes, but when this node is serialized to XML an &quot;xmlns&quot; attribute will appear. See also #namespace and #namespace="
+full_name: Nokogiri::XML::Node#default_namespace=
+is_singleton: false
+name: default_namespace=
+params: (url)
+visibility: public

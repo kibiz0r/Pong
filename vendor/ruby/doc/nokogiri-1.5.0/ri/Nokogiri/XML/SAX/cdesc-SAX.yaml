@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: end_element_ns was borrowed heavily from libxml-ruby.
+constants: []
+
+full_name: Nokogiri::XML::SAX
+includes: []
+
+instance_methods: []
+
+name: SAX
+superclass: 

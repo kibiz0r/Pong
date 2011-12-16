@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This class conforms to the Gherkin event API and builds the &quot;legacy&quot; AST. It will be replaced later when we have a new &quot;clean&quot; AST.
+constants: []
+
+full_name: Cucumber::Parser::GherkinBuilder
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ast
+- !ruby/object:RI::MethodSummary 
+  name: background
+- !ruby/object:RI::MethodSummary 
+  name: comment
+- !ruby/object:RI::MethodSummary 
+  name: eof
+- !ruby/object:RI::MethodSummary 
+  name: examples
+- !ruby/object:RI::MethodSummary 
+  name: feature
+- !ruby/object:RI::MethodSummary 
+  name: py_string
+- !ruby/object:RI::MethodSummary 
+  name: row
+- !ruby/object:RI::MethodSummary 
+  name: scenario
+- !ruby/object:RI::MethodSummary 
+  name: scenario_outline
+- !ruby/object:RI::MethodSummary 
+  name: step
+- !ruby/object:RI::MethodSummary 
+  name: syntax_error
+- !ruby/object:RI::MethodSummary 
+  name: tag
+name: GherkinBuilder
+superclass: Object

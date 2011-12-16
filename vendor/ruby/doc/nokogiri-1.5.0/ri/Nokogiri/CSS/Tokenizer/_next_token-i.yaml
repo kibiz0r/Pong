@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Nokogiri::CSS::Tokenizer#_next_token
+is_singleton: false
+name: _next_token
+params: ()
+visibility: public

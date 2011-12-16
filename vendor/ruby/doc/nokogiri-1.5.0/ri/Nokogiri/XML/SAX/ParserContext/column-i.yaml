@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Get the current column the parser context is processing.
+full_name: Nokogiri::XML::SAX::ParserContext#column
+is_singleton: false
+name: column
+params: " column\n"
+visibility: public

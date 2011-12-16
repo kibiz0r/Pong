@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>load_plain_text_features (Cucumber::StepMother)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/cucumber/step_mother.rb, line 55</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_plain_text_features</span>(<span class="ruby-identifier">feature_files</span>)
+      <span class="ruby-identifier">features</span> = <span class="ruby-constant">Ast</span><span class="ruby-operator">::</span><span class="ruby-constant">Features</span>.<span class="ruby-identifier">new</span>
+
+      <span class="ruby-identifier">start</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-value str">&quot;Features:\n&quot;</span>)
+      <span class="ruby-identifier">feature_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">feature_file</span> = <span class="ruby-constant">FeatureFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f</span>)
+        <span class="ruby-identifier">feature</span> = <span class="ruby-identifier">feature_file</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">options</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">feature</span>
+          <span class="ruby-identifier">features</span>.<span class="ruby-identifier">add_feature</span>(<span class="ruby-identifier">feature</span>)
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;  * #{f}\n&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">duration</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;Parsing feature files took #{format_duration(duration)}\n\n&quot;</span>)
+      <span class="ruby-identifier">features</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

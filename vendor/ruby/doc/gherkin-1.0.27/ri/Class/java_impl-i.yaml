@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Causes a Java class to be instantiated instead of the Ruby class when running on JRuby. This is used to test both pure Java and pure Ruby classes from the same Ruby based test suite. The Java Class must have a package name that corresponds with the Ruby class.
+full_name: Class#java_impl
+is_singleton: false
+name: java_impl
+params: (jar)
+visibility: public

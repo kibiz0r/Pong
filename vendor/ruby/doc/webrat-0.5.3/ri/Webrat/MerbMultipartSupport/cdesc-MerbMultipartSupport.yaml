@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: These methods are copied from merb-core/two-oh.rb which defines new multipart_post and multipart_put methods for Merb::Test::MultipartRequestHelper. We can't require two-oh.rb because it alters Merb's own behavior, causing failing specs in Merb when Webrat is required.
+constants: []
+
+full_name: Webrat::MerbMultipartSupport
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: multipart_post
+- !ruby/object:RI::MethodSummary 
+  name: multipart_put
+- !ruby/object:RI::MethodSummary 
+  name: multipart_request
+name: MerbMultipartSupport
+superclass: 

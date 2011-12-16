@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Nokogiri::HTML::ElementDescription</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Nokogiri::HTML::ElementDescription</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/nokogiri/html/element_description_rb.html">
+                lib/nokogiri/html/element_description.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/nokogiri/html/element_description_defaults_rb.html">
+                lib/nokogiri/html/element_description_defaults.rb
+                </a>
+        <br />
+                <a href="../../../files/ext/nokogiri/html_sax_parser_context_c.html">
+                ext/nokogiri/html_sax_parser_context.c
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+call-seq:
+</p>
+<pre>
+ [](tag_name)
+</pre>
+<p>
+Get ElemementDescription for <tt>tag_name</tt>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000364">[]</a>&nbsp;&nbsp;
+      <a href="#M000352">block?</a>&nbsp;&nbsp;
+      <a href="#M000374">default_sub_element</a>&nbsp;&nbsp;
+      <a href="#M000360">default_sub_element</a>&nbsp;&nbsp;
+      <a href="#M000370">deprecated?</a>&nbsp;&nbsp;
+      <a href="#M000358">deprecated?</a>&nbsp;&nbsp;
+      <a href="#M000376">deprecated_attributes</a>&nbsp;&nbsp;
+      <a href="#M000362">deprecated_attributes</a>&nbsp;&nbsp;
+      <a href="#M000359">description</a>&nbsp;&nbsp;
+      <a href="#M000372">description</a>&nbsp;&nbsp;
+      <a href="#M000369">empty?</a>&nbsp;&nbsp;
+      <a href="#M000367">implied_end_tag?</a>&nbsp;&nbsp;
+      <a href="#M000356">implied_end_tag?</a>&nbsp;&nbsp;
+      <a href="#M000366">implied_start_tag?</a>&nbsp;&nbsp;
+      <a href="#M000355">implied_start_tag?</a>&nbsp;&nbsp;
+      <a href="#M000371">inline?</a>&nbsp;&nbsp;
+      <a href="#M000354">inspect</a>&nbsp;&nbsp;
+      <a href="#M000365">name</a>&nbsp;&nbsp;
+      <a href="#M000375">optional_attributes</a>&nbsp;&nbsp;
+      <a href="#M000361">optional_attributes</a>&nbsp;&nbsp;
+      <a href="#M000363">required_attributes</a>&nbsp;&nbsp;
+      <a href="#M000377">required_attributes</a>&nbsp;&nbsp;
+      <a href="#M000357">save_end_tag?</a>&nbsp;&nbsp;
+      <a href="#M000368">save_end_tag?</a>&nbsp;&nbsp;
+      <a href="#M000373">sub_elements</a>&nbsp;&nbsp;
+      <a href="#M000353">to_s</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Desc</td>
+          <td>=</td>
+          <td class="context-item-value">Struct.new(&quot;HTMLElementDescription&quot;, :name,                         :startTag, :endTag, :saveEndTag,                         :empty, :depr, :dtd, :isinline,                         :desc,                         :subelts, :defaultsubelt,                         :attrs_opt, :attrs_depr, :attrs_req)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Methods are defined protected by method_defined? because at this point the
+C-library or Java library is alraedy loaded, and we don&#8216;t want to
+clobber any methods that have been defined there.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DefaultDescriptions</td>
+          <td>=</td>
+          <td class="context-item-value">Hash.new()</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+This is filled in down below.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FONTSTYLE</td>
+          <td>=</td>
+          <td class="context-item-value">[&quot;tt&quot;, &quot;i&quot;, &quot;b&quot;, &quot;u&quot;, &quot;s&quot;, &quot;strike&quot;, &quot;big&quot;, &quot;small&quot;]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Attributes defined and categorized
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PHRASE</td>
+          <td>=</td>
+          <td class="context-item-value">['em', 'strong', 'dfn', 'code', 'samp',                 'kbd', 'var', 'cite', 'abbr', 'acronym']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPECIAL</td>
+          <td>=</td>
+          <td class="context-item-value">['a', 'img', 'applet', 'embed', 'object', 'font','basefont',                  'br', 'script', 'map', 'q', 'sub', 'sup', 'span', 'bdo',                  'iframe']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PCDATA</td>
+          <td>=</td>
+          <td class="context-item-value">[]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEADING</td>
+          <td>=</td>
+          <td class="context-item-value">['h1', 'h2', 'h3', 'h4', 'h5', 'h6']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LIST</td>
+          <td>=</td>
+          <td class="context-item-value">['ul', 'ol', 'dir', 'menu']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FORMCTRL</td>
+          <td>=</td>
+          <td class="context-item-value">['input', 'select', 'textarea', 'label', 'button']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BLOCK</td>
+          <td>=</td>
+          <td class="context-item-value">[HEADING, LIST, 'pre', 'p', 'dl', 'div', 'center', 'noscript',                'noframes', 'blockquote', 'form', 'isindex', 'hr', 'table',                'fieldset', 'address']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INLINE</td>
+          <td>=</td>
+          <td class="context-item-value">[PCDATA, FONTSTYLE, PHRASE, SPECIAL, FORMCTRL]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FLOW</td>
+          <td>=</td>
+          <td class="context-item-value">[BLOCK, INLINE]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MODIFIER</td>
+          <td>=</td>
+          <td class="context-item-value">[]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EMPTY</td>
+          <td>=</td>
+          <td class="context-item-value">[]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTML_FLOW</td>
+          <td>=</td>
+          <td class="context-item-value">FLOW</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTML_INLINE</td>
+          <td>=</td>
+          <td class="context-item-value">INLINE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTML_PCDATA</td>
+          <td>=</td>
+          <td class="context-item-value">PCDATA</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTML_CDATA</td>
+          <td>=</td>
+          <td class="context-item-value">HTML_PCDATA</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COREATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['id', 'class', 'style', 'title']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">I18N</td>
+          <td>=</td>
+          <td class="context-item-value">['lang', 'dir']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EVENTS</td>
+          <td>=</td>
+          <td class="context-item-value">['onclick', 'ondblclick', 'onmousedown', 'onmouseup',                 'onmouseover', 'onmouseout', 'onkeypress', 'onkeydown',                 'onkeyup']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, I18N,EVENTS]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CELLHALIGN</td>
+          <td>=</td>
+          <td class="context-item-value">['align', 'char', 'charoff']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CELLVALIGN</td>
+          <td>=</td>
+          <td class="context-item-value">['valign']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTML_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">ATTRS</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CORE_I18N_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, I18N]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CORE_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">COREATTRS</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">I18N_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">I18N</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">A_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'charset', 'type', 'name',                  'href', 'hreflang', 'rel', 'rev', 'accesskey', 'shape',                  'coords', 'tabindex', 'onfocus', 'onblur']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TARGET_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['target']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ROWS_COLS_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['rows', 'cols']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALT_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['alt']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRC_ALT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['src', 'alt']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HREF_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['href']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CLEAR_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['clear']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INLINE_P</td>
+          <td>=</td>
+          <td class="context-item-value">[INLINE, 'p']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FLOW_PARAM</td>
+          <td>=</td>
+          <td class="context-item-value">[FLOW, 'param']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">APPLET_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS , 'codebase',                       'archive', 'alt', 'name', 'height', 'width', 'align',                       'hspace', 'vspace']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AREA_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['shape', 'coords', 'href', 'nohref',                     'tabindex', 'accesskey', 'onfocus', 'onblur']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BASEFONT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['id', 'size', 'color', 'face']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">QUOTE_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'cite']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BODY_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">[FLOW, 'ins', 'del']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BODY_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'onload', 'onunload']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BODY_DEPR</td>
+          <td>=</td>
+          <td class="context-item-value">['background', 'bgcolor', 'text',                    'link', 'vlink', 'alink']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BUTTON_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'name', 'value', 'type',                       'disabled', 'tabindex', 'accesskey', 'onfocus', 'onblur']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COL_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'span', 'width', CELLHALIGN, CELLVALIGN]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COL_ELT</td>
+          <td>=</td>
+          <td class="context-item-value">['col']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EDIT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'datetime', 'cite']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPACT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'compact']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DL_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">['dt', 'dd']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPACT_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['compact']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LABEL_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['label']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FIELDSET_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">[FLOW, 'legend' ]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FONT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, I18N, 'size', 'color', 'face' ]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FORM_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">[HEADING, LIST, INLINE, 'pre', 'p', 'div', 'center',                        'noscript', 'noframes', 'blockquote', 'isindex', 'hr',                        'table', 'fieldset', 'address']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FORM_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'method', 'enctype', 'accept', 'name', 'onsubmit',                     'onreset', 'accept-charset']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FRAME_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, 'longdesc', 'name', 'src', 'frameborder',                      'marginwidth', 'marginheight', 'noresize', 'scrolling' ]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FRAMESET_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, 'rows', 'cols', 'onload', 'onunload']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FRAMESET_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">['frameset', 'frame', 'noframes']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAD_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[I18N, 'profile']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAD_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">['title', 'isindex', 'base', 'script', 'style', 'meta',                        'link', 'object']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HR_DEPR</td>
+          <td>=</td>
+          <td class="context-item-value">['align', 'noshade', 'size', 'width']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['version']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTML_CONTENT</td>
+          <td>=</td>
+          <td class="context-item-value">['head', 'body', 'frameset']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IFRAME_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, 'longdesc', 'name', 'src', 'frameborder',                       'marginwidth', 'marginheight', 'scrolling', 'align',                       'height', 'width']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IMG_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'longdesc', 'name', 'height', 'width', 'usemap',                    'ismap']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EMBED_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, 'align', 'alt', 'border', 'code', 'codebase',                      'frameborder', 'height', 'hidden', 'hspace', 'name',                      'palette', 'pluginspace', 'pluginurl', 'src', 'type',                      'units', 'vspace', 'width']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INPUT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'type', 'name', 'value', 'checked', 'disabled',                      'readonly', 'size', 'maxlength', 'src', 'alt', 'usemap',                      'ismap', 'tabindex', 'accesskey', 'onfocus', 'onblur',                      'onselect', 'onchange', 'accept']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROMPT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[COREATTRS, I18N, 'prompt']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LABEL_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'for', 'accesskey', 'onfocus', 'onblur']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LEGEND_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'accesskey']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALIGN_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['align']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LINK_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'charset', 'href', 'hreflang', 'type', 'rel', 'rev',                     'media']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAP_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">[BLOCK, 'area']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAME_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['name']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACTION_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['action']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BLOCKLI_ELT</td>
+          <td>=</td>
+          <td class="context-item-value">[BLOCK, 'li']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">META_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[I18N, 'http-equiv', 'name', 'scheme']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CONTENT_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['content']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TYPE_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['type']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NOFRAMES_CONTENT</td>
+          <td>=</td>
+          <td class="context-item-value">['body', FLOW, MODIFIER]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OBJECT_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">[FLOW, 'param']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OBJECT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'declare', 'classid', 'codebase', 'data', 'type',                       'codetype', 'archive', 'standby', 'height', 'width',                       'usemap', 'name', 'tabindex']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OBJECT_DEPR</td>
+          <td>=</td>
+          <td class="context-item-value">['align', 'border', 'hspace', 'vspace']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OL_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['type', 'compact', 'start']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPTION_ELT</td>
+          <td>=</td>
+          <td class="context-item-value">['option']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPTGROUP_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'disabled']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPTION_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'disabled', 'label', 'selected', 'value']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PARAM_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['id', 'value', 'valuetype', 'type']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WIDTH_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['width']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PRE_CONTENT</td>
+          <td>=</td>
+          <td class="context-item-value">[PHRASE, 'tt', 'i', 'b', 'u', 's', 'strike', 'a', 'br',                      'script', 'map', 'q', 'span', 'bdo', 'iframe']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SCRIPT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">['charset', 'src', 'defer', 'event', 'for']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LANGUAGE_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['language']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SELECT_CONTENT</td>
+          <td>=</td>
+          <td class="context-item-value">['optgroup', 'option']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SELECT_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'name', 'size', 'multiple', 'disabled', 'tabindex',                       'onfocus', 'onblur', 'onchange']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STYLE_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[I18N, 'media', 'title']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TABLE_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'summary', 'width', 'border', 'frame', 'rules',                      'cellspacing', 'cellpadding', 'datapagesize']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TABLE_DEPR</td>
+          <td>=</td>
+          <td class="context-item-value">['align', 'bgcolor']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TABLE_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">['caption', 'col', 'colgroup', 'thead', 'tfoot', 'tbody',                         'tr']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TR_ELT</td>
+          <td>=</td>
+          <td class="context-item-value">['tr']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TALIGN_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, CELLHALIGN, CELLVALIGN]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TH_TD_DEPR</td>
+          <td>=</td>
+          <td class="context-item-value">['nowrap', 'bgcolor', 'width', 'height']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TH_TD_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'abbr', 'axis', 'headers', 'scope', 'rowspan',                     'colspan', CELLHALIGN, CELLVALIGN]</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEXTAREA_ATTRS</td>
+          <td>=</td>
+          <td class="context-item-value">[ATTRS, 'name', 'disabled', 'readonly', 'tabindex',                         'accesskey', 'onfocus', 'onblur', 'onselect',                         'onchange']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TR_CONTENTS</td>
+          <td>=</td>
+          <td class="context-item-value">['th', 'td']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BGCOLOR_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['bgcolor']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LI_ELT</td>
+          <td>=</td>
+          <td class="context-item-value">['li']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UL_DEPR</td>
+          <td>=</td>
+          <td class="context-item-value">['type', 'compact']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DIR_ATTR</td>
+          <td>=</td>
+          <td class="context-item-value">['dir']</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000364" class="method-detail">
+        <a name="M000364"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000364.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000364.html');return false;">
+          <span class="method-name">[](tag_name)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get ElemementDescription for <tt>tag_name</tt>
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000352" class="method-detail">
+        <a name="M000352"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000352.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000352.html');return false;">
+          <span class="method-name">block?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is this element a block element?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000374" class="method-detail">
+        <a name="M000374"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000374.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000374.html');return false;">
+          <span class="method-name">default_sub_element<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The default sub element for this element
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000360" class="method-detail">
+        <a name="M000360"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000360.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000360.html');return false;">
+          <span class="method-name">default_sub_element</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000370" class="method-detail">
+        <a name="M000370"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000370.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000370.html');return false;">
+          <span class="method-name">deprecated?<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is this element <a href="ElementDescription.html#M000358">deprecated?</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000358" class="method-detail">
+        <a name="M000358"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000358.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000358.html');return false;">
+          <span class="method-name">deprecated?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000376.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000376.html');return false;">
+          <span class="method-name">deprecated_attributes<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A list of deprecated attributes for this element
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000362" class="method-detail">
+        <a name="M000362"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000362.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000362.html');return false;">
+          <span class="method-name">deprecated_attributes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000359" class="method-detail">
+        <a name="M000359"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000359.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000359.html');return false;">
+          <span class="method-name">description</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000372" class="method-detail">
+        <a name="M000372"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000372.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000372.html');return false;">
+          <span class="method-name">description<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="ElementDescription.html#M000359">description</a> for this
+element
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000369" class="method-detail">
+        <a name="M000369"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000369.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000369.html');return false;">
+          <span class="method-name">empty?<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is this an empty element?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000367" class="method-detail">
+        <a name="M000367"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000367.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000367.html');return false;">
+          <span class="method-name">implied_end_tag?<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Can the end tag be implied for this tag?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000356" class="method-detail">
+        <a name="M000356"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000356.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000356.html');return false;">
+          <span class="method-name">implied_end_tag?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000366" class="method-detail">
+        <a name="M000366"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000366.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000366.html');return false;">
+          <span class="method-name">implied_start_tag?<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Can the start tag be implied for this tag?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000355" class="method-detail">
+        <a name="M000355"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000355.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000355.html');return false;">
+          <span class="method-name">implied_start_tag?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000371" class="method-detail">
+        <a name="M000371"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000371.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000371.html');return false;">
+          <span class="method-name">inline?<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is this element an inline element?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000354" class="method-detail">
+        <a name="M000354"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000354.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000354.html');return false;">
+          <span class="method-name">inspect</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Inspection information
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000365" class="method-detail">
+        <a name="M000365"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000365.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000365.html');return false;">
+          <span class="method-name">name<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get the tag <a href="ElementDescription.html#M000365">name</a> for this
+ElemementDescription
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000375" class="method-detail">
+        <a name="M000375"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000375.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000375.html');return false;">
+          <span class="method-name">optional_attributes<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A list of optional attributes for this element
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000361" class="method-detail">
+        <a name="M000361"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000361.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000361.html');return false;">
+          <span class="method-name">optional_attributes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000363" class="method-detail">
+        <a name="M000363"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000363.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000363.html');return false;">
+          <span class="method-name">required_attributes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000377" class="method-detail">
+        <a name="M000377"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000377.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000377.html');return false;">
+          <span class="method-name">required_attributes<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A list of required attributes for this element
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000357" class="method-detail">
+        <a name="M000357"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000357.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000357.html');return false;">
+          <span class="method-name">save_end_tag?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000368" class="method-detail">
+        <a name="M000368"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000368.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000368.html');return false;">
+          <span class="method-name">save_end_tag?<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Should the end tag be saved?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000373" class="method-detail">
+        <a name="M000373"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000373.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000373.html');return false;">
+          <span class="method-name">sub_elements<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A list of allowed sub elements for this element.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000353" class="method-detail">
+        <a name="M000353"></a>
+
+        <div class="method-heading">
+          <a href="ElementDescription.src/M000353.html" target="Code" class="method-signature"
+            onclick="popupCode('ElementDescription.src/M000353.html');return false;">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert this <a href="ElementDescription.html#M000359">description</a> to a
+string
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

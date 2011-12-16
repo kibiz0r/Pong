@@ -1,0 +1,15 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: []
+
+full_name: Gherkin::RbLexer::En_au
+includes: []
+
+instance_methods: []
+
+name: En_au
+superclass: Object

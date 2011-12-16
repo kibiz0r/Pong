@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ANSI_REGEXP
+  value: /\e\[([1349][0-7][0-7]?|[01])m/
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FGCOLORS
+  value: "{\r     30 => ConsoleColor.black,\r     31 => ConsoleColor.dark_red,\r     32 => ConsoleColor.dark_green,\r     33 => ConsoleColor.dark_yellow,\r     34 => ConsoleColor.dark_blue,\r     35 => ConsoleColor.dark_magenta,\r     36 => ConsoleColor.dark_cyan,\r     37 => ConsoleColor.gray,\r     90 => ConsoleColor.dark_gray,\r     91 => ConsoleColor.red,\r     92 => ConsoleColor.green,\r     93 => ConsoleColor.yellow,\r     94 => ConsoleColor.blue,\r     95 => ConsoleColor.magenta,\r     96 => ConsoleColor.cyan,\r     97 => ConsoleColor.white"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BGCOLORS
+  value: "{\r     40 => ConsoleColor.black,\r     41 => ConsoleColor.dark_red,\r     42 => ConsoleColor.dark_green,\r     43 => ConsoleColor.dark_yellow,\r     44 => ConsoleColor.dark_blue,\r     45 => ConsoleColor.dark_magenta,\r     46 => ConsoleColor.dark_cyan,\r     47 => ConsoleColor.gray,\r     100 => ConsoleColor.dark_gray,\r     101 => ConsoleColor.red,\r     102 => ConsoleColor.green,\r     103 => ConsoleColor.yellow,\r     104 => ConsoleColor.blue,\r     105 => ConsoleColor.magenta,\r     106 => ConsoleColor.cyan,\r     107 => ConsoleColor.white"
+full_name: IronTermAnsiColor
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: System
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: set_color
+name: IronTermAnsiColor
+superclass: 

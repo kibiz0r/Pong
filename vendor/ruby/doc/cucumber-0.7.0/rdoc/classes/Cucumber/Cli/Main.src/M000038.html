@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute! (Cucumber::Cli::Main)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/cucumber/cli/main.rb, line 41</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute!</span>(<span class="ruby-identifier">step_mother</span>)
+        <span class="ruby-identifier">trap_interrupt</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">drb?</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-constant">DRbClient</span>.<span class="ruby-identifier">run</span>(<span class="ruby-ivar">@args</span>, <span class="ruby-ivar">@error_stream</span>, <span class="ruby-ivar">@out_stream</span>, <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">drb_port</span>)
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">DRbClientError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+            <span class="ruby-ivar">@error_stream</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;WARNING: #{e.message} Running features locally:&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">options</span> = <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">options</span>
+        <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">log</span> = <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">log</span>
+
+        <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">load_code_files</span>(<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">support_to_load</span>)
+        <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">after_configuration</span>(<span class="ruby-identifier">configuration</span>)
+        <span class="ruby-identifier">features</span> = <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">load_plain_text_features</span>(<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">feature_files</span>)
+        <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">load_code_files</span>(<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">step_defs_to_load</span>)
+
+        <span class="ruby-identifier">enable_diffing</span>
+
+        <span class="ruby-identifier">tag_excess</span> = <span class="ruby-identifier">tag_excess</span>(<span class="ruby-identifier">features</span>)
+        <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:tag_excess</span>] = <span class="ruby-identifier">tag_excess</span> <span class="ruby-comment cmt"># Hack to make it available in console.rb - later: stick on Run instance.</span>
+
+        <span class="ruby-identifier">runner</span> = <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">build_runner</span>(<span class="ruby-identifier">step_mother</span>, <span class="ruby-ivar">@out_stream</span>)
+        <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">visitor</span> = <span class="ruby-identifier">runner</span> <span class="ruby-comment cmt"># Needed to support World#announce</span>
+        
+        <span class="ruby-identifier">runner</span>.<span class="ruby-identifier">visit_features</span>(<span class="ruby-identifier">features</span>)
+
+        <span class="ruby-identifier">failure</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tag_excess</span>.<span class="ruby-identifier">any?</span>
+          <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">wip?</span>
+          <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">scenarios</span>(<span class="ruby-identifier">:passed</span>).<span class="ruby-identifier">any?</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">scenarios</span>(<span class="ruby-identifier">:failed</span>).<span class="ruby-identifier">any?</span> <span class="ruby-operator">||</span>
+          (<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">strict?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">steps</span>(<span class="ruby-identifier">:undefined</span>).<span class="ruby-identifier">any?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">step_mother</span>.<span class="ruby-identifier">steps</span>(<span class="ruby-identifier">:pending</span>).<span class="ruby-identifier">any?</span>))
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ProfilesNotDefinedError</span>, <span class="ruby-constant">YmlLoadError</span>, <span class="ruby-constant">ProfileNotFound</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-ivar">@error_stream</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Gherkin::Formatter::PrettyFormatter#flush_table
+is_singleton: false
+name: flush_table
+params: (exception=nil, statuses=nil)
+visibility: public

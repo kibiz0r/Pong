@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Get the current line the parser context is processing.
+full_name: Nokogiri::XML::SAX::ParserContext#line
+is_singleton: false
+name: line
+params: " line\n"
+visibility: public

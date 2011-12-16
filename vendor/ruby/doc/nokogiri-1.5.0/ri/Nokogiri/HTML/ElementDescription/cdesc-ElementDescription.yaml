@@ -1,0 +1,512 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "call-seq:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " [](tag_name)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Get ElemementDescription for <tt>tag_name</tt>
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Methods are defined protected by method_defined? because at this point the C-library or Java library is alraedy loaded, and we don't want to clobber any methods that have been defined there.
+  name: Desc
+  value: Struct.new("HTMLElementDescription", :name,                         :startTag, :endTag, :saveEndTag,                         :empty, :depr, :dtd, :isinline,                         :desc,                         :subelts, :defaultsubelt,                         :attrs_opt, :attrs_depr, :attrs_req)
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is filled in down below.
+  name: DefaultDescriptions
+  value: Hash.new()
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Attributes defined and categorized
+  name: FONTSTYLE
+  value: "[\"tt\", \"i\", \"b\", \"u\", \"s\", \"strike\", \"big\", \"small\"]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PHRASE
+  value: "['em', 'strong', 'dfn', 'code', 'samp',                 'kbd', 'var', 'cite', 'abbr', 'acronym']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPECIAL
+  value: "['a', 'img', 'applet', 'embed', 'object', 'font','basefont',                  'br', 'script', 'map', 'q', 'sub', 'sup', 'span', 'bdo',                  'iframe']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PCDATA
+  value: "[]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HEADING
+  value: "['h1', 'h2', 'h3', 'h4', 'h5', 'h6']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LIST
+  value: "['ul', 'ol', 'dir', 'menu']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMCTRL
+  value: "['input', 'select', 'textarea', 'label', 'button']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BLOCK
+  value: "[HEADING, LIST, 'pre', 'p', 'dl', 'div', 'center', 'noscript',                'noframes', 'blockquote', 'form', 'isindex', 'hr', 'table',                'fieldset', 'address']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INLINE
+  value: "[PCDATA, FONTSTYLE, PHRASE, SPECIAL, FORMCTRL]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FLOW
+  value: "[BLOCK, INLINE]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MODIFIER
+  value: "[]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EMPTY
+  value: "[]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HTML_FLOW
+  value: FLOW
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HTML_INLINE
+  value: INLINE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HTML_PCDATA
+  value: PCDATA
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HTML_CDATA
+  value: HTML_PCDATA
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COREATTRS
+  value: "['id', 'class', 'style', 'title']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: I18N
+  value: "['lang', 'dir']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EVENTS
+  value: "['onclick', 'ondblclick', 'onmousedown', 'onmouseup',                 'onmouseover', 'onmouseout', 'onkeypress', 'onkeydown',                 'onkeyup']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ATTRS
+  value: "[COREATTRS, I18N,EVENTS]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CELLHALIGN
+  value: "['align', 'char', 'charoff']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CELLVALIGN
+  value: "['valign']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HTML_ATTRS
+  value: ATTRS
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CORE_I18N_ATTRS
+  value: "[COREATTRS, I18N]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CORE_ATTRS
+  value: COREATTRS
+- !ruby/object:RI::Constant 
+  comment: 
+  name: I18N_ATTRS
+  value: I18N
+- !ruby/object:RI::Constant 
+  comment: 
+  name: A_ATTRS
+  value: "[ATTRS, 'charset', 'type', 'name',                  'href', 'hreflang', 'rel', 'rev', 'accesskey', 'shape',                  'coords', 'tabindex', 'onfocus', 'onblur']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TARGET_ATTR
+  value: "['target']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ROWS_COLS_ATTR
+  value: "['rows', 'cols']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALT_ATTR
+  value: "['alt']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SRC_ALT_ATTRS
+  value: "['src', 'alt']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HREF_ATTRS
+  value: "['href']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CLEAR_ATTRS
+  value: "['clear']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INLINE_P
+  value: "[INLINE, 'p']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FLOW_PARAM
+  value: "[FLOW, 'param']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: APPLET_ATTRS
+  value: "[COREATTRS , 'codebase',                       'archive', 'alt', 'name', 'height', 'width', 'align',                       'hspace', 'vspace']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AREA_ATTRS
+  value: "['shape', 'coords', 'href', 'nohref',                     'tabindex', 'accesskey', 'onfocus', 'onblur']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BASEFONT_ATTRS
+  value: "['id', 'size', 'color', 'face']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QUOTE_ATTRS
+  value: "[ATTRS, 'cite']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BODY_CONTENTS
+  value: "[FLOW, 'ins', 'del']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BODY_ATTRS
+  value: "[ATTRS, 'onload', 'onunload']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BODY_DEPR
+  value: "['background', 'bgcolor', 'text',                    'link', 'vlink', 'alink']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BUTTON_ATTRS
+  value: "[ATTRS, 'name', 'value', 'type',                       'disabled', 'tabindex', 'accesskey', 'onfocus', 'onblur']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COL_ATTRS
+  value: "[ATTRS, 'span', 'width', CELLHALIGN, CELLVALIGN]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COL_ELT
+  value: "['col']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDIT_ATTRS
+  value: "[ATTRS, 'datetime', 'cite']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPACT_ATTRS
+  value: "[ATTRS, 'compact']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DL_CONTENTS
+  value: "['dt', 'dd']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPACT_ATTR
+  value: "['compact']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LABEL_ATTR
+  value: "['label']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FIELDSET_CONTENTS
+  value: "[FLOW, 'legend' ]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FONT_ATTRS
+  value: "[COREATTRS, I18N, 'size', 'color', 'face' ]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORM_CONTENTS
+  value: "[HEADING, LIST, INLINE, 'pre', 'p', 'div', 'center',                        'noscript', 'noframes', 'blockquote', 'isindex', 'hr',                        'table', 'fieldset', 'address']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORM_ATTRS
+  value: "[ATTRS, 'method', 'enctype', 'accept', 'name', 'onsubmit',                     'onreset', 'accept-charset']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FRAME_ATTRS
+  value: "[COREATTRS, 'longdesc', 'name', 'src', 'frameborder',                      'marginwidth', 'marginheight', 'noresize', 'scrolling' ]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FRAMESET_ATTRS
+  value: "[COREATTRS, 'rows', 'cols', 'onload', 'onunload']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FRAMESET_CONTENTS
+  value: "['frameset', 'frame', 'noframes']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HEAD_ATTRS
+  value: "[I18N, 'profile']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HEAD_CONTENTS
+  value: "['title', 'isindex', 'base', 'script', 'style', 'meta',                        'link', 'object']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HR_DEPR
+  value: "['align', 'noshade', 'size', 'width']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION_ATTR
+  value: "['version']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HTML_CONTENT
+  value: "['head', 'body', 'frameset']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: IFRAME_ATTRS
+  value: "[COREATTRS, 'longdesc', 'name', 'src', 'frameborder',                       'marginwidth', 'marginheight', 'scrolling', 'align',                       'height', 'width']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: IMG_ATTRS
+  value: "[ATTRS, 'longdesc', 'name', 'height', 'width', 'usemap',                    'ismap']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EMBED_ATTRS
+  value: "[COREATTRS, 'align', 'alt', 'border', 'code', 'codebase',                      'frameborder', 'height', 'hidden', 'hspace', 'name',                      'palette', 'pluginspace', 'pluginurl', 'src', 'type',                      'units', 'vspace', 'width']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INPUT_ATTRS
+  value: "[ATTRS, 'type', 'name', 'value', 'checked', 'disabled',                      'readonly', 'size', 'maxlength', 'src', 'alt', 'usemap',                      'ismap', 'tabindex', 'accesskey', 'onfocus', 'onblur',                      'onselect', 'onchange', 'accept']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PROMPT_ATTRS
+  value: "[COREATTRS, I18N, 'prompt']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LABEL_ATTRS
+  value: "[ATTRS, 'for', 'accesskey', 'onfocus', 'onblur']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LEGEND_ATTRS
+  value: "[ATTRS, 'accesskey']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALIGN_ATTR
+  value: "['align']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LINK_ATTRS
+  value: "[ATTRS, 'charset', 'href', 'hreflang', 'type', 'rel', 'rev',                     'media']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAP_CONTENTS
+  value: "[BLOCK, 'area']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NAME_ATTR
+  value: "['name']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACTION_ATTR
+  value: "['action']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BLOCKLI_ELT
+  value: "[BLOCK, 'li']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: META_ATTRS
+  value: "[I18N, 'http-equiv', 'name', 'scheme']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CONTENT_ATTR
+  value: "['content']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_ATTR
+  value: "['type']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NOFRAMES_CONTENT
+  value: "['body', FLOW, MODIFIER]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OBJECT_CONTENTS
+  value: "[FLOW, 'param']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OBJECT_ATTRS
+  value: "[ATTRS, 'declare', 'classid', 'codebase', 'data', 'type',                       'codetype', 'archive', 'standby', 'height', 'width',                       'usemap', 'name', 'tabindex']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OBJECT_DEPR
+  value: "['align', 'border', 'hspace', 'vspace']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OL_ATTRS
+  value: "['type', 'compact', 'start']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OPTION_ELT
+  value: "['option']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OPTGROUP_ATTRS
+  value: "[ATTRS, 'disabled']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OPTION_ATTRS
+  value: "[ATTRS, 'disabled', 'label', 'selected', 'value']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PARAM_ATTRS
+  value: "['id', 'value', 'valuetype', 'type']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WIDTH_ATTR
+  value: "['width']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PRE_CONTENT
+  value: "[PHRASE, 'tt', 'i', 'b', 'u', 's', 'strike', 'a', 'br',                      'script', 'map', 'q', 'span', 'bdo', 'iframe']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCRIPT_ATTRS
+  value: "['charset', 'src', 'defer', 'event', 'for']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANGUAGE_ATTR
+  value: "['language']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SELECT_CONTENT
+  value: "['optgroup', 'option']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SELECT_ATTRS
+  value: "[ATTRS, 'name', 'size', 'multiple', 'disabled', 'tabindex',                       'onfocus', 'onblur', 'onchange']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_ATTRS
+  value: "[I18N, 'media', 'title']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TABLE_ATTRS
+  value: "[ATTRS, 'summary', 'width', 'border', 'frame', 'rules',                      'cellspacing', 'cellpadding', 'datapagesize']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TABLE_DEPR
+  value: "['align', 'bgcolor']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TABLE_CONTENTS
+  value: "['caption', 'col', 'colgroup', 'thead', 'tfoot', 'tbody',                         'tr']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TR_ELT
+  value: "['tr']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TALIGN_ATTRS
+  value: "[ATTRS, CELLHALIGN, CELLVALIGN]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TH_TD_DEPR
+  value: "['nowrap', 'bgcolor', 'width', 'height']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TH_TD_ATTR
+  value: "[ATTRS, 'abbr', 'axis', 'headers', 'scope', 'rowspan',                     'colspan', CELLHALIGN, CELLVALIGN]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TEXTAREA_ATTRS
+  value: "[ATTRS, 'name', 'disabled', 'readonly', 'tabindex',                         'accesskey', 'onfocus', 'onblur', 'onselect',                         'onchange']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TR_CONTENTS
+  value: "['th', 'td']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BGCOLOR_ATTR
+  value: "['bgcolor']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LI_ELT
+  value: "['li']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UL_DEPR
+  value: "['type', 'compact']"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DIR_ATTR
+  value: "['dir']"
+full_name: Nokogiri::HTML::ElementDescription
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: block?
+- !ruby/object:RI::MethodSummary 
+  name: default_sub_element
+- !ruby/object:RI::MethodSummary 
+  name: default_sub_element
+- !ruby/object:RI::MethodSummary 
+  name: deprecated?
+- !ruby/object:RI::MethodSummary 
+  name: deprecated?
+- !ruby/object:RI::MethodSummary 
+  name: deprecated_attributes
+- !ruby/object:RI::MethodSummary 
+  name: deprecated_attributes
+- !ruby/object:RI::MethodSummary 
+  name: description
+- !ruby/object:RI::MethodSummary 
+  name: description
+- !ruby/object:RI::MethodSummary 
+  name: empty?
+- !ruby/object:RI::MethodSummary 
+  name: implied_end_tag?
+- !ruby/object:RI::MethodSummary 
+  name: implied_end_tag?
+- !ruby/object:RI::MethodSummary 
+  name: implied_start_tag?
+- !ruby/object:RI::MethodSummary 
+  name: implied_start_tag?
+- !ruby/object:RI::MethodSummary 
+  name: inline?
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: name
+- !ruby/object:RI::MethodSummary 
+  name: optional_attributes
+- !ruby/object:RI::MethodSummary 
+  name: optional_attributes
+- !ruby/object:RI::MethodSummary 
+  name: required_attributes
+- !ruby/object:RI::MethodSummary 
+  name: required_attributes
+- !ruby/object:RI::MethodSummary 
+  name: save_end_tag?
+- !ruby/object:RI::MethodSummary 
+  name: save_end_tag?
+- !ruby/object:RI::MethodSummary 
+  name: sub_elements
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+name: ElementDescription
+superclass: Object

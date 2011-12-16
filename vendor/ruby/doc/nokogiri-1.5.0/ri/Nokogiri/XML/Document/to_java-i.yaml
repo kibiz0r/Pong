@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>JRuby</tt> Returns Java's org.w3c.dom.document of this Document.
+full_name: Nokogiri::XML::Document#to_java
+is_singleton: false
+name: to_java
+params: ()
+visibility: public

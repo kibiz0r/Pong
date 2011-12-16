@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>educate (Trollop::Parser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/trollop.rb, line 424</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">educate</span> <span class="ruby-identifier">stream</span>=<span class="ruby-identifier">$stdout</span>
+    <span class="ruby-identifier">width</span> <span class="ruby-comment cmt"># just calculate it now; otherwise we have to be careful not to</span>
+          <span class="ruby-comment cmt"># call this unless the cursor's at the beginning of a line.</span>
+
+    <span class="ruby-identifier">left</span> = {}
+    <span class="ruby-ivar">@specs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> 
+      <span class="ruby-identifier">left</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-node">&quot;--#{spec[:long]}&quot;</span> <span class="ruby-operator">+</span>
+        (<span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:short</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:short</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">:none</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;, -#{spec[:short]}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>) <span class="ruby-operator">+</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:type</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:flag</span>; <span class="ruby-value str">&quot;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:int</span>; <span class="ruby-value str">&quot; &lt;i&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:ints</span>; <span class="ruby-value str">&quot; &lt;i+&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:string</span>; <span class="ruby-value str">&quot; &lt;s&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:strings</span>; <span class="ruby-value str">&quot; &lt;s+&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:float</span>; <span class="ruby-value str">&quot; &lt;f&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:floats</span>; <span class="ruby-value str">&quot; &lt;f+&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:io</span>; <span class="ruby-value str">&quot; &lt;filename/uri&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:ios</span>; <span class="ruby-value str">&quot; &lt;filename/uri+&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:date</span>; <span class="ruby-value str">&quot; &lt;date&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:dates</span>; <span class="ruby-value str">&quot; &lt;date+&gt;&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">leftcol_width</span> = <span class="ruby-identifier">left</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">length</span> }.<span class="ruby-identifier">max</span> <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">rightcol_start</span> = <span class="ruby-identifier">leftcol_width</span> <span class="ruby-operator">+</span> <span class="ruby-value">6</span> <span class="ruby-comment cmt"># spaces</span>
+
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:text</span>
+      <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;#@version\n&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@version</span>
+      <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Options:&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">what</span>, <span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">what</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:text</span>
+        <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">opt</span>)
+        <span class="ruby-keyword kw">next</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">spec</span> = <span class="ruby-ivar">@specs</span>[<span class="ruby-identifier">opt</span>]
+      <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">printf</span> <span class="ruby-node">&quot;  %#{leftcol_width}s:   &quot;</span>, <span class="ruby-identifier">left</span>[<span class="ruby-identifier">opt</span>]
+      <span class="ruby-identifier">desc</span> = <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:desc</span>] <span class="ruby-operator">+</span> <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">default_s</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:default</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">$stdout</span>; <span class="ruby-value str">&quot;&lt;stdout&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">$stdin</span>; <span class="ruby-value str">&quot;&lt;stdin&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">$stderr</span>; <span class="ruby-value str">&quot;&lt;stderr&gt;&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+          <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:default</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;, &quot;</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:default</span>].<span class="ruby-identifier">to_s</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:default</span>]
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">spec</span>[<span class="ruby-identifier">:desc</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.$/</span>
+            <span class="ruby-node">&quot; (Default: #{default_s})&quot;</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-node">&quot; (default: #{default_s})&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-value str">&quot;&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">desc</span>, <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">rightcol_start</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">:prefix</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">rightcol_start</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

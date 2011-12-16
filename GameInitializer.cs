@@ -3,22 +3,17 @@ namespace Pong
 {
     public class GameInitializer : IGameInitializer
     {
-        public IPlayerInitializer PlayerInitializer
+        public GameInitializer(IPlayerInitializer playerInitializer, IBallFactory ballFactory, IBallInitializer ballInitializer)
         {
-            get;
-            set;
+            this.playerInitializer = playerInitializer;
+            this.ballFactory = ballFactory;
+            this.ballInitializer = ballInitializer;
         }
-        public IBallFactory BallFactory
-        {
-            get;
-            set;
-        }
-        public IBallInitializer BallInitializer
-        {
-            get;
-            set;
-        }
-        public void Initialize(IPongGame game)
+        private readonly IPlayerInitializer playerInitializer;
+        private readonly IBallInitializer ballInitializer;
+        private readonly IBallFactory ballFactory;
+
+        public void InitializeGame(IPongGame game)
         {
 
         }

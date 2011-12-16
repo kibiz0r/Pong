@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "\"1.16.2\""
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Regex for floating point numbers
+  name: FLOAT_RE
+  value: /^-?((\d+(\.\d+)?)|(\.\d+))([eE][-+]?[\d]+)?$/
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Regex for parameters
+  name: PARAM_RE
+  value: /^-(-|\.$|[^\d\.])/
+full_name: Trollop
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: die
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: with_standard_exception_handling
+name: Trollop
+superclass: 

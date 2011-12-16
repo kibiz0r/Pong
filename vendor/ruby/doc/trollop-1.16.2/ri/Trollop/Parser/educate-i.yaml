@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Print the help message to <tt>stream</tt>.
+full_name: Trollop::Parser#educate
+is_singleton: false
+name: educate
+params: (stream=$stdout)
+visibility: public

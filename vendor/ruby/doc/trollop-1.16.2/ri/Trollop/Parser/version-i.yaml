@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the version string. If set, the user can request the version on the commandline. Should probably be of the form &quot;&lt;program name&gt; &lt;version number&gt;&quot;.
+full_name: Trollop::Parser#version
+is_singleton: false
+name: version
+params: (s=nil;)
+visibility: public

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Gherkin::Parser::Parser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/gherkin/parser/parser.rb, line 14</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">listener</span>, <span class="ruby-identifier">raise_on_error</span>=<span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">machine_name</span>=<span class="ruby-value str">'root'</span>)
+        <span class="ruby-ivar">@listener</span> = <span class="ruby-identifier">listener</span>
+        <span class="ruby-ivar">@raise_on_error</span> = <span class="ruby-identifier">raise_on_error</span>
+        <span class="ruby-ivar">@machines</span> = []
+        <span class="ruby-ivar">@machine_name</span> = <span class="ruby-identifier">machine_name</span>
+        <span class="ruby-identifier">push_machine</span>(<span class="ruby-ivar">@machine_name</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

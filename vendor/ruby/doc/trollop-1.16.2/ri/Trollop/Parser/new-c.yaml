@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Initializes the parser, and instance-evaluates any block given.
+full_name: Trollop::Parser::new
+is_singleton: true
+name: new
+params: (*a, &b)
+visibility: public

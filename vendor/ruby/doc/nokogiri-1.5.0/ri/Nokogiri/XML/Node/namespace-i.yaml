@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: returns the default namespace set on this node (as with an &quot;xmlns=&quot; attribute), as a Namespace object.
+full_name: Nokogiri::XML::Node#namespace
+is_singleton: false
+name: namespace
+params: |
+  namespace()
+
+visibility: public

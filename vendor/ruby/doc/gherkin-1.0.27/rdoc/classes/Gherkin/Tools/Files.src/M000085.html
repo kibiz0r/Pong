@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>each (Gherkin::Tools::Files)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/gherkin/tools/files.rb, line 14</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+        <span class="ruby-identifier">globs</span> = <span class="ruby-ivar">@paths</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;#{path} does not exist&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">path</span>)
+          <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value str">'**'</span>, <span class="ruby-value str">'*.feature'</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">path</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-constant">Dir</span>[<span class="ruby-operator">*</span><span class="ruby-identifier">globs</span>].<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

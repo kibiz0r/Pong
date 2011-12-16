@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Gherkin</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Gherkin</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/gherkin/c_lexer_rb.html">
+                lib/gherkin/c_lexer.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/cli/main_rb.html">
+                lib/gherkin/cli/main.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/formatter/argument_rb.html">
+                lib/gherkin/formatter/argument.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/formatter/colors_rb.html">
+                lib/gherkin/formatter/colors.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/formatter/escaping_rb.html">
+                lib/gherkin/formatter/escaping.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/formatter/monochrome_format_rb.html">
+                lib/gherkin/formatter/monochrome_format.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/formatter/pretty_formatter_rb.html">
+                lib/gherkin/formatter/pretty_formatter.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/i18n_rb.html">
+                lib/gherkin/i18n.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/i18n_lexer_rb.html">
+                lib/gherkin/i18n_lexer.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/parser/event_rb.html">
+                lib/gherkin/parser/event.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/parser/filter_listener_rb.html">
+                lib/gherkin/parser/filter_listener.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/parser/parser_rb.html">
+                lib/gherkin/parser/parser.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/parser/tag_expression_rb.html">
+                lib/gherkin/parser/tag_expression.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/ar_rb.html">
+                lib/gherkin/rb_lexer/ar.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/bg_rb.html">
+                lib/gherkin/rb_lexer/bg.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/ca_rb.html">
+                lib/gherkin/rb_lexer/ca.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/cs_rb.html">
+                lib/gherkin/rb_lexer/cs.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/cy_gb_rb.html">
+                lib/gherkin/rb_lexer/cy_gb.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/da_rb.html">
+                lib/gherkin/rb_lexer/da.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/de_rb.html">
+                lib/gherkin/rb_lexer/de.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/en_rb.html">
+                lib/gherkin/rb_lexer/en.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/en_au_rb.html">
+                lib/gherkin/rb_lexer/en_au.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/en_lol_rb.html">
+                lib/gherkin/rb_lexer/en_lol.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/en_scouse_rb.html">
+                lib/gherkin/rb_lexer/en_scouse.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/en_tx_rb.html">
+                lib/gherkin/rb_lexer/en_tx.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/eo_rb.html">
+                lib/gherkin/rb_lexer/eo.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/es_rb.html">
+                lib/gherkin/rb_lexer/es.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/et_rb.html">
+                lib/gherkin/rb_lexer/et.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/fi_rb.html">
+                lib/gherkin/rb_lexer/fi.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/fr_rb.html">
+                lib/gherkin/rb_lexer/fr.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/he_rb.html">
+                lib/gherkin/rb_lexer/he.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/hr_rb.html">
+                lib/gherkin/rb_lexer/hr.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/hu_rb.html">
+                lib/gherkin/rb_lexer/hu.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/id_rb.html">
+                lib/gherkin/rb_lexer/id.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/it_rb.html">
+                lib/gherkin/rb_lexer/it.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/ja_rb.html">
+                lib/gherkin/rb_lexer/ja.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/ko_rb.html">
+                lib/gherkin/rb_lexer/ko.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/lt_rb.html">
+                lib/gherkin/rb_lexer/lt.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/lu_rb.html">
+                lib/gherkin/rb_lexer/lu.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/lv_rb.html">
+                lib/gherkin/rb_lexer/lv.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/nl_rb.html">
+                lib/gherkin/rb_lexer/nl.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/no_rb.html">
+                lib/gherkin/rb_lexer/no.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/pl_rb.html">
+                lib/gherkin/rb_lexer/pl.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/pt_rb.html">
+                lib/gherkin/rb_lexer/pt.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/ro_rb.html">
+                lib/gherkin/rb_lexer/ro.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/ro_ro_rb.html">
+                lib/gherkin/rb_lexer/ro_ro.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/ru_rb.html">
+                lib/gherkin/rb_lexer/ru.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/sk_rb.html">
+                lib/gherkin/rb_lexer/sk.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/sr_cyrl_rb.html">
+                lib/gherkin/rb_lexer/sr_cyrl.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/sr_latn_rb.html">
+                lib/gherkin/rb_lexer/sr_latn.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/sv_rb.html">
+                lib/gherkin/rb_lexer/sv.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/tr_rb.html">
+                lib/gherkin/rb_lexer/tr.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/uk_rb.html">
+                lib/gherkin/rb_lexer/uk.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/uz_rb.html">
+                lib/gherkin/rb_lexer/uz.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/vi_rb.html">
+                lib/gherkin/rb_lexer/vi.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/zh_cn_rb.html">
+                lib/gherkin/rb_lexer/zh_cn.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer/zh_tw_rb.html">
+                lib/gherkin/rb_lexer/zh_tw.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rb_lexer_rb.html">
+                lib/gherkin/rb_lexer.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/rubify_rb.html">
+                lib/gherkin/rubify.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/tools/files_rb.html">
+                lib/gherkin/tools/files.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/tools/reformat_rb.html">
+                lib/gherkin/tools/reformat.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/tools/stats_rb.html">
+                lib/gherkin/tools/stats.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/tools/stats_listener_rb.html">
+                lib/gherkin/tools/stats_listener.rb
+                </a>
+        <br />
+                <a href="../files/lib/gherkin/tools_rb.html">
+                lib/gherkin/tools.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+encoding: utf-8
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Gherkin/CLexer.html" class="link">Gherkin::CLexer</a><br />
+Module <a href="Gherkin/Cli.html" class="link">Gherkin::Cli</a><br />
+Module <a href="Gherkin/Formatter.html" class="link">Gherkin::Formatter</a><br />
+Module <a href="Gherkin/Parser.html" class="link">Gherkin::Parser</a><br />
+Module <a href="Gherkin/RbLexer.html" class="link">Gherkin::RbLexer</a><br />
+Module <a href="Gherkin/Rubify.html" class="link">Gherkin::Rubify</a><br />
+Module <a href="Gherkin/Tools.html" class="link">Gherkin::Tools</a><br />
+Class <a href="Gherkin/I18n.html" class="link">Gherkin::I18n</a><br />
+Class <a href="Gherkin/I18nLexer.html" class="link">Gherkin::I18nLexer</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">I18nLexerNotFound</td>
+          <td>=</td>
+          <td class="context-item-value">Class.new(LoadError)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LexingError</td>
+          <td>=</td>
+          <td class="context-item-value">Class.new(StandardError)</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">white</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">grey</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">white</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">grey</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">white</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">grey</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

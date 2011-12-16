@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Gherkin::Tools::Files#each
+is_singleton: false
+name: each
+params: (&proc)
+visibility: public

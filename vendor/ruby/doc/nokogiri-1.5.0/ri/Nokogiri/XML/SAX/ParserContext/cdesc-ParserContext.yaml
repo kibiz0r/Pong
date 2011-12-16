@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: file
+- !ruby/object:RI::MethodSummary 
+  name: io
+- !ruby/object:RI::MethodSummary 
+  name: memory
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "call-seq: column"
+- !ruby/struct:SM::Flow::P 
+  body: Get the current column the parser context is processing.
+constants: []
+
+full_name: Nokogiri::XML::SAX::ParserContext
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: column
+- !ruby/object:RI::MethodSummary 
+  name: line
+- !ruby/object:RI::MethodSummary 
+  name: parse_with
+- !ruby/object:RI::MethodSummary 
+  name: replace_entities
+- !ruby/object:RI::MethodSummary 
+  name: replace_entities=
+name: ParserContext
+superclass: Object

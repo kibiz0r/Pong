@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute (Cucumber::JsSupport::JsWorld)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/cucumber/js_support/js_language.rb, line 18</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">js_function</span>, <span class="ruby-identifier">args</span>=[])
+        <span class="ruby-identifier">js_args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Ast</span><span class="ruby-operator">::</span><span class="ruby-constant">Table</span>)
+            <span class="ruby-node">&quot;new CucumberJsDsl.Table(#{arg.raw.inspect})&quot;</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-constant">JsSupport</span>.<span class="ruby-identifier">argument_safe_string</span>(<span class="ruby-identifier">arg</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-ivar">@world</span>.<span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;(#{js_function.ToString})(#{js_args.join(',')});&quot;</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

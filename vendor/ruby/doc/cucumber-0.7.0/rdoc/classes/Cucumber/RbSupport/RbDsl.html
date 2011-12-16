@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Cucumber::RbSupport::RbDsl</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Cucumber::RbSupport::RbDsl</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/cucumber/rb_support/rb_dsl_rb.html">
+                lib/cucumber/rb_support/rb_dsl.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This module defines the methods you can use to define pure Ruby Step
+Definitions and Hooks. This module is mixed into the toplevel object.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000263">After</a>&nbsp;&nbsp;
+      <a href="#M000266">AfterConfiguration</a>&nbsp;&nbsp;
+      <a href="#M000264">AfterStep</a>&nbsp;&nbsp;
+      <a href="#M000262">Before</a>&nbsp;&nbsp;
+      <a href="#M000265">Transform</a>&nbsp;&nbsp;
+      <a href="#M000261">World</a>&nbsp;&nbsp;
+      <a href="#M000256">alias_adverb</a>&nbsp;&nbsp;
+      <a href="#M000257">build_rb_world_factory</a>&nbsp;&nbsp;
+      <a href="#M000258">register_rb_hook</a>&nbsp;&nbsp;
+      <a href="#M000260">register_rb_step_definition</a>&nbsp;&nbsp;
+      <a href="#M000267">register_rb_step_definition</a>&nbsp;&nbsp;
+      <a href="#M000259">register_rb_transform</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">rb_language</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000256" class="method-detail">
+        <a name="M000256"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000256.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000256.html');return false;">
+          <span class="method-name">alias_adverb</span><span class="method-args">(adverb)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000257" class="method-detail">
+        <a name="M000257"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000257.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000257.html');return false;">
+          <span class="method-name">build_rb_world_factory</span><span class="method-args">(world_modules, proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000258" class="method-detail">
+        <a name="M000258"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000258.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000258.html');return false;">
+          <span class="method-name">register_rb_hook</span><span class="method-args">(phase, tag_names, proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000260" class="method-detail">
+        <a name="M000260"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000260.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000260.html');return false;">
+          <span class="method-name">register_rb_step_definition</span><span class="method-args">(regexp, proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000259" class="method-detail">
+        <a name="M000259"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000259.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000259.html');return false;">
+          <span class="method-name">register_rb_transform</span><span class="method-args">(regexp, proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000263" class="method-detail">
+        <a name="M000263"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000263.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000263.html');return false;">
+          <span class="method-name">After</span><span class="method-args">(*tag_expressions, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers a proc that will run after each Scenario. You can register as as
+you want (typically from ruby scripts under <tt>support/hooks.rb</tt>).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000266" class="method-detail">
+        <a name="M000266"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000266.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000266.html');return false;">
+          <span class="method-name">AfterConfiguration</span><span class="method-args">(&amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers a proc that will run after <a
+href="../../Cucumber.html">Cucumber</a> is configured. You can register as
+as you want (typically from ruby scripts under <tt>support/hooks.rb</tt>).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000264" class="method-detail">
+        <a name="M000264"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000264.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000264.html');return false;">
+          <span class="method-name">AfterStep</span><span class="method-args">(*tag_expressions, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers a proc that will run after each Step. You can register as as you
+want (typically from ruby scripts under <tt>support/hooks.rb</tt>).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000262" class="method-detail">
+        <a name="M000262"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000262.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000262.html');return false;">
+          <span class="method-name">Before</span><span class="method-args">(*tag_expressions, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers a proc that will run before each Scenario. You can register as as
+you want (typically from ruby scripts under <tt>support/hooks.rb</tt>).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000265" class="method-detail">
+        <a name="M000265"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000265.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000265.html');return false;">
+          <span class="method-name">Transform</span><span class="method-args">(regexp, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers a proc that will be called with a step definition argument if it
+matches the pattern passed as the first argument to <a
+href="RbDsl.html#M000265">Transform</a>. Alternatively, if the pattern
+contains captures then they will be yielded as arguments to the provided
+proc. The return value of the proc is consequently yielded to the step
+definition.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000261" class="method-detail">
+        <a name="M000261"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000261.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000261.html');return false;">
+          <span class="method-name">World</span><span class="method-args">(*world_modules, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers any number of <tt>world_modules</tt> (Ruby Modules) and/or a
+Proc. The <tt>proc</tt> will be executed once before each scenario to
+create an Object that the scenario&#8216;s steps will run within. Any
+<tt>world_modules</tt> will be mixed into this Object (via Object#extend).
+</p>
+<p>
+This method is typically called from one or more Ruby scripts under
+<tt>features/support</tt>. You can call this method as many times as you
+like (to register more modules), but if you try to register more than one
+Proc you will get an error.
+</p>
+<p>
+<a href="../../Cucumber.html">Cucumber</a> will not yield anything to the
+<tt>proc</tt>. Examples:
+</p>
+<pre>
+   World do
+     MyClass.new
+   end
+
+   World(MyModule)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000267" class="method-detail">
+        <a name="M000267"></a>
+
+        <div class="method-heading">
+          <a href="RbDsl.src/M000267.html" target="Code" class="method-signature"
+            onclick="popupCode('RbDsl.src/M000267.html');return false;">
+          <span class="method-name">register_rb_step_definition</span><span class="method-args">(regexp, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers a new Ruby StepDefinition. This method is aliased to
+<tt>Given</tt>, <tt>When</tt> and <tt>Then</tt>, and also to the i18n
+translations whenever a feature of a new language is loaded.
+</p>
+<p>
+The +&amp;proc+ gets executed in the context of a <tt><a
+href="RbDsl.html#M000261">World</a></tt> object, which is defined by <a
+href="RbDsl.html#M000261">World</a>. A new <tt><a
+href="RbDsl.html#M000261">World</a></tt> object is created for each
+scenario and is shared across step definitions within that scenario.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

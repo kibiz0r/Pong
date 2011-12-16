@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+full_name: Cucumber::Formatter::Console#print_tag_limit_warnings
+is_singleton: false
+name: print_tag_limit_warnings
+params: (features)
+visibility: public
